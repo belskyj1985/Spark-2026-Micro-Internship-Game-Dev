@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Script" uid="uid://dgemna2cprj7k" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(20, 54)
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+floor_snap_length = 5.0
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_onrkg")
