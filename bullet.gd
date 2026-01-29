@@ -13,7 +13,8 @@ func _ready() -> void:
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	timer.start(lifetime)
+	if lifetime != 0.0:
+		timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
@@ -24,3 +25,8 @@ func _on_timer_timeout() -> void:
 func setup(p_direction: Vector2, p_damage: int) -> void:
 	direction = p_direction.normalized()
 	damage = p_damage
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print("BANG!!!!!!!!!!!!")
+	body.get_hit(damage)

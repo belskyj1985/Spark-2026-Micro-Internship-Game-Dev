@@ -5,9 +5,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxuh6"]
 
 [node name="player_bullet" type="Area2D" unique_id=1275510331]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_mbmgk")
 metadata/_custom_type_script = "uid://crpx6vcouyvk7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=903621447]
 shape = SubResource("CircleShape2D_oxuh6")
 debug_color = Color(0.9945304, 0, 0.22795734, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

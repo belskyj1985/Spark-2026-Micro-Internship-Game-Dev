@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckudr8chj1kgo"]
+[gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://dgemna2cprj7k" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://dim36cnfj34qg" path="res://reticle.png" id="2_i3pqv"]
@@ -7,8 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(20, 65)
 
-[sub_resource type="Animation" id="Animation_i3pqv"]
-resource_name = "stand"
+[sub_resource type="Animation" id="Animation_hqtel"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -22,8 +22,40 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_hqtel"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_2hs0m"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 8]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "stand"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,38 +85,6 @@ tracks/0/keys = {
 "values": [1, 2, 3, 2]
 }
 
-[sub_resource type="Animation" id="Animation_onrkg"]
-resource_name = "run"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9, 10, 8]
-}
-
-[sub_resource type="Animation" id="Animation_2hs0m"]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hs0m"]
 _data = {
 &"RESET": SubResource("Animation_hqtel"),
@@ -94,27 +94,28 @@ _data = {
 &"walk": SubResource("Animation_sweqy")
 }
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" unique_id=1814147482]
 collision_layer = 2
 floor_snap_length = 5.0
 script = ExtResource("1_4flbx")
 
-[node name="Reticle" type="Sprite2D" parent="."]
+[node name="Reticle" type="Sprite2D" parent="." unique_id=871831281]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(33, -16)
 texture = ExtResource("2_i3pqv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1886586865]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=1707465355]
 position = Vector2(3, -6)
 texture = ExtResource("2_onrkg")
 hframes = 12
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_2hs0m")
-}
-autoplay = "stand"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=100963702]
+libraries/ = SubResource("AnimationLibrary_2hs0m")
+autoplay = &"stand"
+
+[node name="invincibility" type="Timer" parent="." unique_id=1973878873]
+one_shot = true

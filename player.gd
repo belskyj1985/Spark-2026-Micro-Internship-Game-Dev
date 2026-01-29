@@ -1,4 +1,8 @@
 extends CharacterBody2D
+
+var health :int = 100
+var max_health :int = 100
+
 var input_vector : Vector2 
 const GRAV :int = 2000
 const SPD : int = 200
@@ -16,6 +20,8 @@ var bullet_gravity :int = 20
 var bullet_lifetime :float = 2.0
 var bullet_damage :int = 10
 
+var vulnerable :bool = true
+
 var state = state_enum.move
 enum state_enum {
 	move,
@@ -23,6 +29,7 @@ enum state_enum {
 	aim,
 }
 
+@onready var inv_timer: Timer = $invincibility
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprites: Sprite2D = $AnimatedSprite2D
 @onready var reticle: Sprite2D = $Reticle
@@ -68,6 +75,9 @@ func do_anims():
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
 	print(state)
+	
+	vulnerable = inv_timer.is_stopped()
+	
 	match state:
 		state_enum.move:
 			move(delta)
@@ -102,7 +112,6 @@ func slide(delta):
 	pass
 
 func shoot():
-	print(bullet_offset)
 	if Input.is_action_just_pressed("shoot") && can_shoot:
 		var bullet_instance: Bullet = BulletScene.instantiate()
 		get_tree().current_scene.add_child(bullet_instance)
@@ -132,3 +141,7 @@ func aim(delta):
 	reticle.global_position = get_global_mouse_position()
 	aim_angle = (global_position - get_global_mouse_position()).angle()
 	move_and_slide()
+func get_hit(dmg):
+	if vulnerable:
+		health = clamp(health - dmg, 0, max_health)
+		inv_timer.start()
