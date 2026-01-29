@@ -7,6 +7,15 @@ var jump_force : int = 600
 var aim_angle : float = 0.0
 var reticle_a_target : float = 0.0
 
+var bullet_offset = Vector2(28, -16)
+var can_shoot :bool = true
+const BulletScene = preload("res://player_bullet.tscn")
+
+var bullet_speed :int = 400
+var bullet_gravity :int = 20
+var bullet_lifetime :float = 2.0
+var bullet_damage :int = 10
+
 var state = state_enum.move
 enum state_enum {
 	move,
@@ -42,8 +51,10 @@ func do_anims():
 		sprites.flip_h = (sign(input_vector.x) == -1)
 		
 		if sprites.flip_h:
+			bullet_offset = Vector2(-28, -16)
 			sprites.offset.x = -6
 		else:
+			bullet_offset = Vector2(28, -16)
 			sprites.offset.x = 0
 	
 	if is_on_floor():
@@ -69,6 +80,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV * delta
 
 func move(delta):
+	shoot()
 	if Input.is_action_pressed("aim"):
 		reticle_a_target = 1
 		state = state_enum.aim
@@ -89,7 +101,28 @@ func move(delta):
 func slide(delta):
 	pass
 
+func shoot():
+	print(bullet_offset)
+	if Input.is_action_just_pressed("shoot") && can_shoot:
+		var bullet_instance: Bullet = BulletScene.instantiate()
+		get_tree().current_scene.add_child(bullet_instance)
+		
+		if state == state_enum.aim:
+			bullet_instance.setup(get_global_mouse_position() - global_position + bullet_offset, bullet_damage)
+		elif state == state_enum.move:
+			bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
+		
+		bullet_instance.global_position = global_position + bullet_offset
+		bullet_instance.speed = bullet_speed
+		bullet_instance.damage = bullet_damage
+		bullet_instance.lifetime = bullet_lifetime
+		
+		can_shoot = false
+		await get_tree().create_timer(0.1).timeout
+		can_shoot = true
+
 func aim(delta):
+	shoot()
 	if !Input.is_action_pressed("aim"):
 		reticle_a_target = 0
 		state = state_enum.move
