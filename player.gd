@@ -74,7 +74,6 @@ func do_anims():
 	else:
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
-	print(state)
 	
 	vulnerable = inv_timer.is_stopped()
 	
@@ -120,7 +119,7 @@ func shoot():
 			bullet_instance.setup(get_global_mouse_position() - global_position + bullet_offset, bullet_damage)
 		elif state == state_enum.move:
 			bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
-		
+		bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
 		bullet_instance.global_position = global_position + bullet_offset
 		bullet_instance.speed = bullet_speed
 		bullet_instance.damage = bullet_damage
@@ -145,3 +144,4 @@ func get_hit(dmg):
 	if vulnerable:
 		health = clamp(health - dmg, 0, max_health)
 		inv_timer.start()
+		velocity -= 200 * sign(bullet_offset.x)
