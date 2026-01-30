@@ -1,4 +1,8 @@
 extends CharacterBody2D
+
+var health :int = 100
+var max_health :int = 100
+
 var input_vector : Vector2 
 const GRAV :int = 2000
 const SPD : int = 200
@@ -7,6 +11,17 @@ var jump_force : int = 600
 var aim_angle : float = 0.0
 var reticle_a_target : float = 0.0
 
+var bullet_offset = Vector2(28, -16)
+var can_shoot :bool = true
+const BulletScene = preload("res://player_bullet.tscn")
+
+var bullet_speed :int = 400
+var bullet_gravity :int = 20
+var bullet_lifetime :float = 2.0
+var bullet_damage :int = 10
+
+var vulnerable :bool = true
+
 var state = state_enum.move
 enum state_enum {
 	move,
@@ -14,6 +29,7 @@ enum state_enum {
 	aim,
 }
 
+@onready var inv_timer: Timer = $invincibility
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprites: Sprite2D = $AnimatedSprite2D
 @onready var reticle: Sprite2D = $Reticle
@@ -42,8 +58,10 @@ func do_anims():
 		sprites.flip_h = (sign(input_vector.x) == -1)
 		
 		if sprites.flip_h:
+			bullet_offset = Vector2(-28, -16)
 			sprites.offset.x = -6
 		else:
+			bullet_offset = Vector2(28, -16)
 			sprites.offset.x = 0
 	
 	if is_on_floor():
@@ -56,7 +74,9 @@ func do_anims():
 	else:
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
-	print(state)
+	
+	vulnerable = inv_timer.is_stopped()
+	
 	match state:
 		state_enum.move:
 			move(delta)
@@ -69,6 +89,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV * delta
 
 func move(delta):
+	shoot()
 	if Input.is_action_pressed("aim"):
 		reticle_a_target = 1
 		state = state_enum.aim
@@ -89,7 +110,27 @@ func move(delta):
 func slide(delta):
 	pass
 
+func shoot():
+	if Input.is_action_just_pressed("shoot") && can_shoot:
+		var bullet_instance: Bullet = BulletScene.instantiate()
+		get_tree().current_scene.add_child(bullet_instance)
+		
+		if state == state_enum.aim:
+			bullet_instance.setup(get_global_mouse_position() - global_position + bullet_offset, bullet_damage)
+		elif state == state_enum.move:
+			bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
+		bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
+		bullet_instance.global_position = global_position + bullet_offset
+		bullet_instance.speed = bullet_speed
+		bullet_instance.damage = bullet_damage
+		bullet_instance.lifetime = bullet_lifetime
+		
+		can_shoot = false
+		await get_tree().create_timer(0.1).timeout
+		can_shoot = true
+
 func aim(delta):
+	shoot()
 	if !Input.is_action_pressed("aim"):
 		reticle_a_target = 0
 		state = state_enum.move
@@ -99,3 +140,8 @@ func aim(delta):
 	reticle.global_position = get_global_mouse_position()
 	aim_angle = (global_position - get_global_mouse_position()).angle()
 	move_and_slide()
+func get_hit(dmg):
+	if vulnerable:
+		health = clamp(health - dmg, 0, max_health)
+		inv_timer.start()
+		velocity -= 200 * sign(bullet_offset.x)
