@@ -111,7 +111,7 @@ func slide(delta):
 	pass
 
 func shoot():
-	if Input.is_action_just_pressed("shoot") && can_shoot:
+	if Input.is_action_just_pressed("shoot") && can_shoot && !Global.paused:
 		var bullet_instance: Bullet = BulletScene.instantiate()
 		get_tree().current_scene.add_child(bullet_instance)
 		

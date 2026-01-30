@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c201kqm66rjry"]
+
+[ext_resource type="Script" uid="uid://cdwyisxkkn5kh" path="res://pause_menu.gd" id="1_hdmo1"]
+
+[node name="Pause Menu" type="Control" unique_id=1272794215]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdmo1")
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=153339323]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 314.0
+vertical = true
+
+[node name="recall" type="Button" parent="BoxContainer" unique_id=1219008975]
+layout_mode = 2
+text = "Recall"
+
+[node name="ProgressBar" type="ProgressBar" parent="BoxContainer/recall" unique_id=976796316]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 460.0
+offset_bottom = 35.0
+show_percentage = false
+
+[node name="Button" type="Button" parent="BoxContainer" unique_id=622168258]
+layout_mode = 2
+text = "Options"
+
+[node name="Label" type="Label" parent="BoxContainer" unique_id=326656552]
+layout_mode = 2
+
+[connection signal="button_down" from="BoxContainer/recall" to="." method="_on_recall_button_down"]
+[connection signal="button_up" from="BoxContainer/recall" to="." method="_on_recall_button_up"]
