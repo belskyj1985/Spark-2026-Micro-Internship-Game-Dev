@@ -145,3 +145,19 @@ func get_hit(dmg):
 		health = clamp(health - dmg, 0, max_health)
 		inv_timer.start()
 		velocity -= 200 * sign(bullet_offset.x)
+
+func take_damage(dmg: int, source_vel):
+	#flash red on hit
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
+	
+	#handle knockback DOESNT WORK YET
+	velocity += source_vel.normalized() * 1500
+	
+	#handle health
+	print("took damage")
+	health -= dmg
+	if health <= 0:
+		print("dead")
+		get_tree().reload_current_scene()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvv7msmvsrl6n"]
+[gd_scene format=3 uid="uid://bvv7msmvsrl6n"]
 
+[ext_resource type="Script" uid="uid://bfkaou7noh7u0" path="res://physics_gear.gd" id="1_gvra2"]
 [ext_resource type="Texture2D" uid="uid://bpxdiarm3e3ts" path="res://GearV1.png" id="1_jhvtq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghy2i"]
@@ -8,21 +9,24 @@ radius = 44.04543
 [sub_resource type="CircleShape2D" id="CircleShape2D_jhvtq"]
 radius = 41.484936
 
-[node name="PhysicsGear" type="RigidBody2D"]
+[node name="PhysicsGear" type="RigidBody2D" unique_id=91430702]
 collision_layer = 0
+script = ExtResource("1_gvra2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1045401944]
 shape = SubResource("CircleShape2D_ghy2i")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=535890465]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1663036325]
 shape = SubResource("CircleShape2D_jhvtq")
 debug_color = Color(1, 0, 0.17254902, 0.41960785)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=132007630]
 position = Vector2(2.000001, 1.9999998)
 scale = Vector2(1.8085939, 1.8085939)
 texture = ExtResource("1_jhvtq")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

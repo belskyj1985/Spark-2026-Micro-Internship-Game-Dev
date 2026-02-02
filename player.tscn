@@ -94,7 +94,7 @@ _data = {
 &"walk": SubResource("Animation_sweqy")
 }
 
-[node name="player" type="CharacterBody2D" unique_id=1814147482]
+[node name="player" type="CharacterBody2D" unique_id=1814147482 groups=["player"]]
 collision_layer = 2
 floor_snap_length = 5.0
 script = ExtResource("1_4flbx")
