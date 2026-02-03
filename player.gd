@@ -11,6 +11,8 @@ var jump_force : int = 600
 var aim_angle : float = 0.0
 var reticle_a_target : float = 0.0
 
+
+var stunned :bool = false
 var bullet_offset = Vector2(28, -16)
 var can_shoot :bool = true
 const BulletScene = preload("res://player_bullet.tscn")
@@ -28,7 +30,7 @@ enum state_enum {
 	slide,
 	aim,
 }
-
+@onready var stun: Timer = $stun
 @onready var inv_timer: Timer = $invincibility
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprites: Sprite2D = $AnimatedSprite2D
@@ -54,26 +56,31 @@ func do_anims():
 	if Input.is_action_just_pressed("jump") && !is_on_floor():
 		sprites.scale = Vector2(1, 0.6)
 	
-	if sign(input_vector.x) != 0:
-		sprites.flip_h = (sign(input_vector.x) == -1)
-		
-		if sprites.flip_h:
-			bullet_offset = Vector2(-28, -16)
-			sprites.offset.x = -6
-		else:
-			bullet_offset = Vector2(28, -16)
-			sprites.offset.x = 0
+	if state == state_enum.move:
+		if sign(input_vector.x) != 0:
+			sprites.flip_h = (sign(input_vector.x) == -1)
+	elif state == state_enum.aim:
+		sprites.flip_h = (sign(global_position.x - get_global_mouse_position().x) == 1)
 	
+	if sprites.flip_h:
+		bullet_offset = Vector2(-28, -16)
+		sprites.offset.x = -6
+	else:
+		bullet_offset = Vector2(28, -16)
+		sprites.offset.x = 0
+	
+		
 	if is_on_floor():
 		if velocity.x == 0:
 			anim.play("stand")
-		elif Input.is_action_pressed("sprint"):
+		elif Input.is_action_pressed("sprint") && state != state_enum.aim:
 			anim.play("run")
 		else:
 			anim.play("walk")
 	else:
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
+	print(health)
 	
 	vulnerable = inv_timer.is_stopped()
 	
@@ -93,11 +100,13 @@ func move(delta):
 	if Input.is_action_pressed("aim"):
 		reticle_a_target = 1
 		state = state_enum.aim
-	get_input_vector()
-	if Input.is_action_pressed("sprint"):
-		velocity.x = input_vector.x * SPD * 1.8
-	else:
-		velocity.x = input_vector.x * SPD
+	
+	if !stunned:
+		get_input_vector()
+		if Input.is_action_pressed("sprint"):
+			velocity.x = input_vector.x * SPD * 1.8
+		else:
+			velocity.x = input_vector.x * SPD
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
@@ -140,8 +149,19 @@ func aim(delta):
 	reticle.global_position = get_global_mouse_position()
 	aim_angle = (global_position - get_global_mouse_position()).angle()
 	move_and_slide()
-func get_hit(dmg):
+func get_hit(pos, dmg :int = 20, kb :int = 200):
 	if vulnerable:
 		health = clamp(health - dmg, 0, max_health)
 		inv_timer.start()
-		velocity -= 200 * sign(bullet_offset.x)
+		tranq(0.5)
+		velocity.y = -500
+		velocity.x = sign((global_position - pos).x) * kb
+
+func tranq(time :float):
+	stunned = true
+	stun.start(time)
+
+
+
+func _on_stun_timeout() -> void:
+	stunned = false

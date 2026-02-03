@@ -119,3 +119,8 @@ autoplay = &"stand"
 
 [node name="invincibility" type="Timer" parent="." unique_id=1973878873]
 one_shot = true
+
+[node name="stun" type="Timer" parent="." unique_id=989517013]
+one_shot = true
+
+[connection signal="timeout" from="stun" to="." method="_on_stun_timeout"]
