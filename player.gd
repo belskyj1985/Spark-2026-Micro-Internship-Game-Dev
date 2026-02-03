@@ -149,6 +149,7 @@ func aim(delta):
 	reticle.global_position = get_global_mouse_position()
 	aim_angle = (global_position - get_global_mouse_position()).angle()
 	move_and_slide()
+
 func get_hit(pos, dmg :int = 20, kb :int = 200):
 	if vulnerable:
 		health = clamp(health - dmg, 0, max_health)

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://puhm8pv6ysxi"]
+
+[ext_resource type="Script" uid="uid://e3s7ng78yhhq" path="res://vent.gd" id="1_0e68c"]
+[ext_resource type="Texture2D" uid="uid://huoj776a84up" path="res://Vent sprite.png" id="1_2sovo"]
+[ext_resource type="Texture2D" uid="uid://8r27jhju2yb8" path="res://ventparticlev2.png" id="2_8novf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8novf"]
+size = Vector2(107.5, 184.25)
+
+[node name="ventbox" type="Area2D" unique_id=2003904496]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("1_0e68c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=818642254]
+position = Vector2(0, -104.875)
+shape = SubResource("RectangleShape2D_8novf")
+
+[node name="VentSprite" type="Sprite2D" parent="." unique_id=1712924550]
+position = Vector2(7.6293945e-06, -7.6293945e-06)
+scale = Vector2(2.0625, 2.0625)
+texture = ExtResource("1_2sovo")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1065601978]
+position = Vector2(-29, -7)
+amount = 7
+texture = ExtResource("2_8novf")
+direction = Vector2(0, -1)
+spread = 2.74
+gravity = Vector2(0, 100)
+initial_velocity_min = 220.0
+initial_velocity_max = 220.0
+color = Color(1, 1, 1, 0.49019608)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=1363435431]
+position = Vector2(34, -7)
+amount = 7
+texture = ExtResource("2_8novf")
+direction = Vector2(0, -1)
+spread = 2.69
+gravity = Vector2(0, 100)
+initial_velocity_min = 220.0
+initial_velocity_max = 220.0
+color = Color(1, 1, 1, 0.47058824)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="." unique_id=809863149]
+position = Vector2(0.75, -7)
+amount = 7
+texture = ExtResource("2_8novf")
+direction = Vector2(0, -1)
+spread = 8.74
+gravity = Vector2(0, 100)
+initial_velocity_min = 220.0
+initial_velocity_max = 220.0
+color = Color(1, 1, 1, 0.43529412)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
