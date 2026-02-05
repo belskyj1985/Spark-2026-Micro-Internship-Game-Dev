@@ -80,7 +80,6 @@ func do_anims():
 	else:
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
-	print(health)
 	
 	vulnerable = inv_timer.is_stopped()
 	
@@ -156,7 +155,7 @@ func get_hit(pos, dmg :int = 20, kb :int = 200):
 		inv_timer.start()
 		tranq(0.5)
 		velocity.y = -500
-		velocity.x = sign((global_position - pos).x) * kb
+		#velocity.x = sign((global_position.x - pos.x)) * kb
 
 func tranq(time :float):
 	stunned = true
