@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://b7d5rn4or5hc7"]
+[gd_scene format=3 uid="uid://6x4sm0a67yfa"]
 
-[ext_resource type="Texture2D" uid="uid://cy54bnahot3bg" path="res://PixelFantasy_Caves_1.0/mainlev_build.png" id="1_1i3gi"]
+[ext_resource type="Texture2D" uid="uid://cy54bnahot3bg" path="res://PixelFantasy_Caves_1.0/mainlev_build.png" id="1_0voel"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsmjb"]
-texture = ExtResource("1_1i3gi")
+texture = ExtResource("1_0voel")
 6:1/0 = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 20:1/0 = 0
@@ -1711,7 +1711,7 @@ texture = ExtResource("1_1i3gi")
 55:9/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_3qqdj"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Ground1"
