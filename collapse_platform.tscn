@@ -1,0 +1,64 @@
+[gd_scene format=4 uid="uid://bvamr6bquag26"]
+
+[ext_resource type="Script" uid="uid://c2jofc8k5vi1x" path="res://static_body_2d.gd" id="1_dnvn8"]
+[ext_resource type="PackedScene" uid="uid://b7d5rn4or5hc7" path="res://tilemap.tscn" id="2_ja2mh"]
+[ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="3_xsoys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja2mh"]
+size = Vector2(166, 16.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnvn8"]
+size = Vector2(167, 7)
+
+[sub_resource type="Gradient" id="Gradient_ja2mh"]
+offsets = PackedFloat32Array(0, 0.3618421, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CollapsingPlatform" type="StaticBody2D" unique_id=354312780]
+position = Vector2(0, 11)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_dnvn8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684387054]
+position = Vector2(-1, -10.625)
+shape = SubResource("RectangleShape2D_ja2mh")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1388557990]
+collision_layer = 0
+collision_mask = 10
+
+[node name="scanbox" type="CollisionShape2D" parent="Area2D" unique_id=1062596048]
+position = Vector2(-1, -20)
+shape = SubResource("RectangleShape2D_dnvn8")
+debug_color = Color(0.6631474, 0.3715764, 0, 0.41960785)
+
+[node name="TimerBeforeCollapse" type="Timer" parent="." unique_id=1698286455]
+wait_time = 0.7
+
+[node name="TileMapLayer" parent="." unique_id=1428863558 instance=ExtResource("2_ja2mh")]
+position = Vector2(-185, -83)
+tile_map_data = PackedByteArray("AAAGAAQAAAAvAAMAAAAHAAQAAAAwAAMAAAAIAAQAAAAxAAMAAAAJAAQAAAAyAAMAAAAKAAQAAAAzAAMAAAALAAQAAAA0AAMAAAAMAAQAAAA1AAMAAAANAAQAAAA2AAMAAAAOAAQAAAA3AAMAAAAPAAQAAAA4AAMAAAAQAAQAAAA5AAMAAAA=")
+
+[node name="WoodParticles" type="CPUParticles2D" parent="." unique_id=1621810560]
+position = Vector2(-1, -5)
+emitting = false
+amount = 60
+texture = ExtResource("3_xsoys")
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(80.04, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+color_ramp = SubResource("Gradient_ja2mh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="TimerBeforeCollapse" to="." method="_on_timer_before_collapse_timeout"]
