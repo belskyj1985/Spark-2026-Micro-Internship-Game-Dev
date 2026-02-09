@@ -13,5 +13,6 @@ func _physics_process(delta: float) -> void:
 		if i is RigidBody2D:
 			i.apply_central_force(Vector2(0,-2000))
 		else:
+			print(Vector2(0,2400).rotated(rotation))
 			i.velocity -= Vector2(0,2400).rotated(rotation) * delta
 #2000 makes you hover btw

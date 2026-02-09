@@ -6,7 +6,7 @@ var max_health :int = 100
 var input_vector : Vector2 
 const GRAV :int = 2000
 const SPD : int = 200
-var jump_force : int = 600
+var jump_force : int = 650
 
 var aim_angle : float = 0.0
 var reticle_a_target : float = 0.0
@@ -124,7 +124,7 @@ func shoot():
 		get_tree().current_scene.add_child(bullet_instance)
 		
 		if state == state_enum.aim:
-			bullet_instance.setup(get_global_mouse_position() - global_position + bullet_offset, bullet_damage)
+			bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), bullet_damage)
 		elif state == state_enum.move:
 			bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
 		bullet_instance.body_entered.connect(bullet_instance._on_body_entered)

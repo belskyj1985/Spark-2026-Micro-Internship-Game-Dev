@@ -29,7 +29,6 @@ func _on_timer_timeout() -> void:
 	var v = 600
 	var g = bullet_instance.grav
 	var h = 2*(v*v)/(2*g) + (Global.player.global_position - global_position).y + v/sqrt(2)
-	var t = (v + sqrt(v-2 * g * (Global.player.global_position - global_position).y))/g
 	var x_vel = (
 		(Global.player.global_position - global_position).x/(sqrt((2*h)/g))
 	)
