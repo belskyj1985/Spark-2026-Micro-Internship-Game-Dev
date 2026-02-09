@@ -64,17 +64,14 @@ position = Vector2(813, 249)
 position = Vector2(185, -122)
 
 [node name="PhysicsGear2" parent="." unique_id=2001270199 instance=ExtResource("7_eow3j")]
-position = Vector2(508, 35)
+position = Vector2(575, -29)
 
 [node name="PhysicsGear3" parent="." unique_id=257537176 instance=ExtResource("7_eow3j")]
-position = Vector2(291, -109)
+position = Vector2(1210, -207)
 
 [node name="door" parent="." unique_id=1307245194 instance=ExtResource("9_vef74")]
 position = Vector2(1706, 664)
 scene = "res://2ndLevelTest.tscn"
-
-[node name="ventbox" parent="." unique_id=2003904496 instance=ExtResource("10_hve3p")]
-position = Vector2(290, 116)
 
 [node name="ventbox2" parent="." unique_id=1524507362 instance=ExtResource("10_hve3p")]
 position = Vector2(1252, 529)
