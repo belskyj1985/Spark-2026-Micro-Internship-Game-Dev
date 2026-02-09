@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bvv7msmvsrl6n" path="res://physics_gear.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://edny0xnsfjdt" path="res://door.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" path="res://vent.tscn" id="10_hve3p"]
-[ext_resource type="PackedScene" uid="uid://ct8x3ac3381n6" path="res://enemy_1.tscn" id="11_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://puhm8pv6ysxi" path="res://vent.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" path="res://enemy_1.tscn" id="11_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 
 [node name="game" type="Node2D" unique_id=1019333831]
 
@@ -78,3 +79,6 @@ position = Vector2(1252, 529)
 
 [node name="enemy1" parent="." unique_id=502821726 instance=ExtResource("11_mfdv2")]
 position = Vector2(380, 90)
+
+[node name="CollapsingPlatform" parent="." unique_id=354312780 instance=ExtResource("12_iotsf")]
+position = Vector2(399, -11)

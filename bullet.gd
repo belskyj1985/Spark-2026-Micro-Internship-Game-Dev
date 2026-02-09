@@ -6,10 +6,12 @@ class_name Bullet
 @export var lifetime :float = 2.0
 @export var damage :int = 10
 @export var phys :bool = false
+@onready var player_bullet_normal: Sprite2D = $PlayerBulletNormal
 
 var direction = Vector2.ZERO
 
 func _ready() -> void:
+	
 	var timer = Timer.new()
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)

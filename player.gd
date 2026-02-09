@@ -63,10 +63,10 @@ func do_anims():
 		sprites.flip_h = (sign(global_position.x - get_global_mouse_position().x) == 1)
 	
 	if sprites.flip_h:
-		bullet_offset = Vector2(-28, -16)
+		bullet_offset = Vector2(-37, -16)
 		sprites.offset.x = -6
 	else:
-		bullet_offset = Vector2(28, -16)
+		bullet_offset = Vector2(37, -16)
 		sprites.offset.x = 0
 	
 		
@@ -124,9 +124,12 @@ func shoot():
 		get_tree().current_scene.add_child(bullet_instance)
 		
 		if state == state_enum.aim:
-			bullet_instance.setup(get_global_mouse_position() - global_position + bullet_offset, bullet_damage)
+			bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), bullet_damage)
+			bullet_instance.player_bullet_normal.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
 		elif state == state_enum.move:
 			bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
+			#flip bullet
+			bullet_instance.player_bullet_normal.scale.x = sign(bullet_offset.x)
 		bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
 		bullet_instance.global_position = global_position + bullet_offset
 		bullet_instance.speed = bullet_speed
@@ -136,6 +139,8 @@ func shoot():
 		can_shoot = false
 		await get_tree().create_timer(0.1).timeout
 		can_shoot = true
+		
+		
 
 func aim(delta):
 	shoot()
