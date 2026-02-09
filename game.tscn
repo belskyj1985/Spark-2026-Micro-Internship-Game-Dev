@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bvv7msmvsrl6n" path="res://physics_gear.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://edny0xnsfjdt" path="res://door.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" uid="uid://puhm8pv6ysxi" path="res://vent.tscn" id="10_hve3p"]
-[ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="11_mfdv2"]
+[ext_resource type="PackedScene" path="res://vent.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://ct8x3ac3381n6" path="res://enemy_1.tscn" id="11_mfdv2"]
 
 [node name="game" type="Node2D" unique_id=1019333831]
 
@@ -76,23 +76,5 @@ scene = "res://2ndLevelTest.tscn"
 [node name="ventbox2" parent="." unique_id=1524507362 instance=ExtResource("10_hve3p")]
 position = Vector2(1252, 529)
 
-[node name="CollapsingPlatform" parent="." unique_id=354312780 instance=ExtResource("11_mfdv2")]
-position = Vector2(551, 156)
-
-[node name="CollapsingPlatform2" parent="." unique_id=930831211 instance=ExtResource("11_mfdv2")]
-position = Vector2(1024, 259)
-
-[node name="CollapsingPlatform" parent="CollapsingPlatform2" unique_id=450384882 instance=ExtResource("11_mfdv2")]
-position = Vector2(219, -1)
-
-[node name="CollapsingPlatform2" parent="CollapsingPlatform2" unique_id=1709009896 instance=ExtResource("11_mfdv2")]
-position = Vector2(109, -107)
-
-[node name="CollapsingPlatform3" parent="CollapsingPlatform2" unique_id=1360064069 instance=ExtResource("11_mfdv2")]
-position = Vector2(313, -182)
-
-[node name="CollapsingPlatform4" parent="CollapsingPlatform2" unique_id=2052194020 instance=ExtResource("11_mfdv2")]
-position = Vector2(-39, -210)
-
-[node name="CollapsingPlatform5" parent="CollapsingPlatform2" unique_id=653612812 instance=ExtResource("11_mfdv2")]
-position = Vector2(114, -285)
+[node name="enemy1" parent="." unique_id=502821726 instance=ExtResource("11_mfdv2")]
+position = Vector2(380, 90)
