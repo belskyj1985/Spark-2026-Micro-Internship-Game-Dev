@@ -5,6 +5,7 @@ class_name Bullet
 @export var grav :int = 20
 @export var lifetime :float = 2.0
 @export var damage :int = 10
+@export var phys :bool = false
 
 var direction = Vector2.ZERO
 
@@ -17,13 +18,20 @@ func _ready() -> void:
 		timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
+	if !phys:
+		position += direction * speed * delta
+	else:
+		position += direction * delta
+		direction.y += grav * delta
 
 func _on_timer_timeout() -> void:
 	queue_free()
 
 func setup(p_direction: Vector2, p_damage: int) -> void:
-	direction = p_direction.normalized()
+	if !phys:
+		direction = p_direction.normalized()
+	else:
+		direction = p_direction
 	damage = p_damage
 
 

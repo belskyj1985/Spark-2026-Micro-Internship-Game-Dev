@@ -80,7 +80,6 @@ func do_anims():
 	else:
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
-	print(health)
 	
 	vulnerable = inv_timer.is_stopped()
 	
@@ -149,13 +148,14 @@ func aim(delta):
 	reticle.global_position = get_global_mouse_position()
 	aim_angle = (global_position - get_global_mouse_position()).angle()
 	move_and_slide()
+
 func get_hit(pos, dmg :int = 20, kb :int = 200):
 	if vulnerable:
 		health = clamp(health - dmg, 0, max_health)
 		inv_timer.start()
 		tranq(0.5)
 		velocity.y = -500
-		velocity.x = sign((global_position - pos).x) * kb
+		#velocity.x = sign((global_position.x - pos.x)) * kb
 
 func tranq(time :float):
 	stunned = true

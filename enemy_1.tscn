@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ct8x3ac3381n6"]
+
+[ext_resource type="Script" uid="uid://b4ui41l8x5301" path="res://enemy_1.gd" id="1_mbxyh"]
+[ext_resource type="Texture2D" uid="uid://cfisnc7yg3fty" path="res://enemy1_base.png" id="2_pjquw"]
+[ext_resource type="Texture2D" uid="uid://co2ptwyfpt6o8" path="res://enemy1_barrel.png" id="3_663o1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjquw"]
+size = Vector2(1163, 657)
+
+[node name="enemy1" type="CharacterBody2D" unique_id=502821726]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_mbxyh")
+
+[node name="Enemy1Base" type="Sprite2D" parent="." unique_id=142412612]
+texture = ExtResource("2_pjquw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1595755649]
+polygon = PackedVector2Array(-16, 16, -16, 7, -4, 0, 4, 0, 16, 7, 16, 16)
+
+[node name="range" type="Area2D" parent="." unique_id=1578873078]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="range" unique_id=646880487]
+position = Vector2(2, -1)
+shape = SubResource("RectangleShape2D_pjquw")
+debug_color = Color(0.9869589, 0, 0.2603822, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=87568279]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1542672302]
+target_position = Vector2(0, -178)
+
+[node name="Enemy1Barrel" type="Sprite2D" parent="." unique_id=2772740]
+position = Vector2(0, 5.295)
+texture = ExtResource("3_663o1")
+offset = Vector2(0, -5.625)
+
+[connection signal="body_entered" from="range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="range" to="." method="_on_range_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

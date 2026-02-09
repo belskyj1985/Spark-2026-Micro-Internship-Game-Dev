@@ -10,8 +10,7 @@ radius = 44.04543
 radius = 41.484936
 
 [node name="PhysicsGear" type="RigidBody2D" unique_id=188749168]
-collision_layer = 0
-collision_mask = 9
+collision_layer = 8
 script = ExtResource("1_gvra2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=547451107]
