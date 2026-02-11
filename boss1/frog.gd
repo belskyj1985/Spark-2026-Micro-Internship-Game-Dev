@@ -52,7 +52,8 @@ func _physics_process(delta: float) -> void:
 	velocity.y += 200 * delta
 	if is_on_floor():
 		velocity.x = 0
-		animator.play("stand")
+		if animator.current_animation != "crouch":
+			animator.play("stand")
 	else:
 		animator.play("jump")
 	move_and_slide()
