@@ -20,7 +20,7 @@ const BulletScene = preload("res://player_bullet.tscn")
 var bullet_speed :int = 400
 var bullet_gravity :int = 20
 var bullet_lifetime :float = 2.0
-var bullet_damage :int = 10
+var bullet_damage :int = 20
 
 var vulnerable :bool = true
 

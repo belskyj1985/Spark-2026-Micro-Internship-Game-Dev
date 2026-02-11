@@ -22,6 +22,11 @@ var tween
 func _ready() -> void:
 	tween = get_tree().create_tween()
 
+func get_hit(dmg):
+	health -= dmg
+	if health <= 0:
+		queue_free()
+ 	
 func _on_timer_timeout() -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	var bullet_instance: Bullet = BulletScene.instantiate()
