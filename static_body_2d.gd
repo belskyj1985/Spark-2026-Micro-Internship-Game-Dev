@@ -15,8 +15,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		collapsing_platform.queue_free()
 
 	else:
-		timer_before_collapse.start()
-
+		if body.velocity.y > 0:
+			timer_before_collapse.start()
+		else:
+			pass
 
 func _on_timer_before_collapse_timeout() -> void:
 	if respawning == true:
