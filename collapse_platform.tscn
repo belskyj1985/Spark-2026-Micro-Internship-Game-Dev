@@ -36,6 +36,7 @@ debug_color = Color(0.6631474, 0.3715764, 0, 0.41960785)
 
 [node name="TimerBeforeCollapse" type="Timer" parent="." unique_id=1698286455]
 wait_time = 0.7
+one_shot = true
 
 [node name="TileMapLayer" parent="." unique_id=1428863558 instance=ExtResource("2_ja2mh")]
 position = Vector2(-185, -83)

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://edny0xnsfjdt" path="res://door.tscn" id="9_vef74"]
 [ext_resource type="PackedScene" uid="uid://puhm8pv6ysxi" path="res://vent.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bivt6g1ttx4ko" path="res://enemy_1.tscn" id="11_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 
 [node name="game" type="Node2D" unique_id=1019333831]
 
@@ -94,3 +95,11 @@ position = Vector2(5456, 731)
 
 [node name="ventbox5" parent="." unique_id=1754841177 instance=ExtResource("10_hve3p")]
 position = Vector2(5568, 731)
+
+[node name="CollapsingPlatform2" parent="." unique_id=1495274945 instance=ExtResource("12_iotsf")]
+position = Vector2(5690, 505)
+respawning = true
+
+[node name="CollapsingPlatform3" parent="." unique_id=354312780 instance=ExtResource("12_iotsf")]
+position = Vector2(5338, 505)
+respawning = true
