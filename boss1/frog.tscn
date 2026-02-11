@@ -175,6 +175,7 @@ _data = {
 size = Vector2(138, 63)
 
 [node name="frog" type="CharacterBody2D" unique_id=1598620491]
+collision_layer = 4
 script = ExtResource("1_qgjid")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=309950588]
@@ -193,6 +194,6 @@ position = Vector2(0, -21.5)
 shape = SubResource("RectangleShape2D_qtslx")
 
 [node name="action_Timer" type="Timer" parent="." unique_id=823705476]
-wait_time = 7.0
+autostart = true
 
 [connection signal="timeout" from="action_Timer" to="." method="_on_action_timer_timeout"]
