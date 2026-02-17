@@ -13,12 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://bivt6g1ttx4ko" path="res://enemy_1.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="13_lc2xo"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja2mh"]
-size = Vector2(166, 16.75)
+[ext_resource type="PackedScene" uid="uid://byffl875q7g4x" path="res://boss1/frog.tscn" id="14_215e1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnvn8"]
 size = Vector2(167, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja2mh"]
+size = Vector2(166, 16.75)
 
 [sub_resource type="Gradient" id="Gradient_ja2mh"]
 offsets = PackedFloat32Array(0, 0.3618421, 1)
@@ -115,22 +116,22 @@ position = Vector2(85, -218)
 [node name="CollapsingPlatform4" parent="." unique_id=1751183291 instance=ExtResource("12_iotsf")]
 position = Vector2(510, 136)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=1303461328]
-position = Vector2(145, -10.625)
-shape = SubResource("RectangleShape2D_ja2mh")
-disabled = true
-
 [node name="scanbox2" type="CollisionShape2D" parent="CollapsingPlatform4/Area2D" parent_id_path=PackedInt32Array(1751183291, 1388557990) index="1" unique_id=2088290839]
 position = Vector2(262, -20)
 shape = SubResource("RectangleShape2D_dnvn8")
 debug_color = Color(0.6631474, 0.3715764, 0, 0.41960785)
 
-[node name="TileMapLayer" parent="CollapsingPlatform4" index="4" unique_id=1428863558]
+[node name="TileMapLayer" parent="CollapsingPlatform4" index="3" unique_id=1428863558]
 tile_map_data = PackedByteArray("AAAGAAQAAAAvAAMAAAAHAAQAAAAwAAMAAAAIAAQAAAAxAAMAAAAJAAQAAAAyAAMAAAAKAAQAAAAzAAMAAAALAAQAAAA0AAMAAAAMAAQAAAA1AAMAAAANAAQAAAA2AAMAAAAOAAQAAAA3AAMAAAAPAAQAAAA0AAMAAAAQAAQAAAAyAAMAAAARAAQAAAAzAAMAAAASAAQAAAA3AAMAAAATAAQAAAA0AAMAAAAUAAQAAAA1AAMAAAAVAAQAAAA2AAMAAAAWAAQAAAA3AAMAAAAXAAQAAAA4AAMAAAAYAAQAAAA0AAMAAAAZAAQAAAA1AAMAAAAaAAQAAAA2AAMAAAAbAAQAAAA0AAMAAAAcAAQAAAA1AAMAAAAdAAQAAAAyAAMAAAAeAAQAAAAzAAMAAAAfAAQAAAA2AAMAAAAgAAQAAAA3AAMAAAAhAAQAAAA0AAMAAAAiAAQAAAA1AAMAAAAjAAQAAAA2AAMAAAAkAAQAAAA0AAMAAAAlAAQAAAAyAAMAAAAmAAQAAAAzAAMAAAAnAAQAAAA3AAMAAAAoAAQAAAA0AAMAAAApAAQAAAA1AAMAAAAqAAQAAAA2AAMAAAArAAQAAAA3AAMAAAAsAAQAAAA4AAMAAAAtAAQAAAA5AAMAAAA=")
 
-[node name="WoodParticles" parent="CollapsingPlatform4" index="5" unique_id=1621810560]
+[node name="WoodParticles" parent="CollapsingPlatform4" index="4" unique_id=1621810560]
 position = Vector2(0, -32)
 emission_rect_extents = Vector2(328.13, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=1303461328]
+position = Vector2(145, -10.625)
+shape = SubResource("RectangleShape2D_ja2mh")
+disabled = true
 
 [node name="WoodParticles2" type="CPUParticles2D" parent="CollapsingPlatform4" unique_id=2007708514]
 position = Vector2(262, -32)
@@ -203,5 +204,8 @@ position = Vector2(3753, 273)
 
 [node name="enemy7" parent="." unique_id=220673397 instance=ExtResource("11_mfdv2")]
 position = Vector2(2770, 768)
+
+[node name="frog" parent="." unique_id=1598620491 instance=ExtResource("14_215e1")]
+position = Vector2(6171, 1237)
 
 [editable path="CollapsingPlatform4"]
