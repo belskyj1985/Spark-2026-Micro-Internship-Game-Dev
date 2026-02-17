@@ -28,12 +28,37 @@ offset_right = 460.0
 offset_bottom = 35.0
 show_percentage = false
 
-[node name="Button" type="Button" parent="BoxContainer" unique_id=622168258]
+[node name="options" type="Button" parent="BoxContainer" unique_id=622168258]
 layout_mode = 2
 text = "Options"
 
 [node name="Label" type="Label" parent="BoxContainer" unique_id=326656552]
 layout_mode = 2
 
+[node name="options_menu" type="VBoxContainer" parent="." unique_id=533127358]
+visible = false
+layout_mode = 0
+offset_left = -193.0
+offset_right = -153.0
+offset_bottom = 40.0
+
+[node name="showcursor" type="CheckButton" parent="options_menu" unique_id=447992478]
+layout_mode = 2
+button_pressed = true
+text = "Show Cursor"
+
+[node name="hold2fire" type="CheckButton" parent="options_menu" unique_id=2127859845]
+layout_mode = 2
+text = "Hold to Fire"
+
+[node name="back" type="Button" parent="options_menu" unique_id=1998669704]
+layout_mode = 2
+text = "return ->"
+
 [connection signal="button_down" from="BoxContainer/recall" to="." method="_on_recall_button_down"]
 [connection signal="button_up" from="BoxContainer/recall" to="." method="_on_recall_button_up"]
+[connection signal="pressed" from="BoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="button_down" from="options_menu/showcursor" to="." method="_on_showcursor_button_down"]
+[connection signal="toggled" from="options_menu/showcursor" to="." method="_on_showcursor_toggled"]
+[connection signal="toggled" from="options_menu/hold2fire" to="." method="_on_hold_2_fire_toggled"]
+[connection signal="pressed" from="options_menu/back" to="." method="_on_back_pressed"]

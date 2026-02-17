@@ -95,9 +95,15 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV * delta
 
 func move(delta):
-	shoot()
+	if Global.Options["hold2fire"]:
+		if Input.is_action_pressed("shoot") && can_shoot && !Global.paused:
+			shoot()
+	else:
+		if Input.is_action_just_pressed("shoot") && can_shoot && !Global.paused:
+			shoot()
 	if Input.is_action_pressed("aim"):
-		reticle_a_target = 1
+		if Global.Options["showCursor"]:
+			reticle_a_target = 1
 		state = state_enum.aim
 	
 	if !stunned:
@@ -119,31 +125,35 @@ func slide(delta):
 	pass
 
 func shoot():
-	if Input.is_action_just_pressed("shoot") && can_shoot && !Global.paused:
-		var bullet_instance: Bullet = BulletScene.instantiate()
-		get_tree().current_scene.add_child(bullet_instance)
-		
-		if state == state_enum.aim:
-			bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), bullet_damage)
-			bullet_instance.player_bullet_normal.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
-		elif state == state_enum.move:
-			bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
-			#flip bullet
-			bullet_instance.player_bullet_normal.scale.x = sign(bullet_offset.x)
-		bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
-		bullet_instance.global_position = global_position + bullet_offset
-		bullet_instance.speed = bullet_speed
-		bullet_instance.damage = bullet_damage
-		bullet_instance.lifetime = bullet_lifetime
-		
-		can_shoot = false
-		await get_tree().create_timer(0.1).timeout
-		can_shoot = true
-		
-		
+	var bullet_instance: Bullet = BulletScene.instantiate()
+	get_tree().current_scene.add_child(bullet_instance)
+	
+	if state == state_enum.aim:
+		bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), bullet_damage)
+		bullet_instance.player_bullet_normal.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
+	elif state == state_enum.move:
+		bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
+		#flip bullet
+		bullet_instance.player_bullet_normal.scale.x = sign(bullet_offset.x)
+	bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
+	bullet_instance.global_position = global_position + bullet_offset
+	bullet_instance.speed = bullet_speed
+	bullet_instance.damage = bullet_damage
+	bullet_instance.lifetime = bullet_lifetime
+	
+	can_shoot = false
+	await get_tree().create_timer(0.1).timeout
+	can_shoot = true
+	
+	
 
 func aim(delta):
-	shoot()
+	if Global.Options["hold2fire"]:
+		if Input.is_action_pressed("shoot") && can_shoot && !Global.paused:
+			shoot()
+	else:
+		if Input.is_action_just_pressed("shoot") && can_shoot && !Global.paused:
+			shoot()
 	if !Input.is_action_pressed("aim"):
 		reticle_a_target = 0
 		state = state_enum.move

@@ -38,6 +38,5 @@ func setup(p_direction: Vector2, p_damage: int) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("BANG!!!!!!!!!!!!")
 	body.get_hit(damage)
 	queue_free()
