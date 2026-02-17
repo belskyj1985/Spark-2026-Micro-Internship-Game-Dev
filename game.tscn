@@ -47,6 +47,7 @@ position = Vector2(-2.6666667, 0.6666667)
 texture = ExtResource("6_j5wjh")
 
 [node name="Pause Menu" parent="Camera2D" unique_id=1272794215 instance=ExtResource("8_j5wjh")]
+z_index = 7
 offset_left = -116.0
 offset_top = -136.0
 offset_right = -116.0

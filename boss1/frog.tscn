@@ -195,6 +195,16 @@ position = Vector2(0, -21.5)
 shape = SubResource("RectangleShape2D_qtslx")
 
 [node name="action_Timer" type="Timer" parent="." unique_id=823705476]
+wait_time = 3.0
 autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2079112597]
+modulate = Color(1, 0, 0, 1)
+offset_left = -62.0
+offset_top = -99.0
+offset_right = 63.0
+offset_bottom = -91.0
+value = 100.0
+show_percentage = false
 
 [connection signal="timeout" from="action_Timer" to="." method="_on_action_timer_timeout"]

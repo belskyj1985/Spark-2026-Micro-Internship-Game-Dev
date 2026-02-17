@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://b3lnj7uw2vcah"]
+
+[ext_resource type="Script" uid="uid://c8tow2ofkd2ps" path="res://boss1/fly.gd" id="1_t0oop"]
+[ext_resource type="Texture2D" uid="uid://cqnemxbl1cqsr" path="res://boss1/BossOneSummonAnimation.png" id="2_vkyxr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tf44c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0oop"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw2sb"]
+atlas = ExtResource("2_vkyxr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy8qi"]
+atlas = ExtResource("2_vkyxr")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnwk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw2sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy8qi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[node name="fly" type="CharacterBody2D" unique_id=1224011199]
+collision_layer = 20
+collision_mask = 16
+script = ExtResource("1_t0oop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1004830843]
+shape = SubResource("CircleShape2D_tf44c")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=683474381]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1472625889]
+shape = SubResource("CircleShape2D_t0oop")
+debug_color = Color(0.9851695, 0, 0.3410145, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1225590477]
+sprite_frames = SubResource("SpriteFrames_xnwk6")
+animation = &"idle"
+frame_progress = 0.0839204
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
