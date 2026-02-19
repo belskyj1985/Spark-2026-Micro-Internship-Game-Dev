@@ -37,6 +37,19 @@ position = Vector2(0, 5.295)
 texture = ExtResource("3_663o1")
 offset = Vector2(0, -5.625)
 
+[node name="HitFlash" type="Timer" parent="." unique_id=1577336282]
+wait_time = 0.2
+one_shot = true
+
+[node name="StatusEffect" type="Timer" parent="." unique_id=298009415]
+wait_time = 5.010000000000001
+one_shot = true
+
+[node name="Tick" type="Timer" parent="." unique_id=1216002694]
+
 [connection signal="body_entered" from="range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="range" to="." method="_on_range_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HitFlash" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="StatusEffect" to="." method="_on_status_effect_timeout"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1sf03tquk5i3"]
+
+[ext_resource type="Script" uid="uid://dh5girhw8yb5u" path="res://player_fire_bullet.gd" id="1_xh6c8"]
+[ext_resource type="Texture2D" uid="uid://bqoob16etpihc" path="res://PlayerBulletFire.png" id="2_d0vju"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0vju"]
+radius = 8.0
+
+[node name="Fire Bullet" type="Area2D" unique_id=1414744733]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_xh6c8")
+type = "fire"
+metadata/_custom_type_script = "uid://crpx6vcouyvk7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2090619305]
+shape = SubResource("CircleShape2D_d0vju")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=2134092528]
+texture = ExtResource("2_d0vju")

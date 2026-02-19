@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bvv7msmvsrl6n" path="res://physics_gear.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://edny0xnsfjdt" path="res://door.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" path="res://vent.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://puhm8pv6ysxi" path="res://vent.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bivt6g1ttx4ko" path="res://enemy_1.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="13_lc2xo"]
