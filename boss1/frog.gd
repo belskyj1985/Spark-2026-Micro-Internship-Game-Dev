@@ -10,6 +10,7 @@ var action_count :int = 0
 var health :int = 2400
 var max_health :int = 2400
 
+var pos_offset
 var fly = preload("res://boss1/fly.tscn")
 
 func get_hit(dmg):
@@ -37,7 +38,7 @@ var target_pos :Vector2 = Vector2(5150,290)
 func jump() -> void:
 	animator.play("crouch")
 	await get_tree().create_timer(0.3).timeout
-	target_pos = choose_local()
+	target_pos = choose_local() + pos_offset
 	global_position.x = target_pos.x
 	target_y = target_pos.y
 	#velocity.y = -100
@@ -51,15 +52,15 @@ func choose_local():
 	side *= -1
 	match choice:
 		0:
-			return Vector2(5150,290)
+			return Vector2(5150,290) - Vector2(5157,311)
 		1:
-			return Vector2(5860,290)
+			return Vector2(5860,290) - Vector2(5157,311)
 		2:
-			return Vector2(5150,450)
+			return Vector2(5150,450) - Vector2(5157,311)
 		3:
-			return Vector2(5860,450)
+			return Vector2(5860,450) - Vector2(5157,311)
 		4:
-			return Vector2(5510,360)
+			return Vector2(5510,360) - Vector2(5157,311)
 	
 func spawn() -> void:
 	
@@ -75,6 +76,9 @@ func spawn() -> void:
 	
 	await get_tree().create_timer(0.1).timeout
 	target_y = -1000
+
+func _ready() -> void:
+	pos_offset = global_position
 
 func _physics_process(delta: float) -> void:
 	#velocity.y += 200 * delta
