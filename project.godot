@@ -22,10 +22,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Global.gd"
+SaveLoad="*uid://c1wbite4qig5t"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[global_group]
+
+Persist=""
 
 [input]
 

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://djf7keuxeyyoh"]
+
+[ext_resource type="Script" uid="uid://csdarpjk5m04u" path="res://ui.gd" id="1_fyqef"]
+
+[node name="UI" type="Control" unique_id=586122242]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fyqef")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1280218320]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="c1" type="Label" parent="VBoxContainer" unique_id=2002551849]
+layout_mode = 2
+text = "0"
+
+[node name="c2" type="Label" parent="VBoxContainer" unique_id=94517163]
+layout_mode = 2
+text = "0"

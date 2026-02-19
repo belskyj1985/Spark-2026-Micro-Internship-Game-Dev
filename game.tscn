@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://elst0xn32iil"]
 
 [ext_resource type="PackedScene" uid="uid://b7d5rn4or5hc7" path="res://tilemap.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://djf7keuxeyyoh" path="res://ui.tscn" id="2_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b06gabo1gajjr" path="res://camera_2d.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://6j152cldqi0s" path="res://PixelFantasy_Caves_1.0/background1.png" id="4_ryrav"]
@@ -25,44 +26,36 @@ size = Vector2(166, 16.75)
 offsets = PackedFloat32Array(0, 0.3618421, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="game" type="Node2D" unique_id=1019333831]
+[node name="game" type="Node2D" unique_id=1019333831 groups=["Persist"]]
 
-[node name="Camera2D" parent="." unique_id=1056206372 instance=ExtResource("3_feb5d")]
+[node name="background" type="Node2D" parent="." unique_id=177128755]
 position = Vector2(153, 65)
-
-[node name="background" type="Node2D" parent="Camera2D" unique_id=177128755]
 scale = Vector2(1.5, 1.5)
 
-[node name="1" type="Parallax2D" parent="Camera2D/background" unique_id=361430260]
+[node name="1" type="Parallax2D" parent="background" unique_id=361430260]
 scroll_scale = Vector2(0.9, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 8
 
-[node name="1" type="Sprite2D" parent="Camera2D/background/1" unique_id=901160137]
+[node name="1" type="Sprite2D" parent="background/1" unique_id=901160137]
 texture = ExtResource("4_ryrav")
 
-[node name="2" type="Parallax2D" parent="Camera2D/background" unique_id=1905547247]
+[node name="2" type="Parallax2D" parent="background" unique_id=1905547247]
 scroll_scale = Vector2(0.8, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 8
 
-[node name="2" type="Sprite2D" parent="Camera2D/background/2" unique_id=68913254]
+[node name="2" type="Sprite2D" parent="background/2" unique_id=68913254]
 texture = ExtResource("5_eow3j")
 
-[node name="3" type="Parallax2D" parent="Camera2D/background" unique_id=267698638]
+[node name="3" type="Parallax2D" parent="background" unique_id=267698638]
 scroll_scale = Vector2(0.6, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 8
 
-[node name="3" type="Sprite2D" parent="Camera2D/background/3" unique_id=58679970]
+[node name="3" type="Sprite2D" parent="background/3" unique_id=58679970]
 position = Vector2(-2.6666667, 0.6666667)
 texture = ExtResource("6_j5wjh")
-
-[node name="Pause Menu" parent="Camera2D" unique_id=1272794215 instance=ExtResource("8_j5wjh")]
-offset_left = -116.0
-offset_top = -136.0
-offset_right = -116.0
-offset_bottom = -136.0
 
 [node name="TileMapLayer2" parent="." unique_id=1043053123 instance=ExtResource("1_80nbo")]
 position = Vector2(1, 0)
@@ -207,5 +200,20 @@ position = Vector2(2770, 768)
 
 [node name="frog" parent="." unique_id=1598620491 instance=ExtResource("14_215e1")]
 position = Vector2(5809.86, 1157.7302)
+
+[node name="Camera2D" parent="." unique_id=1056206372 instance=ExtResource("3_feb5d")]
+position = Vector2(153, 65)
+
+[node name="Pause Menu" parent="Camera2D" unique_id=1272794215 instance=ExtResource("8_j5wjh")]
+offset_left = -116.0
+offset_top = -136.0
+offset_right = -116.0
+offset_bottom = -136.0
+
+[node name="UI" parent="Camera2D" unique_id=586122242 instance=ExtResource("2_7sc4i")]
+offset_left = -393.0
+offset_top = -222.0
+offset_right = -393.0
+offset_bottom = -222.0
 
 [editable path="CollapsingPlatform4"]

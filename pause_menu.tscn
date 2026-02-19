@@ -28,6 +28,14 @@ offset_right = 460.0
 offset_bottom = 35.0
 show_percentage = false
 
+[node name="save" type="Button" parent="BoxContainer" unique_id=230283361]
+layout_mode = 2
+text = "save"
+
+[node name="load" type="Button" parent="BoxContainer" unique_id=1481997992]
+layout_mode = 2
+text = "Load"
+
 [node name="options" type="Button" parent="BoxContainer" unique_id=622168258]
 layout_mode = 2
 text = "Options"
@@ -57,6 +65,8 @@ text = "return ->"
 
 [connection signal="button_down" from="BoxContainer/recall" to="." method="_on_recall_button_down"]
 [connection signal="button_up" from="BoxContainer/recall" to="." method="_on_recall_button_up"]
+[connection signal="pressed" from="BoxContainer/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="BoxContainer/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="BoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="button_down" from="options_menu/showcursor" to="." method="_on_showcursor_button_down"]
 [connection signal="toggled" from="options_menu/showcursor" to="." method="_on_showcursor_toggled"]

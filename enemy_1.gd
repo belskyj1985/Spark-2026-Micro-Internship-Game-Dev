@@ -25,6 +25,7 @@ func _ready() -> void:
 func get_hit(dmg):
 	health -= dmg
 	if health <= 0:
+		SaveLoad.get_c1(5)
 		queue_free()
  	
 func _on_timer_timeout() -> void:

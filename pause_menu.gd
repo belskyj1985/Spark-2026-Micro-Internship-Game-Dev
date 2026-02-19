@@ -47,3 +47,11 @@ func _on_hold_2_fire_toggled(toggled_on: bool) -> void:
 
 func _on_back_pressed() -> void:
 	$options_menu.visible = !$options_menu.visible
+
+
+func _on_save_pressed() -> void:
+	SaveLoad._save()
+
+
+func _on_load_pressed() -> void:
+	SaveLoad._load()
