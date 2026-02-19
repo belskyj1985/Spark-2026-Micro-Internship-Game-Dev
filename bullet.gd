@@ -1,12 +1,13 @@
 extends Area2D
 class_name Bullet
 
+@export_enum ("normal", "fire", "ice", "lightning") var type: String = "normal"
 @export var speed :int = 100
 @export var grav :int = 20
 @export var lifetime :float = 2.0
 @export var damage :int = 10
 @export var phys :bool = false
-@onready var player_bullet_normal: Sprite2D = $PlayerBulletNormal
+@onready var sprite: Sprite2D = $sprite
 
 var direction = Vector2.ZERO
 
@@ -39,4 +40,6 @@ func setup(p_direction: Vector2, p_damage: int) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	body.get_hit(damage)
+	if type != "normal":
+		body.apply_status(type)
 	queue_free()

@@ -6,10 +6,13 @@ const BulletScene = preload("res://enemy_1_bullet.tscn")
 
 var active :bool = false
 var health :int = 100
+var status: String = ""
 
 
-
-
+func _physics_process(delta: float) -> void:
+	match status:
+		"fire":
+			print(health)
 
 func _on_range_body_entered(body: Node2D) -> void:
 	active = true
@@ -18,7 +21,9 @@ func _on_range_body_entered(body: Node2D) -> void:
 func _on_range_body_exited(body: Node2D) -> void:
 	timer.stop()
 	active = false
+
 var tween 
+
 func _ready() -> void:
 	tween = get_tree().create_tween()
 
@@ -27,7 +32,9 @@ func get_hit(dmg):
 	if health <= 0:
 		SaveLoad.get_c1(5)
 		queue_free()
- 	
+	modulate = Color(1,.4,.4)
+	$HitFlash.start()
+
 func _on_timer_timeout() -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	var bullet_instance: Bullet = BulletScene.instantiate()
@@ -48,3 +55,21 @@ func _on_timer_timeout() -> void:
 
 	barrel.rotation = Vector2(x_vel,-v).angle() + PI/2
 	print(x_vel)
+
+func apply_status(type):
+	status = type
+	$StatusEffect.start()
+	$Tick.start()
+
+func _on_HitFlash_timeout() -> void:
+	modulate = Color(1,1,1)
+
+
+func _on_status_effect_timeout() -> void:
+	status = ""
+	modulate = Color(1,1,1)
+	$Tick.stop()
+
+
+func _on_tick_timeout() -> void:
+	get_hit(2)

@@ -15,7 +15,9 @@ var reticle_a_target : float = 0.0
 var stunned :bool = false
 var bullet_offset = Vector2(28, -16)
 var can_shoot :bool = true
-const BulletScene = preload("res://player_bullet.tscn")
+const NormalBulletScene = preload("res://player_bullet.tscn")
+const FireBulletScene = preload("res://player_fire_bullet.tscn")
+var BulletScene = FireBulletScene
 
 var bullet_speed :int = 400
 var bullet_gravity :int = 20
@@ -130,11 +132,11 @@ func shoot():
 	
 	if state == state_enum.aim:
 		bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), bullet_damage)
-		bullet_instance.player_bullet_normal.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
+		bullet_instance.sprite.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
 	elif state == state_enum.move:
 		bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
 		#flip bullet
-		bullet_instance.player_bullet_normal.scale.x = sign(bullet_offset.x)
+		bullet_instance.sprite.scale.x = sign(bullet_offset.x)
 	bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
 	bullet_instance.global_position = global_position + bullet_offset
 	bullet_instance.speed = bullet_speed
