@@ -10,9 +10,7 @@ var status: String = ""
 
 
 func _physics_process(delta: float) -> void:
-	match status:
-		"fire":
-			print(health)
+	pass
 
 func _on_range_body_entered(body: Node2D) -> void:
 	active = true
@@ -32,12 +30,16 @@ func get_hit(dmg):
 	if health <= 0:
 		SaveLoad.get_c1(5)
 		queue_free()
-	modulate = Color(1,.4,.4)
-	$HitFlash.start()
+	#modulate = Color(1,.4,.4)
+	if status == "":
+		$HitFlash.start()
 
 func _on_timer_timeout() -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	var bullet_instance: Bullet = BulletScene.instantiate()
+	if status == "lightning":
+		bullet_instance.damage /= 2
+	
 	get_tree().current_scene.add_child(bullet_instance)
 	var v = 600
 	var g = bullet_instance.grav
@@ -54,21 +56,31 @@ func _on_timer_timeout() -> void:
 	tween.tween_property(barrel, "rotation",  Vector2(x_vel,-v).angle() + PI/2, 0.5)
 
 	barrel.rotation = Vector2(x_vel,-v).angle() + PI/2
-	print(x_vel)
 
 func apply_status(type):
 	status = type
 	$StatusEffect.start()
 	$Tick.start()
+	if type == "ice":
+		print("ICE")
+		$Timer.wait_time = 2.0
+		modulate = Color(0.201, 0.584, 0.59, 1.0)
+	if type == "lightning":
+		print("LIGHTNING")
+		
+		modulate = Color(1.0, 0.933, 0.0, 1.0)
 
 func _on_HitFlash_timeout() -> void:
-	modulate = Color(1,1,1)
+	if modulate == Color(1,.4,.4):
+		modulate = Color(1,1,1)
 
 
 func _on_status_effect_timeout() -> void:
+	print("modulate done")
 	status = ""
 	modulate = Color(1,1,1)
 	$Tick.stop()
+	$Timer.wait_time = 1.0
 
 
 func _on_tick_timeout() -> void:

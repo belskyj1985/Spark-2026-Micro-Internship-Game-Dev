@@ -107,11 +107,19 @@ func apply_status(type):
 	status = type
 	$StatusEffect.start()
 	$Tick.start()
+	if type == "ice":
+		print("ICE")
+		$action_Timer.wait_time = 2.0
+		modulate = Color(0.201, 0.584, 0.59, 1.0)
+	if type == "lightning":
+		print("LIGHTNING")
+		Color(1.0, 0.933, 0.0, 1.0)
 
 func _on_status_effect_timeout() -> void:
 	status = ""
 	modulate = Color(1,1,1)
 	$Tick.stop()
+	$action_Timer.wait_time = 1.0
 
 func _on_tick_timeout() -> void:
 	get_hit(2)

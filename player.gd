@@ -17,7 +17,9 @@ var bullet_offset = Vector2(28, -16)
 var can_shoot :bool = true
 const NormalBulletScene = preload("res://player_bullet.tscn")
 const FireBulletScene = preload("res://player_fire_bullet.tscn")
-var BulletScene = FireBulletScene
+const IceBulletScene = preload("res://player_ice_bullet.tscn")
+const LightningBulletScene = preload("res://player_lightning_bullet.tscn")
+var BulletScene = IceBulletScene
 
 var bullet_speed :int = 400
 var bullet_gravity :int = 20
