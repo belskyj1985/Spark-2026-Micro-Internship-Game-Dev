@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://byffl875q7g4x" path="res://boss1/frog.tscn" id="14_215e1"]
+[ext_resource type="PackedScene" uid="uid://bhvrp37k5sgl6" path="res://boss_gate.tscn" id="16_80cx4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnvn8"]
 size = Vector2(167, 7)
@@ -215,5 +216,9 @@ offset_left = -393.0
 offset_top = -222.0
 offset_right = -393.0
 offset_bottom = -222.0
+
+[node name="bossGate" parent="." unique_id=1342580453 node_paths=PackedStringArray("boss") instance=ExtResource("16_80cx4")]
+position = Vector2(5621, 1424)
+boss = NodePath("../frog")
 
 [editable path="CollapsingPlatform4"]

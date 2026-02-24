@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bhvrp37k5sgl6"]
+
+[ext_resource type="Script" uid="uid://diwnt2s0atjtr" path="res://boss_gate.gd" id="1_dw4by"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw4by"]
+size = Vector2(20, 218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftht7"]
+size = Vector2(20, 218)
+
+[node name="bossGate" type="Area2D" unique_id=1342580453]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dw4by")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=488983085]
+position = Vector2(33, -1)
+shape = SubResource("RectangleShape2D_dw4by")
+debug_color = Color(0.9882353, 0, 0.29803923, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=149205391]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1396108400]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ftht7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

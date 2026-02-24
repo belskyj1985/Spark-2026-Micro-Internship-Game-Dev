@@ -2,6 +2,7 @@ extends CharacterBody2D
 var health :int = 60
 var damage :int = 10
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var boss: CharacterBody2D = get_tree().root.get_node("frog")
 var status: String = ""
 
 func _physics_process(delta: float) -> void:
@@ -15,6 +16,7 @@ func _physics_process(delta: float) -> void:
 func get_hit(dmg):
 	health -= dmg
 	if health <= 0:
+		Global.boss.fly_total -= 1
 		queue_free()
 	modulate = Color(1,.4,.4)
 	$HitFlash.start()

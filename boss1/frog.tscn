@@ -207,4 +207,12 @@ offset_bottom = -91.0
 value = 100.0
 show_percentage = false
 
+[node name="Tick" type="Timer" parent="." unique_id=293688815]
+
+[node name="StatusEffect" type="Timer" parent="." unique_id=342961628]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="action_Timer" to="." method="_on_action_timer_timeout"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
+[connection signal="timeout" from="StatusEffect" to="." method="_on_status_effect_timeout"]
