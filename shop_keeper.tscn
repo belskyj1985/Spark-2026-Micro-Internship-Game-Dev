@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bv1sdljys1xc2"]
 
 [ext_resource type="Script" uid="uid://bffhebqydj71b" path="res://shop_keeper.gd" id="1_oqpvu"]
+[ext_resource type="Texture2D" uid="uid://b3mdflciluxbd" path="res://ShopKeeperSprite.png" id="2_782h8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guc"]
-size = Vector2(52, 52)
+size = Vector2(52, 78)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oqpvu"]
 
@@ -12,11 +13,16 @@ size = Vector2(52, 52)
 [node name="shop_keeper" type="Node2D" unique_id=1400398174]
 script = ExtResource("1_oqpvu")
 
+[node name="ShopKeeperSprite" type="Sprite2D" parent="." unique_id=1030462408]
+position = Vector2(-2, -15)
+texture = ExtResource("2_782h8")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=136220500]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=854739735]
+position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_j2guc")
 debug_color = Color(0.39164484, 0.602905, 0.26522747, 0.41960785)
 
