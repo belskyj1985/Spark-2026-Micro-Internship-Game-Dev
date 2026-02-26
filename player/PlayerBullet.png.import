@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dim36cnfj34qg"
-path="res://.godot/imported/reticle.png-91e0567e176790df33bdf2f40f87d46a.ctex"
+uid="uid://denwuyp4a5mxv"
+path="res://.godot/imported/PlayerBullet.png-04e4e87905124fa79ba87d1fc909790d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://reticle.png"
-dest_files=["res://.godot/imported/reticle.png-91e0567e176790df33bdf2f40f87d46a.ctex"]
+source_file="res://player/PlayerBullet.png"
+dest_files=["res://.godot/imported/PlayerBullet.png-04e4e87905124fa79ba87d1fc909790d.ctex"]
 
 [params]
 

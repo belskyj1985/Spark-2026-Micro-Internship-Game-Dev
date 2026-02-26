@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b7d5rn4or5hc7" path="res://tilemap.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://djf7keuxeyyoh" path="res://ui.tscn" id="2_7sc4i"]
-[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b06gabo1gajjr" path="res://camera_2d.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://6j152cldqi0s" path="res://PixelFantasy_Caves_1.0/background1.png" id="4_ryrav"]
 [ext_resource type="Texture2D" uid="uid://bryb6p30ht5qb" path="res://PixelFantasy_Caves_1.0/background2.png" id="5_eow3j"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://byffl875q7g4x" path="res://boss1/frog.tscn" id="14_215e1"]
 [ext_resource type="PackedScene" uid="uid://bhvrp37k5sgl6" path="res://boss_gate.tscn" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bv1sdljys1xc2" path="res://shop_keeper.tscn" id="16_e8heu"]
+[ext_resource type="PackedScene" uid="uid://bv1sdljys1xc2" path="res://shop/shop_keeper.tscn" id="16_e8heu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnvn8"]
 size = Vector2(160, 7)
@@ -144,11 +144,28 @@ shape = SubResource("RectangleShape2D_dnvn8")
 debug_color = Color(0.6631474, 0.3715764, 0, 0.41960785)
 
 [node name="TileMapLayer" parent="CollapsingPlatform4" index="3" unique_id=1428863558]
+[node name="TileMapLayer" parent="CollapsingPlatform4" index="3" unique_id=1428863558]
 tile_map_data = PackedByteArray("AAAGAAQAAAAvAAMAAAAHAAQAAAAwAAMAAAAIAAQAAAAxAAMAAAAJAAQAAAAyAAMAAAAKAAQAAAAzAAMAAAALAAQAAAA0AAMAAAAMAAQAAAA1AAMAAAANAAQAAAA2AAMAAAAOAAQAAAA3AAMAAAAPAAQAAAA0AAMAAAAQAAQAAAAyAAMAAAARAAQAAAAzAAMAAAASAAQAAAA3AAMAAAATAAQAAAA0AAMAAAAUAAQAAAA1AAMAAAAVAAQAAAA2AAMAAAAWAAQAAAA3AAMAAAAXAAQAAAA4AAMAAAAYAAQAAAA0AAMAAAAZAAQAAAA1AAMAAAAaAAQAAAA2AAMAAAAbAAQAAAA0AAMAAAAcAAQAAAA1AAMAAAAdAAQAAAAyAAMAAAAeAAQAAAAzAAMAAAAfAAQAAAA2AAMAAAAgAAQAAAA3AAMAAAAhAAQAAAA0AAMAAAAiAAQAAAA1AAMAAAAjAAQAAAA2AAMAAAAkAAQAAAA0AAMAAAAlAAQAAAAyAAMAAAAmAAQAAAAzAAMAAAAnAAQAAAA3AAMAAAAoAAQAAAA0AAMAAAApAAQAAAA1AAMAAAAqAAQAAAA2AAMAAAArAAQAAAA3AAMAAAAsAAQAAAA4AAMAAAAtAAQAAAA5AAMAAAA=")
 
 [node name="WoodParticles" parent="CollapsingPlatform4" index="4" unique_id=1621810560]
+[node name="WoodParticles" parent="CollapsingPlatform4" index="4" unique_id=1621810560]
 position = Vector2(0, -32)
 emission_rect_extents = Vector2(328.13, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=1994564910]
+position = Vector2(161, -10.625)
+shape = SubResource("RectangleShape2D_ja2mh")
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=375645509]
+position = Vector2(320, -10.625)
+shape = SubResource("RectangleShape2D_ja2mh")
+disabled = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=771246203]
+position = Vector2(479, -10.625)
+shape = SubResource("RectangleShape2D_ja2mh")
+disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=1994564910]
 position = Vector2(161, -10.625)

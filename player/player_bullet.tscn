@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmg6dp34q3dw6"]
 
 [ext_resource type="Script" uid="uid://crpx6vcouyvk7" path="res://bullet.gd" id="1_mbmgk"]
-[ext_resource type="Texture2D" uid="uid://s47apxvadt7g" path="res://PlayerBulletNormal.png" id="2_oxuh6"]
+[ext_resource type="Texture2D" uid="uid://s47apxvadt7g" path="res://player/PlayerBulletNormal.png" id="2_oxuh6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxuh6"]
 
