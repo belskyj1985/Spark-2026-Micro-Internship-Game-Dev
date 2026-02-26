@@ -15,11 +15,11 @@ var reticle_a_target : float = 0.0
 var stunned :bool = false
 var bullet_offset = Vector2(28, -16)
 var can_shoot :bool = true
-const NormalBulletScene = preload("res://player_bullet.tscn")
-const FireBulletScene = preload("res://player_fire_bullet.tscn")
-const IceBulletScene = preload("res://player_ice_bullet.tscn")
-const LightningBulletScene = preload("res://player_lightning_bullet.tscn")
-var BulletScene = IceBulletScene
+const NormalBulletScene = preload("res://player/player_bullet.tscn")
+const FireBulletScene = preload("res://player/player_fire_bullet.tscn")
+const IceBulletScene = preload("res://player/player_ice_bullet.tscn")
+const LightningBulletScene = preload("res://player/player_lightning_bullet.tscn")
+var BulletScene = NormalBulletScene
 
 var bullet_speed :int = 400
 var bullet_gravity :int = 20
@@ -84,6 +84,9 @@ func do_anims():
 	else:
 		anim.play("jump")
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("debug"):
+		SaveLoad.get_c1(1200)
+	
 	
 	vulnerable = inv_timer.is_stopped()
 	
@@ -154,7 +157,14 @@ func shoot():
 	await get_tree().create_timer(0.1).timeout
 	can_shoot = true
 	
-	
+func switch_bullet(type :String):
+	match type:
+		"fire":
+			BulletScene = FireBulletScene
+		"ice":
+			BulletScene = IceBulletScene
+		"lightning":
+			BulletScene = LightningBulletScene
 
 func aim(delta):
 	if Global.Options["hold2fire"]:

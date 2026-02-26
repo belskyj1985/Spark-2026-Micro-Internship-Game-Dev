@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ch8agg848vobe" path="res://PixelFantasy_Caves_1.0/background3.png" id="4_jvxqs"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="5_04iv5"]
 [ext_resource type="PackedScene" uid="uid://b7d5rn4or5hc7" path="res://tilemap.tscn" id="6_qqw4g"]
-[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="7_s3dr3"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player/player.tscn" id="7_s3dr3"]
 
 [node name="game" type="Node2D" unique_id=1019333831]
 

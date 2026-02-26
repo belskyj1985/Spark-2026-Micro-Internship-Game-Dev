@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1sf03tquk5i3"]
 
-[ext_resource type="Script" uid="uid://dh5girhw8yb5u" path="res://player_fire_bullet.gd" id="1_xh6c8"]
-[ext_resource type="Texture2D" uid="uid://bqoob16etpihc" path="res://PlayerBulletFire.png" id="2_d0vju"]
+[ext_resource type="Script" uid="uid://dh5girhw8yb5u" path="res://player/player_fire_bullet.gd" id="1_xh6c8"]
+[ext_resource type="Texture2D" uid="uid://bqoob16etpihc" path="res://player/PlayerBulletFire.png" id="2_d0vju"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0vju"]
 radius = 8.0

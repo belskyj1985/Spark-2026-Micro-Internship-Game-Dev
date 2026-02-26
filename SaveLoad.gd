@@ -4,6 +4,9 @@ const save_location = "user://SaveFile.json"
 var contents_to_save :Dictionary = {
 	"c1": 0,
 	"c2": 0,
+	"fire": 0,
+	"ice": 0,
+	"lightning": 0
 }
 
 func get_c1(n):
@@ -31,4 +34,7 @@ func _load():
 		var save_data = data.duplicate()
 		contents_to_save.c1 = save_data.c1
 		contents_to_save.c2 = save_data.c2
+		contents_to_save.fire = save_data.fire
+		contents_to_save.ice = save_data.ice
+		contents_to_save.lightning = save_data.lightning
 		get_c1(0)

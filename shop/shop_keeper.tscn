@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bv1sdljys1xc2"]
+
+[ext_resource type="Script" uid="uid://bffhebqydj71b" path="res://shop/shop_keeper.gd" id="1_oqpvu"]
+[ext_resource type="Texture2D" uid="uid://clfvplsiotans" path="res://shop/shop_card.png" id="2_ke3ft"]
+[ext_resource type="Texture2D" uid="uid://nlauyfnke851" path="res://shop/shop_fire.png" id="3_c7upk"]
+[ext_resource type="FontFile" uid="uid://c2kqkbjoe7o2b" path="res://shop/Perfect DOS VGA 437.ttf" id="3_v6c71"]
+[ext_resource type="Texture2D" uid="uid://bykt5ces1cqaj" path="res://shop/shop_ice.png" id="5_7l2ia"]
+[ext_resource type="Texture2D" uid="uid://c2ti5f4ntfwpn" path="res://shop/shop_lightning.png" id="6_18uh6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guc"]
+size = Vector2(52, 52)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dypvr"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[node name="shop_keeper" type="Node2D" unique_id=1400398174]
+script = ExtResource("1_oqpvu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=136220500]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=854739735]
+shape = SubResource("RectangleShape2D_j2guc")
+debug_color = Color(0.39164484, 0.602905, 0.26522747, 0.41960785)
+
+[node name="UI" type="Control" parent="." unique_id=619200636]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1403011663]
+layout_mode = 0
+offset_left = -170.0
+offset_top = -274.0
+offset_right = -37.0
+offset_bottom = -146.0
+
+[node name="fire" type="Control" parent="UI/VBoxContainer" unique_id=1463379662]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/VBoxContainer/fire" unique_id=2106507763]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="fire_button" type="Button" parent="UI/VBoxContainer/fire" unique_id=1492573172]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/fire/fire_button" unique_id=851736293]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_dypvr")
+
+[node name="icon" type="Sprite2D" parent="UI/VBoxContainer/fire" unique_id=1329411611]
+position = Vector2(45, 14)
+texture = ExtResource("3_c7upk")
+
+[node name="ice" type="Control" parent="UI/VBoxContainer" unique_id=1890582316]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/VBoxContainer/ice" unique_id=2081942313]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="ice_button" type="Button" parent="UI/VBoxContainer/ice" unique_id=220523674]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/ice/ice_button" unique_id=1073764413]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_dypvr")
+
+[node name="icon" type="Sprite2D" parent="UI/VBoxContainer/ice" unique_id=922620896]
+position = Vector2(45, 14)
+texture = ExtResource("5_7l2ia")
+
+[node name="lightning" type="Control" parent="UI/VBoxContainer" unique_id=1894786158]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/VBoxContainer/lightning" unique_id=1787957966]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="lightning_button" type="Button" parent="UI/VBoxContainer/lightning" unique_id=1611382850]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/lightning/lightning_button" unique_id=490839503]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_dypvr")
+
+[node name="icon" type="Sprite2D" parent="UI/VBoxContainer/lightning" unique_id=639509495]
+position = Vector2(45, 14)
+texture = ExtResource("6_18uh6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_fire_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/ice/ice_button" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/lightning/lightning_button" to="." method="_on_button_1_pressed"]
