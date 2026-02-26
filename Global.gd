@@ -6,6 +6,6 @@ var paused : bool = false
 var boss :CharacterBody2D
 var Options :Dictionary = {
 	"showCursor": true,
-	"hold2fire": false
+	"hold2fire": true
 	
 }
