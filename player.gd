@@ -110,13 +110,18 @@ func move(delta):
 			reticle_a_target = 1
 		state = state_enum.aim
 	
-	if !stunned:
-		get_input_vector()
+	#if !stunned:
+	get_input_vector()
+	if input_vector.x != 0:
 		if Input.is_action_pressed("sprint"):
-			velocity.x = input_vector.x * SPD * 1.8
+			velocity.x = move_toward(velocity.x, input_vector.x * SPD * 1.8, 3000 * delta)
 		else:
-			velocity.x = input_vector.x * SPD
-	
+			velocity.x = move_toward(velocity.x, input_vector.x * SPD, 3000 * delta)
+	else:
+		if !vulnerable:
+			velocity.x = move_toward(velocity.x, input_vector.x * SPD, 2000 * delta)
+		else:
+			velocity.x = move_toward(velocity.x, input_vector.x * SPD, 3000 * delta)
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			jump()
@@ -174,7 +179,10 @@ func get_hit(pos, dmg :int = 20, kb :int = 200):
 		inv_timer.start()
 		tranq(0.5)
 		velocity.y = -500
-		#velocity.x = sign((global_position.x - pos.x)) * kb
+		if sprites.flip_h:
+			velocity.x = 300
+		else:
+			velocity.x = -300
 
 func tranq(time :float):
 	stunned = true
