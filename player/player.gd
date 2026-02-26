@@ -165,6 +165,8 @@ func switch_bullet(type :String):
 			BulletScene = IceBulletScene
 		"lightning":
 			BulletScene = LightningBulletScene
+		"":
+			BulletScene = NormalBulletScene
 
 func aim(delta):
 	if Global.Options["hold2fire"]:

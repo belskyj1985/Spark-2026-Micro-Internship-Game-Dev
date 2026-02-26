@@ -68,4 +68,5 @@ func _on_fire_button_pressed() -> void:
 			Global.player.switch_bullet("fire")
 		2:
 			SaveLoad.contents_to_save["fire"] = 1
+			Global.player.switch_bullet("")
 	update_buttons()
