@@ -30,15 +30,14 @@ func get_hit(dmg):
 	if health <= 0:
 		SaveLoad.get_c1(5)
 		queue_free()
-	#modulate = Color(1,.4,.4)
+	
 	if status == "":
+		modulate = Color(1,.4,.4)
 		$HitFlash.start()
 
 func _on_timer_timeout() -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	var bullet_instance: Bullet = BulletScene.instantiate()
-	if status == "lightning":
-		bullet_instance.damage /= 2
 	
 	get_tree().current_scene.add_child(bullet_instance)
 	var v = 600
@@ -49,6 +48,9 @@ func _on_timer_timeout() -> void:
 	)
 	
 	bullet_instance.setup(Vector2(x_vel,-v), 30)
+	if status == "lightning":
+		print("lightning fired")
+		bullet_instance.damage /= 2
 	#bullet_instance.setup(Global.player.global_position-global_position, 30)
 	bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
 	bullet_instance.global_position = global_position
@@ -62,13 +64,14 @@ func apply_status(type):
 	$StatusEffect.start()
 	$Tick.start()
 	if type == "ice":
-		print("ICE")
 		$Timer.wait_time = 2.0
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
 	if type == "lightning":
-		print("LIGHTNING")
 		
 		modulate = Color(1.0, 0.933, 0.0, 1.0)
+	if type == "fire":
+		$Timer.wait_time = 2.0
+		modulate = Color(1.0, 0.0, 0.0, 1.0)
 
 func _on_HitFlash_timeout() -> void:
 	if modulate == Color(1,.4,.4):
@@ -85,3 +88,8 @@ func _on_status_effect_timeout() -> void:
 
 func _on_tick_timeout() -> void:
 	get_hit(2)
+
+
+func _on_hit_flash_timeout() -> void:
+	if modulate == Color(1,.4,.4):
+		modulate = Color(1,1,1)

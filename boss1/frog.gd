@@ -23,6 +23,10 @@ func activate():
 	active = true
 
 func get_hit(dmg):
+	if status == "":
+		modulate = Color(1,.4,.4)
+		$HitFlash.start()
+	
 	print(float(health)/max_health)
 	health -= dmg
 	progress_bar.value = 100 * float(health)/max_health
@@ -114,12 +118,15 @@ func _physics_process(delta: float) -> void:
 func apply_status(type):
 	status = type
 	$StatusEffect.start()
-	$Tick.start()
+	
 	if type == "ice":
 		$action_Timer.wait_time = 2.0
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
 	if type == "lightning":
-		Color(1.0, 0.933, 0.0, 1.0)
+		modulate = Color(1.0, 0.933, 0.0, 1.0)
+	if type == "fire":
+		$Tick.start()
+		modulate = Color(1.0, 0.0, 0.0, 1.0)
 
 func _on_status_effect_timeout() -> void:
 	status = ""
@@ -129,3 +136,8 @@ func _on_status_effect_timeout() -> void:
 
 func _on_tick_timeout() -> void:
 	get_hit(2)
+
+
+func _on_hit_flash_timeout() -> void:
+	if modulate == Color(1,.4,.4):
+		modulate = Color(1,1,1)

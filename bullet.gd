@@ -35,7 +35,6 @@ func setup(p_direction: Vector2, p_damage: int) -> void:
 		direction = p_direction.normalized()
 	else:
 		direction = p_direction
-	damage = p_damage
 
 
 func _on_body_entered(body: Node2D) -> void:
