@@ -176,6 +176,7 @@ size = Vector2(138, 63)
 
 [node name="frog" type="CharacterBody2D" unique_id=1598620491]
 collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_qgjid")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=309950588]

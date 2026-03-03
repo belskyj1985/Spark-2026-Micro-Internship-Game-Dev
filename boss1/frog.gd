@@ -34,8 +34,10 @@ func _on_action_timer_timeout() -> void:
 	if active:
 		match action_count%2:
 			1:
+				print("SPAWNED")
 				spawn()
 			0:
+				print("JUMPED")
 				jump()
 		#if global_position.distance_squared_to(Global.player.global_position) < 400:
 			#velocity = Vector2()
@@ -44,8 +46,7 @@ func _on_action_timer_timeout() -> void:
 var target_y :int = 290
 var target_pos :Vector2 = Vector2(5150,290)
 func jump() -> void:
-	animator.play("crouch")
-	await get_tree().create_timer(0.3).timeout
+	
 	target_pos = choose_local() + pos_offset
 	global_position.x = target_pos.x
 	target_y = target_pos.y
@@ -72,7 +73,6 @@ func choose_local():
 	
 func spawn() -> void:
 	
-	print("spawned?")
 	var offset :Vector2 = Vector2.ZERO
 	for i in randi_range(3,5):
 		if fly_total < 10:
@@ -84,8 +84,11 @@ func spawn() -> void:
 			fly_inst.animated_sprite_2d.play("idle")
 			await get_tree().create_timer(0.1).timeout
 	
-	await get_tree().create_timer(0.1).timeout
-	target_y = -1000
+	animator.play("crouch")
+	print("crofdjfsd")
+	#await get_tree().create_timer(0.3).timeout
+	animator.play("jump")
+	target_y = 200
 
 func _ready() -> void:
 	Global.boss = self
@@ -95,12 +98,8 @@ func _physics_process(delta: float) -> void:
 	#velocity.y += 200 * delta
 	if active:
 		position.y = move_toward(position.y,target_y,1000 * delta)
-		if is_on_floor():
-			velocity.x = 0
-			if animator.current_animation != "crouch":
-				animator.play("stand")
-		else:
-			animator.play("jump")
+		if position.y == target_y:
+			animator.play("stand")
 		move_and_slide()
 
 func apply_status(type):
@@ -108,11 +107,9 @@ func apply_status(type):
 	$StatusEffect.start()
 	$Tick.start()
 	if type == "ice":
-		print("ICE")
 		$action_Timer.wait_time = 2.0
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
 	if type == "lightning":
-		print("LIGHTNING")
 		Color(1.0, 0.933, 0.0, 1.0)
 
 func _on_status_effect_timeout() -> void:

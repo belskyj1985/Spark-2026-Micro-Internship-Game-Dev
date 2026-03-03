@@ -70,7 +70,7 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAYABcAAAABAAcAAAAZABcAAAAAAAgAAAAYABg
 position = Vector2(-441, 86)
 
 [node name="player" parent="." unique_id=663432482 instance=ExtResource("2_e2o6t")]
-position = Vector2(-665.59875, 31.498474)
+position = Vector2(5537.8877, 1399.1593)
 
 [node name="PhysicsGear" parent="." unique_id=1608124609 instance=ExtResource("7_eow3j")]
 position = Vector2(-376, 176)
@@ -144,10 +144,8 @@ shape = SubResource("RectangleShape2D_dnvn8")
 debug_color = Color(0.6631474, 0.3715764, 0, 0.41960785)
 
 [node name="TileMapLayer" parent="CollapsingPlatform4" index="3" unique_id=1428863558]
-[node name="TileMapLayer" parent="CollapsingPlatform4" index="3" unique_id=1428863558]
 tile_map_data = PackedByteArray("AAAGAAQAAAAvAAMAAAAHAAQAAAAwAAMAAAAIAAQAAAAxAAMAAAAJAAQAAAAyAAMAAAAKAAQAAAAzAAMAAAALAAQAAAA0AAMAAAAMAAQAAAA1AAMAAAANAAQAAAA2AAMAAAAOAAQAAAA3AAMAAAAPAAQAAAA0AAMAAAAQAAQAAAAyAAMAAAARAAQAAAAzAAMAAAASAAQAAAA3AAMAAAATAAQAAAA0AAMAAAAUAAQAAAA1AAMAAAAVAAQAAAA2AAMAAAAWAAQAAAA3AAMAAAAXAAQAAAA4AAMAAAAYAAQAAAA0AAMAAAAZAAQAAAA1AAMAAAAaAAQAAAA2AAMAAAAbAAQAAAA0AAMAAAAcAAQAAAA1AAMAAAAdAAQAAAAyAAMAAAAeAAQAAAAzAAMAAAAfAAQAAAA2AAMAAAAgAAQAAAA3AAMAAAAhAAQAAAA0AAMAAAAiAAQAAAA1AAMAAAAjAAQAAAA2AAMAAAAkAAQAAAA0AAMAAAAlAAQAAAAyAAMAAAAmAAQAAAAzAAMAAAAnAAQAAAA3AAMAAAAoAAQAAAA0AAMAAAApAAQAAAA1AAMAAAAqAAQAAAA2AAMAAAArAAQAAAA3AAMAAAAsAAQAAAA4AAMAAAAtAAQAAAA5AAMAAAA=")
 
-[node name="WoodParticles" parent="CollapsingPlatform4" index="4" unique_id=1621810560]
 [node name="WoodParticles" parent="CollapsingPlatform4" index="4" unique_id=1621810560]
 position = Vector2(0, -32)
 emission_rect_extents = Vector2(328.13, 1)
@@ -167,17 +165,17 @@ position = Vector2(479, -10.625)
 shape = SubResource("RectangleShape2D_ja2mh")
 disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=1994564910]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=858196100]
 position = Vector2(161, -10.625)
 shape = SubResource("RectangleShape2D_ja2mh")
 disabled = true
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=375645509]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=183032361]
 position = Vector2(320, -10.625)
 shape = SubResource("RectangleShape2D_ja2mh")
 disabled = true
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=771246203]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="CollapsingPlatform4" unique_id=895920888]
 position = Vector2(479, -10.625)
 shape = SubResource("RectangleShape2D_ja2mh")
 disabled = true
@@ -255,7 +253,7 @@ position = Vector2(3753, 273)
 position = Vector2(2770, 768)
 
 [node name="frog" parent="." unique_id=1598620491 instance=ExtResource("14_215e1")]
-position = Vector2(5809.86, 1157.7302)
+position = Vector2(5809.86, 1176)
 
 [node name="Camera2D" parent="." unique_id=1056206372 instance=ExtResource("3_feb5d")]
 position = Vector2(153, 65)

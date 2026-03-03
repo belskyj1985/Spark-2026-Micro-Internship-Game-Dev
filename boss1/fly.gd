@@ -1,14 +1,14 @@
 extends CharacterBody2D
 var health :int = 60
 var damage :int = 10
-var spd :int = 10
+var spd :int = 1
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var boss: CharacterBody2D = get_tree().root.get_node("frog")
 var status: String = ""
 
 func _physics_process(delta: float) -> void:
 	var target_vel :Vector2 = (global_position - Global.player.global_position).normalized() * delta * -10000
-	velocity = velocity.move_toward(target_vel,10)
+	velocity = velocity.move_toward(target_vel/spd,10)
 	move_and_slide()
 
 func get_hit(dmg):
@@ -18,7 +18,6 @@ func get_hit(dmg):
 		queue_free()
 	
 	if status == "":
-		print("NO STATUS")
 		modulate = Color(1,.4,.4)
 		$HitFlash.start()
 
@@ -27,7 +26,7 @@ func apply_status(type):
 	$StatusEffect.start()
 	$Tick.start()
 	if status == "ice":
-		spd /= 2
+		spd = 2
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
 	if status == "lightning":
 		modulate = Color(1.0, 0.978, 0.34, 1.0)
@@ -39,7 +38,7 @@ func _on_hit_flash_timeout() -> void:
 
 func _on_status_effect_timeout() -> void:
 	if status == "ice":
-		spd *= 2
+		spd = 1
 	status = ""
 	modulate = Color(1,1,1)
 	$Tick.stop()
