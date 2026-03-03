@@ -274,7 +274,4 @@ offset_bottom = -222.0
 position = Vector2(5621, 1424)
 boss = NodePath("../frog")
 
-[node name="PhysicsGear2" parent="." unique_id=188749168 instance=ExtResource("7_eow3j")]
-position = Vector2(4973, 1206)
-
 [editable path="CollapsingPlatform4"]
