@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bvv7msmvsrl6n" path="res://physics_gear.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://edny0xnsfjdt" path="res://door.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" path="res://vent.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://puhm8pv6ysxi" path="res://vent.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bivt6g1ttx4ko" path="res://enemy_1.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="13_lc2xo"]
@@ -35,24 +35,24 @@ position = Vector2(153, 65)
 scale = Vector2(1.5, 1.5)
 
 [node name="1" type="Parallax2D" parent="background" unique_id=361430260]
-scroll_scale = Vector2(0.9, 1)
-repeat_size = Vector2(960, 0)
+scroll_scale = Vector2(0.36, 0.4)
+repeat_size = Vector2(960, 100.69)
 repeat_times = 8
 
 [node name="1" type="Sprite2D" parent="background/1" unique_id=901160137]
 texture = ExtResource("4_ryrav")
 
 [node name="2" type="Parallax2D" parent="background" unique_id=1905547247]
-scroll_scale = Vector2(0.8, 1)
-repeat_size = Vector2(960, 0)
+scroll_scale = Vector2(0.4, 0.5)
+repeat_size = Vector2(960, 424.19)
 repeat_times = 8
 
 [node name="2" type="Sprite2D" parent="background/2" unique_id=68913254]
 texture = ExtResource("5_eow3j")
 
 [node name="3" type="Parallax2D" parent="background" unique_id=267698638]
-scroll_scale = Vector2(0.6, 1)
-repeat_size = Vector2(960, 0)
+scroll_scale = Vector2(0.36, 0.6)
+repeat_size = Vector2(960, 436.34)
 repeat_times = 8
 
 [node name="3" type="Sprite2D" parent="background/3" unique_id=58679970]
@@ -70,7 +70,7 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAYABcAAAABAAcAAAAZABcAAAAAAAgAAAAYABg
 position = Vector2(-441, 86)
 
 [node name="player" parent="." unique_id=663432482 instance=ExtResource("2_e2o6t")]
-position = Vector2(5537.8877, 1399.1593)
+position = Vector2(-127, -317)
 
 [node name="PhysicsGear" parent="." unique_id=1608124609 instance=ExtResource("7_eow3j")]
 position = Vector2(-376, 176)
@@ -259,9 +259,9 @@ position = Vector2(5809.86, 1176)
 position = Vector2(153, 65)
 
 [node name="Pause Menu" parent="Camera2D" unique_id=1272794215 instance=ExtResource("8_j5wjh")]
-offset_left = -116.0
+offset_left = -225.0
 offset_top = -136.0
-offset_right = -116.0
+offset_right = -225.0
 offset_bottom = -136.0
 
 [node name="UI" parent="Camera2D" unique_id=586122242 instance=ExtResource("2_7sc4i")]
