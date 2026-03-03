@@ -4,13 +4,52 @@ extends Node2D
 @onready var ui: Control = $UI
 var detected: bool = false
 
+@onready var shop_keeper_sprite: Sprite2D = $ShopKeeperSprite
+@export var pace_distance: float = 80.0 
+@export var max_speed: float = 40.0
+@export var lean_amount: float = 0.08
+@export var acceleration: float = 4.0
+var start_x: float
+var direction: int = 1
+var current_speed: float = 0.0
+
 func _physics_process(delta: float) -> void:
 	if detected:
 		v_box_container.position.y = lerpf(v_box_container.position.y,-150,.08)
 	else:
 		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.01)
+	
+	if detected:
+		# Smoothly slow to stop
+		current_speed = lerpf(current_speed, 0.0, acceleration * delta)
+	else:
+		# Smoothly accelerate to max speed
+		current_speed = lerpf(current_speed, max_speed, acceleration * delta)
+	
+	# --- Movement ---
+	global_position.x += direction * current_speed * delta
+	
+	# Check bounds (only change direction if moving)
+	if not detected:
+		if global_position.x > start_x + pace_distance:
+			direction = -1
+		elif global_position.x < start_x - pace_distance:
+			direction = 1
+	
+	# Flip sprite
+	shop_keeper_sprite.flip_h = direction < 0
+	
+	# Lean based on movement speed (leans less when stopping)
+	var target_lean = lean_amount * direction * (current_speed / max_speed)
+	
+	shop_keeper_sprite.rotation = lerpf(
+		shop_keeper_sprite.rotation,
+		target_lean,
+		6 * delta
+	)
 
 func _ready() -> void:
+	start_x = global_position.x
 	v_box_container.visible = false
 	update_buttons()
 

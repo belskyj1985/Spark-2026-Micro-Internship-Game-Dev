@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3mdflciluxbd"
-path="res://.godot/imported/ShopKeeperSprite.png-8fa1c461e190f9de84f8d2d00348d100.ctex"
+path="res://.godot/imported/ShopKeeperSprite.png-967c2096a3af12bf1946708f3ea3e9de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ShopKeeperSprite.png"
-dest_files=["res://.godot/imported/ShopKeeperSprite.png-8fa1c461e190f9de84f8d2d00348d100.ctex"]
+source_file="res://shop/ShopKeeperSprite.png"
+dest_files=["res://.godot/imported/ShopKeeperSprite.png-967c2096a3af12bf1946708f3ea3e9de.ctex"]
 
 [params]
 

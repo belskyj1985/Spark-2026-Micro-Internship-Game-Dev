@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://c2kqkbjoe7o2b" path="res://shop/Perfect DOS VGA 437.ttf" id="3_v6c71"]
 [ext_resource type="Texture2D" uid="uid://bykt5ces1cqaj" path="res://shop/shop_ice.png" id="5_7l2ia"]
 [ext_resource type="Texture2D" uid="uid://c2ti5f4ntfwpn" path="res://shop/shop_lightning.png" id="6_18uh6"]
+[ext_resource type="Texture2D" uid="uid://b3mdflciluxbd" path="res://shop/ShopKeeperSprite.png" id="7_18uh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guc"]
 size = Vector2(52, 52)
@@ -24,6 +25,10 @@ font_color = Color(1, 0.7515, 0.29000002, 1)
 
 [node name="shop_keeper" type="Node2D" unique_id=1400398174]
 script = ExtResource("1_oqpvu")
+
+[node name="ShopKeeperSprite" type="Sprite2D" parent="." unique_id=1389116622]
+position = Vector2(-2, -16)
+texture = ExtResource("7_18uh6")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=136220500]
 collision_layer = 0
