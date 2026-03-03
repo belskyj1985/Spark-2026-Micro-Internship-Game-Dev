@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var sprite: Sprite2D = $AnimatedSprite2D
 
 var side :int = 1
 var jump_dir :int = -1
 var action_count :int = 0
+var shaking :bool = false
 
 var health :int = 2400
 var max_health :int = 2400
@@ -34,10 +36,8 @@ func _on_action_timer_timeout() -> void:
 	if active:
 		match action_count%2:
 			1:
-				print("SPAWNED")
 				spawn()
 			0:
-				print("JUMPED")
 				jump()
 		#if global_position.distance_squared_to(Global.player.global_position) < 400:
 			#velocity = Vector2()
@@ -85,8 +85,11 @@ func spawn() -> void:
 			await get_tree().create_timer(0.1).timeout
 	
 	animator.play("crouch")
-	print("crofdjfsd")
-	#await get_tree().create_timer(0.3).timeout
+	print("timer start")
+	shaking = true
+	await get_tree().create_timer(0.3).timeout
+	shaking = false
+	print("timer end")
 	animator.play("jump")
 	target_y = 200
 
@@ -96,9 +99,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#velocity.y += 200 * delta
+	if shaking:
+		sprite.position.x = randi_range(-8,8)
+		print(sprite.position.x)
+	else:
+		sprite.position.x = 0
+	
 	if active:
 		position.y = move_toward(position.y,target_y,1000 * delta)
-		if position.y == target_y:
+		if position.y == target_y && !animator.current_animation == "crouch":
 			animator.play("stand")
 		move_and_slide()
 
