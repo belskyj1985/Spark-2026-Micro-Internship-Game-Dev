@@ -57,7 +57,7 @@ text = "Show Cursor"
 
 [node name="hold2fire" type="CheckButton" parent="options_menu" unique_id=2127859845]
 layout_mode = 2
-text = "Hold to Fire"
+text = "Press to Fire"
 
 [node name="back" type="Button" parent="options_menu" unique_id=1998669704]
 layout_mode = 2
