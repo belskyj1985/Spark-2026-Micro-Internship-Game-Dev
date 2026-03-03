@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bp4rd6aaaekpn"]
 
 [ext_resource type="Script" uid="uid://crpx6vcouyvk7" path="res://bullet.gd" id="1_c7cl1"]
-[ext_resource type="Texture2D" uid="uid://bqoob16etpihc" path="res://player/PlayerBulletFire.png" id="2_rugti"]
+[ext_resource type="Texture2D" uid="uid://cqhlqlubwptty" path="res://player/PlayerBulletIce.png" id="2_b6suv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0vju"]
 radius = 8.0
@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://crpx6vcouyvk7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2090619305]
 shape = SubResource("CircleShape2D_d0vju")
+debug_color = Color(0, 0.6043765, 0.6761051, 0.41960785)
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=2134092528]
-self_modulate = Color(0, 0.4666667, 1, 1)
-texture = ExtResource("2_rugti")
+texture = ExtResource("2_b6suv")

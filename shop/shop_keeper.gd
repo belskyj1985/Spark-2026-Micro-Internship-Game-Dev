@@ -66,7 +66,54 @@ func _on_fire_button_pressed() -> void:
 		1:
 			SaveLoad.contents_to_save["fire"] = 2
 			Global.player.switch_bullet("fire")
+			
+			if SaveLoad.contents_to_save["ice"] == 2:
+				SaveLoad.contents_to_save["ice"] = 1
+			if SaveLoad.contents_to_save["lightning"] == 2:
+				SaveLoad.contents_to_save["lightning"] = 1
 		2:
 			SaveLoad.contents_to_save["fire"] = 1
+			Global.player.switch_bullet("")
+	update_buttons()
+
+
+func _on_ice_button_pressed() -> void:
+	print(SaveLoad.contents_to_save["ice"])
+	match SaveLoad.contents_to_save["ice"]:
+		0:
+			if SaveLoad.contents_to_save["c1"] >= 120:
+				SaveLoad.get_c1(-120)
+				SaveLoad.contents_to_save["ice"] = 1
+		1:
+			SaveLoad.contents_to_save["ice"] = 2
+			Global.player.switch_bullet("ice")
+			
+			if SaveLoad.contents_to_save["fire"] == 2:
+				SaveLoad.contents_to_save["fire"] = 1
+			if SaveLoad.contents_to_save["lightning"] == 2:
+				SaveLoad.contents_to_save["lightning"] = 1
+		2:
+			SaveLoad.contents_to_save["ice"] = 1
+			Global.player.switch_bullet("")
+	update_buttons()
+
+
+func _on_lightning_button_pressed() -> void:
+	print(SaveLoad.contents_to_save["lightning"])
+	match SaveLoad.contents_to_save["lightning"]:
+		0:
+			if SaveLoad.contents_to_save["c1"] >= 120:
+				SaveLoad.get_c1(-120)
+				SaveLoad.contents_to_save["lightning"] = 1
+		1:
+			SaveLoad.contents_to_save["lightning"] = 2
+			Global.player.switch_bullet("lightning")
+			
+			if SaveLoad.contents_to_save["ice"] == 2:
+				SaveLoad.contents_to_save["ice"] = 1
+			if SaveLoad.contents_to_save["fire"] == 2:
+				SaveLoad.contents_to_save["fire"] = 1
+		2:
+			SaveLoad.contents_to_save["lightning"] = 1
 			Global.player.switch_bullet("")
 	update_buttons()

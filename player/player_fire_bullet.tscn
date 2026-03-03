@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://crpx6vcouyvk7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2090619305]
 shape = SubResource("CircleShape2D_d0vju")
+debug_color = Color(0.99767154, 0, 0.17088991, 0.41960785)
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=2134092528]
 texture = ExtResource("2_d0vju")
