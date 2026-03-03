@@ -9,6 +9,7 @@ func _on_recall_button_up() -> void:
 	down = false
 
 func _process(delta: float) -> void:
+
 	if Input.is_action_just_pressed("pause"):
 		print("PRESSED IT")
 		visible = !visible
