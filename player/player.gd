@@ -185,8 +185,9 @@ func aim(delta):
 	aim_angle = (global_position - get_global_mouse_position()).angle()
 	move_and_slide()
 
-func get_hit(pos, dmg :int = 20, kb :int = 200):
+func get_hit(dmg):
 	if vulnerable:
+		print(dmg)
 		health = clamp(health - dmg, 0, max_health)
 		inv_timer.start()
 		tranq(0.5)

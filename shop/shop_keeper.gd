@@ -62,6 +62,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	#v_box_container.visible = false
 	detected = false
+	$UI/VBoxContainer/ice/ice_button.release_focus()
+	$UI/VBoxContainer/fire/fire_button.release_focus()
+	$UI/VBoxContainer/lightning/lightning_button.release_focus()
 
 func update_buttons() -> void:
 	match SaveLoad.contents_to_save["fire"]:

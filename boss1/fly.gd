@@ -50,4 +50,7 @@ func _on_tick_timeout() -> void:
 		get_hit(2)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	Global.player.get_hit(global_position,damage,20)
+	if status == "lightning":
+		Global.player.get_hit(damage/2)
+	else:
+		Global.player.get_hit(damage)

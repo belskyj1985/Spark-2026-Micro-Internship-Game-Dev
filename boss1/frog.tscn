@@ -214,6 +214,10 @@ show_percentage = false
 wait_time = 5.0
 one_shot = true
 
+[node name="HitFlash" type="Timer" parent="." unique_id=965788541]
+wait_time = 0.2
+
 [connection signal="timeout" from="action_Timer" to="." method="_on_action_timer_timeout"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
 [connection signal="timeout" from="StatusEffect" to="." method="_on_status_effect_timeout"]
+[connection signal="timeout" from="HitFlash" to="." method="_on_hit_flash_timeout"]
