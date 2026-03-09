@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bykt5ces1cqaj" path="res://shop/shop_ice.png" id="5_7l2ia"]
 [ext_resource type="Texture2D" uid="uid://c2ti5f4ntfwpn" path="res://shop/shop_lightning.png" id="6_18uh6"]
 [ext_resource type="Texture2D" uid="uid://b3mdflciluxbd" path="res://shop/ShopKeeperSprite.png" id="7_18uh6"]
+[ext_resource type="Texture2D" uid="uid://uqxdx0q8yhdl" path="res://shop/health.png" id="8_84gdt"]
+[ext_resource type="Texture2D" uid="uid://ca5f2ttlkx52c" path="res://shop/defense.png" id="9_5n7xc"]
+[ext_resource type="Texture2D" uid="uid://b1o3db86j257s" path="res://shop/damage.png" id="10_jbdu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guc"]
 size = Vector2(52, 52)
@@ -20,6 +23,18 @@ font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dypvr"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_84gdt"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5n7xc"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbdu5"]
 font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
 
@@ -129,9 +144,97 @@ label_settings = SubResource("LabelSettings_dypvr")
 position = Vector2(45, 14)
 texture = ExtResource("6_18uh6")
 
+[node name="stats" type="VBoxContainer" parent="UI" unique_id=1210869089]
+layout_mode = 0
+offset_left = -54.0
+offset_top = -274.0
+offset_right = 79.0
+offset_bottom = -116.0
+
+[node name="hp" type="Control" parent="UI/stats" unique_id=2049905162]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/stats/hp" unique_id=2132538467]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="hp_button" type="Button" parent="UI/stats/hp" unique_id=350755414]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/stats/hp/hp_button" unique_id=1528627458]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_84gdt")
+
+[node name="icon" type="Sprite2D" parent="UI/stats/hp" unique_id=352944503]
+position = Vector2(45, 14)
+texture = ExtResource("8_84gdt")
+
+[node name="def" type="Control" parent="UI/stats" unique_id=2010017149]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/stats/def" unique_id=1924533281]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="def_button" type="Button" parent="UI/stats/def" unique_id=1663729021]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/stats/def/def_button" unique_id=688387352]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_5n7xc")
+
+[node name="icon" type="Sprite2D" parent="UI/stats/def" unique_id=795300207]
+position = Vector2(45, 14)
+texture = ExtResource("9_5n7xc")
+
+[node name="rate" type="Control" parent="UI/stats" unique_id=220857796]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/stats/rate" unique_id=1965895548]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="dmg" type="Button" parent="UI/stats/rate" unique_id=1679194587]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/stats/rate/dmg" unique_id=237202919]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_jbdu5")
+
+[node name="icon" type="Sprite2D" parent="UI/stats/rate" unique_id=321128307]
+position = Vector2(45, 14)
+texture = ExtResource("10_jbdu5")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_fire_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/ice/ice_button" to="." method="_on_ice_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/lightning/lightning_button" to="." method="_on_lightning_button_pressed"]
+[connection signal="pressed" from="UI/stats/hp/hp_button" to="." method="_on_hp_button_pressed"]
+[connection signal="pressed" from="UI/stats/def/def_button" to="." method="_on_def_button_pressed"]
+[connection signal="pressed" from="UI/stats/rate/dmg" to="." method="_on_dmg_pressed"]

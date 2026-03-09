@@ -56,3 +56,5 @@ func _on_save_pressed() -> void:
 
 func _on_load_pressed() -> void:
 	SaveLoad._load()
+	Global.player.load_save_data()
+	print(SaveLoad.contents_to_save["hp"])

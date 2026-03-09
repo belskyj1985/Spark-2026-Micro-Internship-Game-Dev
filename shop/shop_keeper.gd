@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var v_box_container: VBoxContainer = $UI/VBoxContainer
+@onready var stats: VBoxContainer = $UI/stats
 @onready var ui: Control = $UI
 var detected: bool = false
 
@@ -16,8 +17,10 @@ var current_speed: float = 0.0
 func _physics_process(delta: float) -> void:
 	if detected:
 		v_box_container.position.y = lerpf(v_box_container.position.y,-150,.08)
+		stats.position.y = lerpf(stats.position.y,-150,.08)
 	else:
-		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.01)
+		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.08)
+		stats.position.y = lerpf(stats.position.y,-1000,.01)
 	
 	if detected:
 		# Smoothly slow to stop
@@ -98,6 +101,20 @@ func update_buttons() -> void:
 		2:
 			$UI/VBoxContainer/lightning/lightning_button/Label.text = "Unequip"
 			$UI/VBoxContainer/lightning/lightning_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
+	
+	if SaveLoad.contents_to_save["hp"] < 5:
+		$UI/stats/hp/hp_button/Label.text = str(120 + 20 * SaveLoad.contents_to_save["hp"]) + "sc"
+		$UI/stats/hp/hp_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+	else:
+		$UI/stats/hp/hp_button/Label.text = "MAX"
+		$UI/stats/hp/hp_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
+	
+	if SaveLoad.contents_to_save["def"] < 2:
+		$UI/stats/def/def_button/Label.text = str(120 + 40 * SaveLoad.contents_to_save["def"]) + "sc"
+		$UI/stats/def/def_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+	else:
+		$UI/stats/def/def_button/Label.text = "MAX"
+		$UI/stats/def/def_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
 
 func _on_fire_button_pressed() -> void:
 	print(SaveLoad.contents_to_save["fire"])
@@ -160,3 +177,25 @@ func _on_lightning_button_pressed() -> void:
 			SaveLoad.contents_to_save["lightning"] = 1
 			Global.player.switch_bullet("")
 	update_buttons()
+
+
+func _on_hp_button_pressed() -> void:
+	if SaveLoad.contents_to_save["hp"] < 5 && SaveLoad.contents_to_save["c1"] >= (120 + 20 * SaveLoad.contents_to_save["hp"]):
+		SaveLoad.get_c1(-120 - 20 * SaveLoad.contents_to_save["hp"])
+		SaveLoad.contents_to_save["hp"] += 1
+		update_buttons()
+		SaveLoad.contents_to_save["cur_hp"] = Global.player.health + 20
+		Global.player.load_save_data()
+		
+
+
+func _on_def_button_pressed() -> void:
+	if SaveLoad.contents_to_save["def"] < 2 && SaveLoad.contents_to_save["c1"] >= (120 + 40 * SaveLoad.contents_to_save["def"]):
+		SaveLoad.get_c1(-120 - 40 * SaveLoad.contents_to_save["def"])
+		SaveLoad.contents_to_save["def"] += 1
+		update_buttons()
+		Global.player.load_save_data()
+
+
+func _on_dmg_pressed() -> void:
+	SaveLoad.contents_to_save["dmg"] += 1
