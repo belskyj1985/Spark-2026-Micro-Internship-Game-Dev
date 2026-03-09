@@ -115,6 +115,13 @@ func update_buttons() -> void:
 	else:
 		$UI/stats/def/def_button/Label.text = "MAX"
 		$UI/stats/def/def_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
+	
+	if SaveLoad.contents_to_save["dmg"] < 5:
+		$UI/stats/dmg/dmg_button/Label.text = str(120 + 60 * SaveLoad.contents_to_save["dmg"]) + "sc"
+		$UI/stats/dmg/dmg_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+	else:
+		$UI/stats/dmg/dmg_button/Label.text = "MAX"
+		$UI/stats/dmg/dmg_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
 
 func _on_fire_button_pressed() -> void:
 	print(SaveLoad.contents_to_save["fire"])
@@ -198,4 +205,8 @@ func _on_def_button_pressed() -> void:
 
 
 func _on_dmg_pressed() -> void:
-	SaveLoad.contents_to_save["dmg"] += 1
+	if SaveLoad.contents_to_save["dmg"] < 5 && SaveLoad.contents_to_save["c1"] >= (120 + 60 * SaveLoad.contents_to_save["dmg"]):
+		SaveLoad.get_c1(-120 - 60 * SaveLoad.contents_to_save["dmg"])
+		SaveLoad.contents_to_save["dmg"] += 1
+		update_buttons()
+		Global.player.load_save_data()
