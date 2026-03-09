@@ -11,7 +11,7 @@ func _ready() -> void:
 		respawn_timer.start()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	Global.player.get_hit(global_position, 50, 400)
+	Global.player.get_hit(50)
 
 
 func _on_respawn_timer_timeout() -> void:
