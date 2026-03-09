@@ -8,6 +8,8 @@ var input_vector : Vector2
 const GRAV :int = 2000
 const SPD : int = 200
 var jump_force : int = 650
+var djs :int = 1
+var dashes :int = 1
 
 var aim_angle : float = 0.0
 var reticle_a_target : float = 0.0
@@ -38,6 +40,8 @@ enum state_enum {
 }
 @onready var stun: Timer = $stun
 @onready var inv_timer: Timer = $invincibility
+@onready var dash_timer: Timer = $dash
+@onready var melee_timer: Timer = $melee
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprites: Sprite2D = $AnimatedSprite2D
 @onready var reticle: Sprite2D = $Reticle
@@ -118,6 +122,18 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV * delta
 
 func move(delta):
+	if SaveLoad.contents_to_save["melee"] == 2 && melee_timer.is_stopped() && Input.is_action_just_pressed("melee"):
+		$melee_attack.monitoring = true
+		await get_tree().create_timer(0.1).timeout
+		$melee_attack.monitoring = false
+	
+	if SaveLoad.contents_to_save["dash"] == 2 && dashes > 0 && dash_timer.is_stopped() && Input.is_action_just_pressed("dash"):
+		if sprites.flip_h:
+			velocity.x = -1000
+		else:
+			velocity.x = 1000
+		velocity.y = 0
+		dashes -= 1
 	if Global.Options["hold2fire"]:
 		if Input.is_action_pressed("shoot") && can_shoot && !Global.paused:
 			shoot()
@@ -142,9 +158,14 @@ func move(delta):
 		else:
 			velocity.x = move_toward(velocity.x, input_vector.x * SPD, 3000 * delta)
 	if is_on_floor():
+		djs = 1
+		dashes = 1
 		if Input.is_action_just_pressed("jump"):
 			jump()
 	else:
+		if Input.is_action_just_pressed("jump") && SaveLoad.contents_to_save["dj"] == 2 && djs > 0:
+			jump()
+			djs -= 1
 		if velocity.y < 0 && Input.is_action_just_released("jump"):
 			velocity.y /= 3
 	move_and_slide()
@@ -222,3 +243,7 @@ func tranq(time :float):
 
 func _on_stun_timeout() -> void:
 	stunned = false
+
+
+func _on_melee_attack_body_entered(body: Node2D) -> void:
+	body.get_hit(bullet_damage*2)

@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://uqxdx0q8yhdl" path="res://shop/health.png" id="8_84gdt"]
 [ext_resource type="Texture2D" uid="uid://ca5f2ttlkx52c" path="res://shop/defense.png" id="9_5n7xc"]
 [ext_resource type="Texture2D" uid="uid://b1o3db86j257s" path="res://shop/damage.png" id="10_jbdu5"]
+[ext_resource type="Texture2D" uid="uid://6i562ext4r8m" path="res://shop/melee.png" id="11_3xhsi"]
+[ext_resource type="Texture2D" uid="uid://dp46erik1pg4n" path="res://shop/double_jump.png" id="12_jep34"]
+[ext_resource type="Texture2D" uid="uid://ikaurmh0wc0r" path="res://shop/dash.png" id="13_2r4vj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guc"]
 size = Vector2(52, 52)
@@ -35,6 +38,18 @@ font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jbdu5"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3xhsi"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jep34"]
+font = ExtResource("3_v6c71")
+font_color = Color(1, 0.7515, 0.29000002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2r4vj"]
 font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
 
@@ -229,12 +244,100 @@ label_settings = SubResource("LabelSettings_jbdu5")
 position = Vector2(45, 14)
 texture = ExtResource("10_jbdu5")
 
+[node name="abilities" type="VBoxContainer" parent="UI" unique_id=1003400814]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -274.0
+offset_right = 193.0
+offset_bottom = -116.0
+
+[node name="melee" type="Control" parent="UI/abilities" unique_id=1625438569]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/abilities/melee" unique_id=980094223]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="melee_button" type="Button" parent="UI/abilities/melee" unique_id=449550464]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/abilities/melee/melee_button" unique_id=1566360319]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_3xhsi")
+
+[node name="icon" type="Sprite2D" parent="UI/abilities/melee" unique_id=1350219673]
+position = Vector2(45, 14)
+texture = ExtResource("11_3xhsi")
+
+[node name="dj" type="Control" parent="UI/abilities" unique_id=1522367715]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/abilities/dj" unique_id=1329911667]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="dj_button" type="Button" parent="UI/abilities/dj" unique_id=380622321]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/abilities/dj/dj_button" unique_id=1379867608]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_jep34")
+
+[node name="icon" type="Sprite2D" parent="UI/abilities/dj" unique_id=221360801]
+position = Vector2(45, 14)
+texture = ExtResource("12_jep34")
+
+[node name="dash" type="Control" parent="UI/abilities" unique_id=185786140]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/abilities/dash" unique_id=340815640]
+position = Vector2(13.249712, 13.644899)
+texture = ExtResource("2_ke3ft")
+
+[node name="dash_button" type="Button" parent="UI/abilities/dash" unique_id=1881820415]
+layout_mode = 0
+offset_left = -39.000008
+offset_top = 5.0000067
+offset_right = 3.9999924
+offset_bottom = 20.000008
+
+[node name="Label" type="Label" parent="UI/abilities/dash/dash_button" unique_id=1751372847]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 23.0
+text = "120sc"
+label_settings = SubResource("LabelSettings_2r4vj")
+
+[node name="icon" type="Sprite2D" parent="UI/abilities/dash" unique_id=1388309371]
+position = Vector2(45, 14)
+texture = ExtResource("13_2r4vj")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_fire_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/fire/fire_button" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/ice/ice_button" to="." method="_on_ice_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/lightning/lightning_button" to="." method="_on_lightning_button_pressed"]
 [connection signal="pressed" from="UI/stats/hp/hp_button" to="." method="_on_hp_button_pressed"]
 [connection signal="pressed" from="UI/stats/def/def_button" to="." method="_on_def_button_pressed"]
 [connection signal="pressed" from="UI/stats/dmg/dmg_button" to="." method="_on_dmg_pressed"]
+[connection signal="pressed" from="UI/abilities/melee/melee_button" to="." method="_on_melee_button_pressed"]
+[connection signal="pressed" from="UI/abilities/dj/dj_button" to="." method="_on_dj_button_pressed"]
+[connection signal="pressed" from="UI/abilities/dash/dash_button" to="." method="_on_dash_button_pressed"]
