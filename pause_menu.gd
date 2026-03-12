@@ -16,8 +16,8 @@ func _process(delta: float) -> void:
 	if visible:
 		Global.paused = true
 		Engine.time_scale = 0
-		
-		$BoxContainer/Label.text = "Health: {0}/{1} \nDamage: {2} \n ".format([Global.player.health, Global.player.max_health, Global.player.bullet_damage])
+		if Global.player != null:
+			$BoxContainer/Label.text = "Health: {0}/{1} \nDamage: {2} \n ".format([Global.player.health, Global.player.max_health, Global.player.bullet_damage])
 	else:
 		Global.paused = false
 		Engine.time_scale = 1
