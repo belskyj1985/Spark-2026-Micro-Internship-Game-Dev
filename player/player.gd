@@ -38,6 +38,7 @@ enum state_enum {
 	slide,
 	aim,
 }
+@onready var melee_attack: Area2D = $melee_attack
 @onready var stun: Timer = $stun
 @onready var inv_timer: Timer = $invincibility
 @onready var dash_timer: Timer = $dash
@@ -122,10 +123,17 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV * delta
 
 func move(delta):
+	if sprites.flip_h:
+		melee_attack.position.x = -64
+	else:
+		melee_attack.position.x = 0
+	
 	if SaveLoad.contents_to_save["melee"] == 2 && melee_timer.is_stopped() && Input.is_action_just_pressed("melee"):
 		$melee_attack.monitoring = true
+		melee_attack.visible = true
 		await get_tree().create_timer(0.1).timeout
 		$melee_attack.monitoring = false
+		melee_attack.visible = false
 	
 	if SaveLoad.contents_to_save["dash"] == 2 && dashes > 0 && dash_timer.is_stopped() && Input.is_action_just_pressed("dash"):
 		if sprites.flip_h:
