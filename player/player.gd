@@ -71,7 +71,7 @@ func get_input_vector():
 
 func jump():
 	if sign(get_floor_normal().x) != sign(velocity.x) && get_floor_normal().x != 0:
-		velocity.y = -jump_force * 1.4
+		velocity.y = -jump_force * 1.1
 	else:
 		velocity.y = -jump_force
 

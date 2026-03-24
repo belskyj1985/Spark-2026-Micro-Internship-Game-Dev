@@ -58,3 +58,19 @@ func _on_quit_pressed() -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://game.tscn")
+
+
+func _on_credits_pressed() -> void:
+	$credits_menu/return.grab_focus()
+	var tween = get_tree().create_tween()
+	tween.set_ease(tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Camera2D, "position:x", 1729.0, 2.0)
+
+
+func _on_return_pressed() -> void:
+	$credits_menu/return.grab_focus()
+	var tween = get_tree().create_tween()
+	tween.set_ease(tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Camera2D, "position:x", 576.0, 2.0)
