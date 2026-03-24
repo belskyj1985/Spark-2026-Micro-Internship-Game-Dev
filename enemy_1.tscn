@@ -23,6 +23,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="range" unique_id=646880487]
+visible = false
 position = Vector2(2, -1)
 shape = SubResource("RectangleShape2D_pjquw")
 debug_color = Color(0.9869589, 0, 0.2603822, 0)

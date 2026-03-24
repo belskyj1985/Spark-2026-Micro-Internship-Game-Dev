@@ -38,6 +38,9 @@ debug_color = Color(0.6631474, 0.3715764, 0, 0.41960785)
 wait_time = 0.7
 one_shot = true
 
+[node name="RespawnTimer" type="Timer" parent="." unique_id=1633711325]
+wait_time = 3.5
+
 [node name="TileMapLayer" parent="." unique_id=1428863558 instance=ExtResource("2_ja2mh")]
 position = Vector2(-185, -83)
 tile_map_data = PackedByteArray("AAAGAAQAAAAvAAMAAAAHAAQAAAAwAAMAAAAIAAQAAAAxAAMAAAAJAAQAAAAyAAMAAAAKAAQAAAAzAAMAAAALAAQAAAA0AAMAAAAMAAQAAAA1AAMAAAANAAQAAAA2AAMAAAAOAAQAAAA3AAMAAAAPAAQAAAA4AAMAAAAQAAQAAAA5AAMAAAA=")
@@ -63,3 +66,4 @@ color_ramp = SubResource("Gradient_ja2mh")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="TimerBeforeCollapse" to="." method="_on_timer_before_collapse_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
