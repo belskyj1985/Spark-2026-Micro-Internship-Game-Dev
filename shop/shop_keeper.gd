@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var v_box_container: VBoxContainer = $UI/VBoxContainer
+@onready var stats: VBoxContainer = $UI/stats
+@onready var abilities: VBoxContainer = $UI/abilities
 @onready var ui: Control = $UI
 var detected: bool = false
 
@@ -16,8 +18,12 @@ var current_speed: float = 0.0
 func _physics_process(delta: float) -> void:
 	if detected:
 		v_box_container.position.y = lerpf(v_box_container.position.y,-150,.08)
+		stats.position.y = lerpf(stats.position.y,-150,.08)
+		abilities.position.y = lerpf(abilities.position.y,-150,.08)
 	else:
-		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.01)
+		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.08)
+		stats.position.y = lerpf(stats.position.y,-1000,.01)
+		abilities.position.y = lerpf(abilities.position.y,-1000,.01)
 	
 	if detected:
 		# Smoothly slow to stop
@@ -65,6 +71,14 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	$UI/VBoxContainer/ice/ice_button.release_focus()
 	$UI/VBoxContainer/fire/fire_button.release_focus()
 	$UI/VBoxContainer/lightning/lightning_button.release_focus()
+	
+	$UI/stats/hp/hp_button.release_focus()
+	$UI/stats/def/def_button.release_focus()
+	$UI/stats/dmg/dmg_button.release_focus()
+	
+	$UI/abilities/melee/melee_button.release_focus()
+	$UI/abilities/dj/dj_button.release_focus()
+	$UI/abilities/dash/dash_button.release_focus()
 
 func update_buttons() -> void:
 	match SaveLoad.contents_to_save["fire"]:
@@ -98,9 +112,62 @@ func update_buttons() -> void:
 		2:
 			$UI/VBoxContainer/lightning/lightning_button/Label.text = "Unequip"
 			$UI/VBoxContainer/lightning/lightning_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
+	
+	if SaveLoad.contents_to_save["hp"] < 5:
+		$UI/stats/hp/hp_button/Label.text = str(120 + 20 * SaveLoad.contents_to_save["hp"]) + "sc"
+		$UI/stats/hp/hp_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+	else:
+		$UI/stats/hp/hp_button/Label.text = "MAX"
+		$UI/stats/hp/hp_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
+	
+	if SaveLoad.contents_to_save["def"] < 2:
+		$UI/stats/def/def_button/Label.text = str(120 + 40 * SaveLoad.contents_to_save["def"]) + "sc"
+		$UI/stats/def/def_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+	else:
+		$UI/stats/def/def_button/Label.text = "MAX"
+		$UI/stats/def/def_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
+	
+	if SaveLoad.contents_to_save["dmg"] < 5:
+		$UI/stats/dmg/dmg_button/Label.text = str(120 + 60 * SaveLoad.contents_to_save["dmg"]) + "sc"
+		$UI/stats/dmg/dmg_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+	else:
+		$UI/stats/dmg/dmg_button/Label.text = "MAX"
+		$UI/stats/dmg/dmg_button/Label.label_settings.font_color =  Color(0.0, 1.0, 0.883, 1.0)
+	
+	match SaveLoad.contents_to_save["melee"]:
+		0:
+			$UI/abilities/melee/melee_button/Label.text = "300sc"
+			$UI/abilities/melee/melee_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+		1:
+			$UI/abilities/melee/melee_button/Label.text = "Equip"
+			$UI/abilities/melee/melee_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
+		2:
+			$UI/abilities/melee/melee_button/Label.text = "Unequip"
+			$UI/abilities/melee/melee_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
+	
+	match SaveLoad.contents_to_save["dj"]:
+		0:
+			$UI/abilities/dj/dj_button/Label.text = "400sc"
+			$UI/abilities/dj/dj_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+		1:
+			$UI/abilities/dj/dj_button/Label.text = "Equip"
+			$UI/abilities/dj/dj_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
+		2:
+			$UI/abilities/dj/dj_button/Label.text = "Unequip"
+			$UI/abilities/dj/dj_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
+	
+	match SaveLoad.contents_to_save["dash"]:
+		0:
+			$UI/abilities/dash/dash_button/Label.text = "500sc"
+			$UI/abilities/dash/dash_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
+		1:
+			$UI/abilities/dash/dash_button/Label.text = "Equip"
+			$UI/abilities/dash/dash_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
+		2:
+			$UI/abilities/dash/dash_button/Label.text = "Unequip"
+			$UI/abilities/dash/dash_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 
 func _on_fire_button_pressed() -> void:
-	print(SaveLoad.contents_to_save["fire"])
 	match SaveLoad.contents_to_save["fire"]:
 		0:
 			if SaveLoad.contents_to_save["c1"] >= 120:
@@ -142,7 +209,6 @@ func _on_ice_button_pressed() -> void:
 
 
 func _on_lightning_button_pressed() -> void:
-	print(SaveLoad.contents_to_save["lightning"])
 	match SaveLoad.contents_to_save["lightning"]:
 		0:
 			if SaveLoad.contents_to_save["c1"] >= 120:
@@ -159,4 +225,72 @@ func _on_lightning_button_pressed() -> void:
 		2:
 			SaveLoad.contents_to_save["lightning"] = 1
 			Global.player.switch_bullet("")
+	update_buttons()
+
+
+func _on_hp_button_pressed() -> void:
+	if SaveLoad.contents_to_save["hp"] < 5 && SaveLoad.contents_to_save["c1"] >= (120 + 20 * SaveLoad.contents_to_save["hp"]):
+		SaveLoad.get_c1(-120 - 20 * SaveLoad.contents_to_save["hp"])
+		SaveLoad.contents_to_save["hp"] += 1
+		update_buttons()
+		SaveLoad.contents_to_save["cur_hp"] = Global.player.health + 20
+		Global.player.load_save_data()
+		
+
+
+func _on_def_button_pressed() -> void:
+	if SaveLoad.contents_to_save["def"] < 2 && SaveLoad.contents_to_save["c1"] >= (120 + 40 * SaveLoad.contents_to_save["def"]):
+		SaveLoad.get_c1(-120 - 40 * SaveLoad.contents_to_save["def"])
+		SaveLoad.contents_to_save["def"] += 1
+		update_buttons()
+		Global.player.load_save_data()
+
+
+func _on_dmg_pressed() -> void:
+	if SaveLoad.contents_to_save["dmg"] < 5 && SaveLoad.contents_to_save["c1"] >= (120 + 60 * SaveLoad.contents_to_save["dmg"]):
+		SaveLoad.get_c1(-120 - 60 * SaveLoad.contents_to_save["dmg"])
+		SaveLoad.contents_to_save["dmg"] += 1
+		update_buttons()
+		Global.player.load_save_data()
+
+
+func _on_melee_button_pressed() -> void:
+	match SaveLoad.contents_to_save["melee"]:
+		0:
+			if SaveLoad.contents_to_save["c1"] >= 400:
+				SaveLoad.get_c1(-400)
+				SaveLoad.contents_to_save["melee"] = 1
+		1:
+			SaveLoad.contents_to_save["melee"] = 2
+			Global.player.switch_bullet("melee")
+		2:
+			SaveLoad.contents_to_save["melee"] = 1
+	update_buttons()
+
+
+func _on_dj_button_pressed() -> void:
+	match SaveLoad.contents_to_save["dj"]:
+		0:
+			if SaveLoad.contents_to_save["c1"] >= 500:
+				SaveLoad.get_c1(-500)
+				SaveLoad.contents_to_save["dj"] = 1
+		1:
+			SaveLoad.contents_to_save["dj"] = 2
+			Global.player.switch_bullet("dj")
+		2:
+			SaveLoad.contents_to_save["dj"] = 1
+	update_buttons()
+
+
+func _on_dash_button_pressed() -> void:
+	match SaveLoad.contents_to_save["dash"]:
+		0:
+			if SaveLoad.contents_to_save["c1"] >= 300:
+				SaveLoad.get_c1(-300)
+				SaveLoad.contents_to_save["dash"] = 1
+		1:
+			SaveLoad.contents_to_save["dash"] = 2
+			Global.player.switch_bullet("dash")
+		2:
+			SaveLoad.contents_to_save["dash"] = 1
 	update_buttons()

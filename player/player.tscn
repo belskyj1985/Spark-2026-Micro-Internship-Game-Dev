@@ -94,6 +94,9 @@ _data = {
 &"walk": SubResource("Animation_sweqy")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
+size = Vector2(84, 62)
+
 [node name="player" type="CharacterBody2D" unique_id=1814147482]
 collision_layer = 2
 floor_snap_length = 5.0
@@ -123,4 +126,23 @@ one_shot = true
 [node name="stun" type="Timer" parent="." unique_id=989517013]
 one_shot = true
 
+[node name="dash" type="Timer" parent="." unique_id=1012017067]
+wait_time = 0.1
+one_shot = true
+
+[node name="melee_attack" type="Area2D" parent="." unique_id=43485306]
+visible = false
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="melee_attack" unique_id=1149832251]
+position = Vector2(32, -4)
+shape = SubResource("RectangleShape2D_g1dw6")
+debug_color = Color(0.5263334, 0.42000002, 1, 0.3372549)
+
+[node name="melee" type="Timer" parent="." unique_id=1909499388]
+
 [connection signal="timeout" from="stun" to="." method="_on_stun_timeout"]
+[connection signal="body_entered" from="melee_attack" to="." method="_on_melee_attack_body_entered"]

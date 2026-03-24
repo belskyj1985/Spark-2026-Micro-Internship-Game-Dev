@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 var health :int = 100
 var max_health :int = 100
+var defense :float = 0
 
 var input_vector : Vector2 
 const GRAV :int = 2000
 const SPD : int = 200
 var jump_force : int = 650
+var djs :int = 1
+var dashes :int = 1
 
 var aim_angle : float = 0.0
 var reticle_a_target : float = 0.0
@@ -25,6 +28,7 @@ var bullet_speed :int = 400
 var bullet_gravity :int = 20
 var bullet_lifetime :float = 2.0
 var bullet_damage :int = 20
+var dmg_buff :float = 0.0
 
 var vulnerable :bool = true
 
@@ -34,15 +38,32 @@ enum state_enum {
 	slide,
 	aim,
 }
+@onready var melee_attack: Area2D = $melee_attack
 @onready var stun: Timer = $stun
 @onready var inv_timer: Timer = $invincibility
+@onready var dash_timer: Timer = $dash
+@onready var melee_timer: Timer = $melee
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprites: Sprite2D = $AnimatedSprite2D
 @onready var reticle: Sprite2D = $Reticle
 
 func _ready() -> void:
 	Global.player = self
+	
 
+func load_save_data():
+	if SaveLoad.contents_to_save["fire"] == 2:
+		Global.player.switch_bullet("fire")
+	if SaveLoad.contents_to_save["lightning"] == 2:
+		Global.player.switch_bullet("lightning")
+	if SaveLoad.contents_to_save["ice"] == 2:
+		Global.player.switch_bullet("ice")
+	
+	max_health = 100 + (SaveLoad.contents_to_save["hp"]) * 20
+	health = SaveLoad.contents_to_save["cur_hp"]
+	
+	defense = SaveLoad.contents_to_save["def"]
+	dmg_buff = SaveLoad.contents_to_save["dmg"]
 func get_input_vector():
 	input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left") 
@@ -50,7 +71,7 @@ func get_input_vector():
 
 func jump():
 	if sign(get_floor_normal().x) != sign(velocity.x) && get_floor_normal().x != 0:
-		velocity.y = -jump_force * 1.4
+		velocity.y = -jump_force * 1.1
 	else:
 		velocity.y = -jump_force
 
@@ -102,6 +123,25 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV * delta
 
 func move(delta):
+	if sprites.flip_h:
+		melee_attack.position.x = -64
+	else:
+		melee_attack.position.x = 0
+	
+	if SaveLoad.contents_to_save["melee"] == 2 && melee_timer.is_stopped() && Input.is_action_just_pressed("melee"):
+		$melee_attack.monitoring = true
+		melee_attack.visible = true
+		await get_tree().create_timer(0.1).timeout
+		$melee_attack.monitoring = false
+		melee_attack.visible = false
+	
+	if SaveLoad.contents_to_save["dash"] == 2 && dashes > 0 && dash_timer.is_stopped() && Input.is_action_just_pressed("dash"):
+		if sprites.flip_h:
+			velocity.x = -1000
+		else:
+			velocity.x = 1000
+		velocity.y = 0
+		dashes -= 1
 	if Global.Options["hold2fire"]:
 		if Input.is_action_pressed("shoot") && can_shoot && !Global.paused:
 			shoot()
@@ -126,9 +166,14 @@ func move(delta):
 		else:
 			velocity.x = move_toward(velocity.x, input_vector.x * SPD, 3000 * delta)
 	if is_on_floor():
+		djs = 1
+		dashes = 1
 		if Input.is_action_just_pressed("jump"):
 			jump()
 	else:
+		if Input.is_action_just_pressed("jump") && SaveLoad.contents_to_save["dj"] == 2 && djs > 0:
+			jump()
+			djs -= 1
 		if velocity.y < 0 && Input.is_action_just_released("jump"):
 			velocity.y /= 3
 	move_and_slide()
@@ -141,16 +186,16 @@ func shoot():
 	get_tree().current_scene.add_child(bullet_instance)
 	
 	if state == state_enum.aim:
-		bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), bullet_damage)
+		bullet_instance.setup(get_global_mouse_position() - (global_position + bullet_offset), int(bullet_damage * (1.0 + 0.2 * dmg_buff)) )
 		bullet_instance.sprite.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
 	elif state == state_enum.move:
-		bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), bullet_damage)
+		bullet_instance.setup(Vector2(bullet_speed * sign(bullet_offset.x), 0), int(bullet_damage * (1.0 + 0.2 * dmg_buff)) )
 		#flip bullet
 		bullet_instance.sprite.scale.x = sign(bullet_offset.x)
 	bullet_instance.body_entered.connect(bullet_instance._on_body_entered)
 	bullet_instance.global_position = global_position + bullet_offset
 	bullet_instance.speed = bullet_speed
-	bullet_instance.damage = bullet_damage
+	bullet_instance.damage = int(bullet_damage * (1.0 + 0.2 * dmg_buff))
 	bullet_instance.lifetime = bullet_lifetime
 	
 	can_shoot = false
@@ -187,8 +232,7 @@ func aim(delta):
 
 func get_hit(dmg):
 	if vulnerable:
-		print(dmg)
-		health = clamp(health - dmg, 0, max_health)
+		health = clamp(health - dmg * ( 1.0/((defense+2.0)*0.5) ), 0, max_health)
 		inv_timer.start()
 		tranq(0.5)
 		velocity.y = -500
@@ -196,6 +240,8 @@ func get_hit(dmg):
 			velocity.x = 300
 		else:
 			velocity.x = -300
+		
+		SaveLoad.contents_to_save["cur_hp"] = health
 
 func tranq(time :float):
 	stunned = true
@@ -205,3 +251,7 @@ func tranq(time :float):
 
 func _on_stun_timeout() -> void:
 	stunned = false
+
+
+func _on_melee_attack_body_entered(body: Node2D) -> void:
+	body.get_hit(bullet_damage*2)

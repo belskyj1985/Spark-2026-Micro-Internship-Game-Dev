@@ -26,6 +26,7 @@ func _ready() -> void:
 	tween = get_tree().create_tween()
 
 func get_hit(dmg):
+	print(dmg)
 	health -= dmg
 	if health <= 0:
 		SaveLoad.get_c1(5)

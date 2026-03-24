@@ -6,7 +6,14 @@ var contents_to_save :Dictionary = {
 	"c2": 0,
 	"fire": 0,
 	"ice": 0,
-	"lightning": 0
+	"lightning": 0,
+	"hp": 0,
+	"def": 0,
+	"dmg": 0,
+	"cur_hp": 100,
+	"melee": 0,
+	"dash": 0,
+	"dj": 0
 }
 
 func get_c1(n):
@@ -34,7 +41,19 @@ func _load():
 		var save_data = data.duplicate()
 		contents_to_save.c1 = save_data.c1
 		contents_to_save.c2 = save_data.c2
+		
 		contents_to_save.fire = save_data.fire
 		contents_to_save.ice = save_data.ice
 		contents_to_save.lightning = save_data.lightning
+		
+		contents_to_save.hp = save_data.hp
+		contents_to_save.def = save_data.def
+		contents_to_save.dmg = save_data.dmg
+		
+		contents_to_save.cur_hp = save_data.cur_hp
+		
+		contents_to_save.melee = save_data.melee
+		contents_to_save.dj = save_data.dj
+		contents_to_save.dash = save_data.dash
+		
 		get_c1(0)

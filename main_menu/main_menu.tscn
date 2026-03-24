@@ -1,0 +1,250 @@
+[gd_scene format=3 uid="uid://peq3dvqkcjum"]
+
+[ext_resource type="Script" uid="uid://b2u0a6wi1ro1w" path="res://main_menu/main.gd" id="1_oa53l"]
+[ext_resource type="FontFile" uid="uid://bs8m4g1llw2jk" path="res://main_menu/SPORTIFITY.otf" id="2_d3a7t"]
+[ext_resource type="FontFile" uid="uid://c2kqkbjoe7o2b" path="res://shop/Perfect DOS VGA 437.ttf" id="3_3shxk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3shxk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d3a7t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3shxk"]
+font = ExtResource("2_d3a7t")
+font_size = 64
+shadow_size = 7
+shadow_color = Color(1, 0.58750004, 0.00999999, 1)
+shadow_offset = Vector2(-7, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bws42"]
+font = ExtResource("2_d3a7t")
+font_size = 64
+shadow_size = 7
+shadow_color = Color(0.9951038, 0.8304929, 2.695322e-06, 1)
+shadow_offset = Vector2(-7, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3f7m4"]
+font = ExtResource("2_d3a7t")
+font_size = 64
+shadow_size = 7
+shadow_color = Color(7.123351e-06, 0.7700548, 0.9929984, 1)
+shadow_offset = Vector2(-7, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3a7t"]
+font = ExtResource("2_d3a7t")
+font_size = 64
+shadow_size = 7
+shadow_color = Color(1, 0.00999999, 0.026499748, 1)
+shadow_offset = Vector2(-7, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tl50"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_t6bnd"]
+font = ExtResource("2_d3a7t")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_ia84y"]
+font = ExtResource("2_d3a7t")
+font_size = 119
+
+[sub_resource type="LabelSettings" id="LabelSettings_6at21"]
+font = ExtResource("3_3shxk")
+font_size = 49
+
+[node name="main menu" type="Node2D" unique_id=456848292]
+script = ExtResource("1_oa53l")
+
+[node name="MeshInstance2D2" type="Sprite2D" parent="." unique_id=1052822454]
+modulate = Color(0.55369806, 0.26335868, 0.48364353, 1)
+position = Vector2(576.125, 972)
+scale = Vector2(1151.75, 647.75)
+texture = SubResource("CanvasTexture_3shxk")
+
+[node name="main" type="VBoxContainer" parent="." unique_id=1472162689]
+offset_left = 13.0
+offset_top = 325.0
+offset_right = 393.0
+offset_bottom = 637.0
+
+[node name="MeshInstance2D" type="Sprite2D" parent="main" unique_id=1362329628]
+modulate = Color(0.10393151, 0.1425921, 0.3913169, 1)
+position = Vector2(563.00006, -1)
+scale = Vector2(1151.75, 647.75)
+texture = SubResource("CanvasTexture_d3a7t")
+
+[node name="Start" type="TextureButton" parent="main" unique_id=1700661442]
+custom_minimum_size = Vector2(380.59, 75.36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="main/Start" unique_id=324439055]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "START"
+label_settings = SubResource("LabelSettings_3shxk")
+
+[node name="Options" type="TextureButton" parent="main" unique_id=858405457]
+custom_minimum_size = Vector2(380.59, 75.36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="main/Options" unique_id=1729752991]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_bws42")
+
+[node name="Credits" type="TextureButton" parent="main" unique_id=1743537823]
+custom_minimum_size = Vector2(380.59, 75.36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="main/Credits" unique_id=212019229]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "CREDITS"
+label_settings = SubResource("LabelSettings_3f7m4")
+
+[node name="Quit" type="TextureButton" parent="main" unique_id=1889668042]
+custom_minimum_size = Vector2(380.59, 75.36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="main/Quit" unique_id=1367595118]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "QUIT"
+label_settings = SubResource("LabelSettings_d3a7t")
+
+[node name="Title" type="Label" parent="." unique_id=683353520]
+offset_left = 35.0
+offset_top = 29.0
+offset_right = 586.0
+offset_bottom = 139.0
+text = "title goes here"
+label_settings = SubResource("LabelSettings_6tl50")
+
+[node name="Title2" type="Label" parent="." unique_id=887846013]
+offset_left = 665.0
+offset_top = 253.0
+offset_right = 1216.0
+offset_bottom = 589.0
+text = "image 
+goes 
+here"
+label_settings = SubResource("LabelSettings_6tl50")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1579640058]
+position = Vector2(576, 324)
+
+[node name="options_menu" type="VBoxContainer" parent="." unique_id=1493470133]
+offset_left = 265.0
+offset_top = 737.0
+offset_right = 411.0
+offset_bottom = 838.0
+
+[node name="showcursor" type="CheckButton" parent="options_menu" unique_id=165694888]
+layout_mode = 2
+button_pressed = true
+text = "Show Cursor"
+
+[node name="hold2fire" type="CheckButton" parent="options_menu" unique_id=1636179490]
+layout_mode = 2
+text = "Press to Fire"
+
+[node name="back" type="Button" parent="options_menu" unique_id=385815277]
+layout_mode = 2
+text = "return ->"
+
+[node name="credits_menu" type="Control" parent="." unique_id=286220568]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1152.0
+offset_right = 1192.0
+offset_bottom = 40.0
+
+[node name="MeshInstance2D" type="Sprite2D" parent="credits_menu" unique_id=1601437795]
+modulate = Color(0.11162373, 0.3200926, 0.26227725, 1)
+position = Vector2(576.00006, 324)
+scale = Vector2(1151.75, 647.75)
+texture = SubResource("CanvasTexture_d3a7t")
+
+[node name="return" type="TextureButton" parent="credits_menu" unique_id=1086590002]
+custom_minimum_size = Vector2(333.95, 48.64)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 22.0
+offset_right = 353.95
+offset_bottom = 70.64
+
+[node name="Label" type="Label" parent="credits_menu/return" unique_id=23636124]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "RETURN"
+label_settings = SubResource("LabelSettings_t6bnd")
+
+[node name="Label" type="Label" parent="credits_menu" unique_id=1540362277]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 171.0
+offset_right = 1090.0
+offset_bottom = 291.0
+text = "JACK"
+label_settings = SubResource("LabelSettings_ia84y")
+
+[node name="Label" type="Label" parent="credits_menu/Label" unique_id=1459063585]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 119.0
+offset_right = 187.0
+offset_bottom = 275.0
+text = "Music
+SFX
+Coding"
+label_settings = SubResource("LabelSettings_6at21")
+
+[node name="Label2" type="Label" parent="credits_menu" unique_id=224749048]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 171.0
+offset_right = 557.0
+offset_bottom = 291.0
+text = "JACOB"
+label_settings = SubResource("LabelSettings_ia84y")
+
+[node name="Label2" type="Label" parent="credits_menu/Label2" unique_id=756285431]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 119.0
+offset_right = 205.0
+offset_bottom = 275.0
+text = "Coding
+Level Design
+Enemy Design"
+label_settings = SubResource("LabelSettings_6at21")
+
+[connection signal="focus_entered" from="main/Start" to="." method="_on_start_focus_entered"]
+[connection signal="focus_exited" from="main/Start" to="." method="_on_start_focus_exited"]
+[connection signal="pressed" from="main/Start" to="." method="_on_start_pressed"]
+[connection signal="focus_exited" from="main/Start/Label" to="." method="_on_label_focus_exited"]
+[connection signal="focus_entered" from="main/Options" to="." method="_on_options_focus_entered"]
+[connection signal="focus_exited" from="main/Options" to="." method="_on_options_focus_exited"]
+[connection signal="pressed" from="main/Options" to="." method="_on_options_pressed"]
+[connection signal="focus_exited" from="main/Options/Label" to="." method="_on_label_focus_exited"]
+[connection signal="focus_entered" from="main/Credits" to="." method="_on_credits_focus_entered"]
+[connection signal="focus_exited" from="main/Credits" to="." method="_on_credits_focus_exited"]
+[connection signal="pressed" from="main/Credits" to="." method="_on_credits_pressed"]
+[connection signal="focus_exited" from="main/Credits/Label" to="." method="_on_label_focus_exited"]
+[connection signal="focus_entered" from="main/Quit" to="." method="_on_quit_focus_entered"]
+[connection signal="focus_exited" from="main/Quit" to="." method="_on_quit_focus_exited"]
+[connection signal="pressed" from="main/Quit" to="." method="_on_quit_pressed"]
+[connection signal="focus_exited" from="main/Quit/Label" to="." method="_on_label_focus_exited"]
+[connection signal="toggled" from="options_menu/showcursor" to="." method="_on_showcursor_toggled"]
+[connection signal="toggled" from="options_menu/hold2fire" to="." method="_on_hold_2_fire_toggled"]
+[connection signal="pressed" from="options_menu/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="credits_menu/return" to="." method="_on_return_pressed"]
