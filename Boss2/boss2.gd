@@ -10,7 +10,7 @@ var health :int = 3000
 var max_health :int = 3000
 var status: String = ""
 
-var active :bool = false
+var active :bool = true
 
 var aggressive :bool = true
 
@@ -52,17 +52,29 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	play_anims()
-	get_player_side()
+	
+	side = get_player_side()
 	if active:
 		if !is_on_floor():
 			velocity.y += 2000 * delta
 		
-		
-		target_pos = Global.player.global_position + Vector2(0,100 * side)
 		if aggressive:
+			if Global.player != null:
+				target_pos = Global.player.global_position + Vector2(50,0)
+			
 			if global_position.distance_squared_to(target_pos) < 100:
-				velocity.x = 500 * side
-		move_and_slide()
+				velocity.x = 0
+			else:
+				velocity.x = -sign(global_position.x - target_pos.x) * 200
+		else:
+			if Global.player != null:
+				target_pos = Global.player.global_position + Vector2(200,0)
+			
+			if global_position.distance_squared_to(target_pos) < 100:
+				velocity.x = 0
+			else:
+				velocity.x = -sign(global_position.x - target_pos.x) * 200
+	move_and_slide()
 
 func play_anims():
 	if is_on_floor():
