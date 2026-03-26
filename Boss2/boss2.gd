@@ -10,7 +10,7 @@ var health :int = 3000
 var max_health :int = 3000
 var status: String = ""
 const acc :int = 1000
-var active :bool = true
+var active :bool = false
 var bullet_offset = Vector2.ZERO
 var aggressive :bool = true
 var bullet_damage :int = 10
@@ -23,17 +23,17 @@ func get_hit(dmg):
 	if status == "":
 		modulate = Color(1,.4,.4)
 		$HitFlash.start()
-	
+	$EnemyDmg.play()
 	health -= dmg
 	progress_bar.value = 100 * float(health)/max_health
 	if health <= 0:
+		Global.enemy_die.play()
 		queue_free()
 
 func get_player_side() -> int: 
 	return sign(global_position.x - Global.player.global_position.x)
 
 func _on_action_timer_timeout() -> void:
-	print("ACTION")
 	if active:
 		match action_count%2:
 			1:
@@ -90,8 +90,8 @@ func _ready() -> void:
 	Global.boss = self
 
 func _physics_process(delta: float) -> void:
-	play_anims()
-	
+	play_anims() 
+	print(Global.player.global_position.y < global_position.y - 100)
 	side = get_player_side()
 	if active:
 		if !is_on_floor():
@@ -100,6 +100,9 @@ func _physics_process(delta: float) -> void:
 		if aggressive:
 			if is_on_wall():
 				jump()
+			
+			if (Global.player.global_position.y < global_position.y - 100) && (Global.player.global_position.x - global_position.x < 100) && is_on_floor():
+					jump()
 			
 			if Global.player != null:
 				target_pos = Global.player.global_position + Vector2(50,0)

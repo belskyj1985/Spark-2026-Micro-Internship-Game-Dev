@@ -27,9 +27,11 @@ func _ready() -> void:
 
 func get_hit(dmg):
 	print(dmg)
+	$EnemyDmg.play()
 	health -= dmg
 	if health <= 0:
 		SaveLoad.get_c1(5)
+		Global.enemy_die.play()
 		queue_free()
 	
 	if status == "":

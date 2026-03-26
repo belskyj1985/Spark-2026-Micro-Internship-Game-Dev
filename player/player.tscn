@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://dgemna2cprj7k" path="res://player/player.gd" id="1_4flbx"]
+[ext_resource type="AudioStream" uid="uid://1c6q3j3q4xb4" path="res://sounds/player_dmg.ogg" id="2_boad6"]
+[ext_resource type="AudioStream" uid="uid://bjnk08l3dge76" path="res://sounds/vine_step.wav" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://dim36cnfj34qg" path="res://player/reticle.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://ci72kx055fh33" path="res://player/player.png" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://c0p501r03ndib" path="res://sounds/jump.wav" id="2_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://df3nv124gl4fw" path="res://sounds/enemy_die.ogg" id="2_rgyib"]
+[ext_resource type="AudioStream" uid="uid://cij7stup5wqcp" path="res://sounds/player_shoot.ogg" id="2_yw30f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(20, 65)
@@ -102,6 +107,24 @@ collision_layer = 2
 floor_snap_length = 5.0
 script = ExtResource("1_4flbx")
 
+[node name="EnemyDie" type="AudioStreamPlayer" parent="." unique_id=764456183]
+stream = ExtResource("2_rgyib")
+max_polyphony = 10
+
+[node name="PlayerDmg" type="AudioStreamPlayer" parent="." unique_id=787014969]
+stream = ExtResource("2_boad6")
+volume_db = -4.17
+
+[node name="Step" type="AudioStreamPlayer" parent="." unique_id=494812877]
+stream = ExtResource("2_g6k8r")
+
+[node name="Jump" type="AudioStreamPlayer" parent="." unique_id=1820972151]
+stream = ExtResource("2_qjkh3")
+
+[node name="PlayerShoot" type="AudioStreamPlayer" parent="." unique_id=2060751694]
+stream = ExtResource("2_yw30f")
+max_polyphony = 10
+
 [node name="Reticle" type="Sprite2D" parent="." unique_id=871831281]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(33, -16)
@@ -144,5 +167,6 @@ debug_color = Color(0.5263334, 0.42000002, 1, 0.3372549)
 
 [node name="melee" type="Timer" parent="." unique_id=1909499388]
 
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="stun" to="." method="_on_stun_timeout"]
 [connection signal="body_entered" from="melee_attack" to="." method="_on_melee_attack_body_entered"]

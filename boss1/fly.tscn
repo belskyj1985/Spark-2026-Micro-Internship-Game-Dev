@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b3lnj7uw2vcah"]
 
 [ext_resource type="Script" uid="uid://c8tow2ofkd2ps" path="res://boss1/fly.gd" id="1_t0oop"]
+[ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="2_bw2sb"]
 [ext_resource type="Texture2D" uid="uid://cqnemxbl1cqsr" path="res://boss1/BossOneSummonAnimation.png" id="2_vkyxr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tf44c"]
@@ -33,6 +34,10 @@ animations = [{
 collision_layer = 20
 collision_mask = 16
 script = ExtResource("1_t0oop")
+
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=1475983628]
+stream = ExtResource("2_bw2sb")
+max_polyphony = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1004830843]
 shape = SubResource("CircleShape2D_tf44c")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://guyvpj6mo0h3" path="res://boss1/frog.png" id="1_5kgwx"]
 [ext_resource type="Script" uid="uid://bh7xhp5me7buj" path="res://boss1/frog.gd" id="1_qgjid"]
+[ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="2_qx3j8"]
 
 [sub_resource type="Animation" id="Animation_qgjid"]
 length = 0.001
@@ -178,6 +179,9 @@ size = Vector2(138, 63)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_qgjid")
+
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=300610611]
+stream = ExtResource("2_qx3j8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=309950588]
 root_node = NodePath("../AnimatedSprite2D")

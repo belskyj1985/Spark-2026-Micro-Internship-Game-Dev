@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhskm57bgxtol"]
 
 [ext_resource type="Script" uid="uid://2n75w5ccw6dx" path="res://Boss2/boss2.gd" id="1_k5ksc"]
+[ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="2_hhhtj"]
 [ext_resource type="Texture2D" uid="uid://dhbi4x5lw7tyl" path="res://Boss2/boss2.png" id="2_k5ksc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5ksc"]
@@ -96,6 +97,9 @@ _data = {
 [node name="boss2" type="CharacterBody2D" unique_id=1837719241]
 collision_layer = 4
 script = ExtResource("1_k5ksc")
+
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=30836474]
+stream = ExtResource("2_hhhtj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=94758945]
 position = Vector2(0, -5.5)

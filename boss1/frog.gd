@@ -28,9 +28,11 @@ func get_hit(dmg):
 		$HitFlash.start()
 	
 	print(float(health)/max_health)
+	$EnemyDmg.play()
 	health -= dmg
 	progress_bar.value = 100 * float(health)/max_health
 	if health <= 0:
+		Global.enemy_die.play()
 		queue_free()
 
 func get_player_side() -> int: 

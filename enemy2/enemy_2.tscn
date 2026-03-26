@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cj3qt4l6rhq7d" path="res://enemy_2.gd" id="1_b8hkb"]
 [ext_resource type="Texture2D" uid="uid://3p43226rsgw6" path="res://enemy2/saw.png" id="2_86mhk"]
+[ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="2_bad5d"]
 [ext_resource type="Texture2D" uid="uid://ulunq3i5dvv0" path="res://enemy2/body.png" id="3_bad5d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8hkb"]
@@ -14,6 +15,10 @@ size = Vector2(32, 38)
 collision_layer = 4
 floor_max_angle = 0.0
 script = ExtResource("1_b8hkb")
+
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=157170170]
+stream = ExtResource("2_bad5d")
+max_polyphony = 10
 
 [node name="hurtBox" type="Area2D" parent="." unique_id=233187298]
 collision_layer = 0

@@ -33,7 +33,8 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://PixelFantasy_Caves_1.0/": "teal",
 "res://player/": "blue",
-"res://shop/": "yellow"
+"res://shop/": "yellow",
+"res://sounds/": "orange"
 }
 
 [global_group]

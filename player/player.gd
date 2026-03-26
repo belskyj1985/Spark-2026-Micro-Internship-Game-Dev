@@ -47,8 +47,15 @@ enum state_enum {
 @onready var sprites: Sprite2D = $AnimatedSprite2D
 @onready var reticle: Sprite2D = $Reticle
 
+@onready var player_shoot: AudioStreamPlayer = $PlayerShoot
+@onready var jumpSound: AudioStreamPlayer = $Jump
+@onready var step: AudioStreamPlayer = $Step
+@onready var player_dmg: AudioStreamPlayer = $PlayerDmg
+
+
 func _ready() -> void:
 	Global.player = self
+	Global.enemy_die = $EnemyDie
 	
 
 func load_save_data():
@@ -70,6 +77,7 @@ func get_input_vector():
 	input_vector.y = Input.get_action_strength("up") - Input.get_action_strength("down")
 
 func jump():
+	jumpSound.play()
 	if sign(get_floor_normal().x) != sign(velocity.x) && get_floor_normal().x != 0:
 		velocity.y = -jump_force * 1.1
 	else:
@@ -100,6 +108,7 @@ func do_anims():
 			anim.play("stand")
 		elif Input.is_action_pressed("sprint") && state != state_enum.aim:
 			anim.play("run")
+			
 		else:
 			anim.play("walk")
 	else:
@@ -198,6 +207,9 @@ func shoot():
 	bullet_instance.damage = int(bullet_damage * (1.0 + 0.2 * dmg_buff))
 	bullet_instance.lifetime = bullet_lifetime
 	
+	player_shoot.pitch_scale = 1 + randf_range(-0.1,0.1)
+	player_shoot.play()
+	
 	can_shoot = false
 	await get_tree().create_timer(0.1).timeout
 	can_shoot = true
@@ -232,6 +244,7 @@ func aim(delta):
 
 func get_hit(dmg):
 	if vulnerable:
+		player_dmg.play()
 		health = clamp(health - dmg * ( 1.0/((defense+2.0)*0.5) ), 0, max_health)
 		inv_timer.start()
 		tranq(0.5)
@@ -255,3 +268,9 @@ func _on_stun_timeout() -> void:
 
 func _on_melee_attack_body_entered(body: Node2D) -> void:
 	body.get_hit(bullet_damage*2)
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if sprites.frame == 2 || sprites.frame == 4 || sprites.frame == 8 || sprites.frame == 11: 
+		step.pitch_scale = 1 + randf_range(-0.1,0.1)
+		step.play()

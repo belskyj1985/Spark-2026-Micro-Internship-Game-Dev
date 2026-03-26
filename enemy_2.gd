@@ -28,10 +28,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func get_hit(dmg):
+	$EnemyDmg.play()
 	print(dmg)
 	health -= dmg
 	if health <= 0:
 		SaveLoad.get_c1(5)
+		Global.enemy_die.play()
 		queue_free()
 	
 	if status == "":

@@ -12,9 +12,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func get_hit(dmg):
+	$EnemyDmg.play()
 	health -= dmg
 	if health <= 0:
-		Global.boss.fly_total -= 1
+		if Global.boss != null:
+			Global.boss.fly_total -= 1
+		Global.enemy_die.play()
 		queue_free()
 	
 	if status == "":

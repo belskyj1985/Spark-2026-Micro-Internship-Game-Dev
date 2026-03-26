@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bivt6g1ttx4ko"]
 
 [ext_resource type="Script" uid="uid://b4ui41l8x5301" path="res://enemy_1.gd" id="1_mbxyh"]
+[ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="2_ovk8a"]
 [ext_resource type="Texture2D" uid="uid://cfisnc7yg3fty" path="res://enemy1_base.png" id="2_pjquw"]
 [ext_resource type="Texture2D" uid="uid://co2ptwyfpt6o8" path="res://enemy1_barrel.png" id="3_663o1"]
 
@@ -11,6 +12,10 @@ size = Vector2(1163, 657)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_mbxyh")
+
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=1153027348]
+stream = ExtResource("2_ovk8a")
+max_polyphony = 10
 
 [node name="Enemy1Base" type="Sprite2D" parent="." unique_id=142412612]
 texture = ExtResource("2_pjquw")
