@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bvv7msmvsrl6n" path="res://physics_gear.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://edny0xnsfjdt" path="res://door.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" uid="uid://puhm8pv6ysxi" path="res://vent.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" path="res://vent.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bivt6g1ttx4ko" path="res://enemy_1.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://bvamr6bquag26" path="res://collapse_platform.tscn" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c6x8fytv17cup" path="res://woodenparticle.png" id="13_lc2xo"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bhvrp37k5sgl6" path="res://boss_gate.tscn" id="16_80cx4"]
 [ext_resource type="PackedScene" uid="uid://bv1sdljys1xc2" path="res://shop/shop_keeper.tscn" id="16_e8heu"]
 [ext_resource type="PackedScene" uid="uid://q1o76prwiqdo" path="res://enemy2/enemy_2.tscn" id="18_rvswv"]
+[ext_resource type="PackedScene" uid="uid://cdsj8hwrfp0y6" path="res://enemy3/enemy3.tscn" id="21_hb5m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnvn8"]
 size = Vector2(160, 7)
@@ -284,5 +285,8 @@ boss = NodePath("../frog")
 
 [node name="enemy8" parent="." unique_id=671217661 instance=ExtResource("18_rvswv")]
 position = Vector2(1964, 690)
+
+[node name="enemy_3" parent="." unique_id=1892350902 instance=ExtResource("21_hb5m1")]
+position = Vector2(545, 22)
 
 [editable path="CollapsingPlatform4"]

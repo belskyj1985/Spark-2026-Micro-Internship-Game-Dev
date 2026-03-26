@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://cdsj8hwrfp0y6"]
+
+[ext_resource type="Script" uid="uid://brn8d18osoqu7" path="res://enemy3/enemy_3.gd" id="1_r4idq"]
+[ext_resource type="Texture2D" uid="uid://detobsvtipwxt" path="res://enemy3/sprite.png" id="2_c1vdf"]
+[ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="2_hntn0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hntn0"]
+radius = 31.016125
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvmp"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giapj"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw84v"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cghte"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqek7"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kceaj"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fta1"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jji72"]
+atlas = ExtResource("2_c1vdf")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ipfnx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khvmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giapj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw84v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cghte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqek7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kceaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fta1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jji72")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aygo1"]
+radius = 34.0147
+
+[node name="enemy_3" type="CharacterBody2D" unique_id=1892350902]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_r4idq")
+
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=467749314]
+stream = ExtResource("2_hntn0")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1941165514]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1862806]
+shape = SubResource("CircleShape2D_hntn0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1443545086]
+sprite_frames = SubResource("SpriteFrames_ipfnx")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676955965]
+shape = SubResource("CircleShape2D_aygo1")
+
+[node name="HitFlash" type="Timer" parent="." unique_id=231933200]
+wait_time = 0.2
+one_shot = true
+
+[node name="StatusEffect" type="Timer" parent="." unique_id=1004814783]
+wait_time = 5.0
+one_shot = true
+
+[node name="Tick" type="Timer" parent="." unique_id=1833664325]
+wait_time = 0.1
+
+[node name="raycasts" type="Node2D" parent="." unique_id=1114270303]
+
+[node name="U" type="RayCast2D" parent="raycasts" unique_id=363667041]
+target_position = Vector2(0, -192)
+collision_mask = 2
+
+[node name="R" type="RayCast2D" parent="raycasts" unique_id=1473799505]
+target_position = Vector2(192, 0)
+collision_mask = 2
+
+[node name="D" type="RayCast2D" parent="raycasts" unique_id=514043483]
+target_position = Vector2(0, 192)
+collision_mask = 2
+
+[node name="L" type="RayCast2D" parent="raycasts" unique_id=331607996]
+target_position = Vector2(-192, 0)
+collision_mask = 2
+
+[node name="UL" type="RayCast2D" parent="raycasts" unique_id=1057796154]
+target_position = Vector2(-136, -136)
+collision_mask = 2
+
+[node name="UR" type="RayCast2D" parent="raycasts" unique_id=650128085]
+target_position = Vector2(136, -136)
+collision_mask = 2
+
+[node name="DR" type="RayCast2D" parent="raycasts" unique_id=1923527216]
+target_position = Vector2(136, 136)
+collision_mask = 2
+
+[node name="DL" type="RayCast2D" parent="raycasts" unique_id=1415327828]
+target_position = Vector2(-136, 136)
+collision_mask = 2
+
+[node name="shoot" type="Timer" parent="." unique_id=1319559435]
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="HitFlash" to="." method="_on_hit_flash_timeout"]
+[connection signal="timeout" from="StatusEffect" to="." method="_on_status_effect_timeout"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
+[connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
