@@ -54,10 +54,23 @@ func shoot_angle():
 		var bullet_instance: Bullet = bullet.instantiate()
 		get_tree().current_scene.add_child(bullet_instance)
 		bullet_instance.setup(Global.player.global_position - (global_position + bullet_offset), bullet_damage)
-		bullet_instance.sprite.rotation = (get_global_mouse_position() - (global_position + bullet_offset)).angle() 
+		bullet_instance.sprite.rotation = (Global.player.global_position - global_position - bullet_offset).angle() 
 		bullet_instance.global_position = global_position + bullet_offset
 		bullet_instance.speed = 400
 		await get_tree().create_timer(0.08).timeout
+
+func shoot_shotgun():
+	var angle_offset :float = PI/6
+	for i in range(3):
+		var bullet_instance: Bullet = bullet.instantiate()
+		get_tree().current_scene.add_child(bullet_instance)
+		bullet_instance.setup(Vector2(sign(bullet_offset.x), 0).rotated(angle_offset), bullet_damage)
+		bullet_instance.sprite.rotation = Vector2(sign(bullet_offset.x), 0).angle() + angle_offset
+		bullet_instance.global_position = global_position + bullet_offset
+		bullet_instance.speed = 400
+		angle_offset -= PI/6
+	await get_tree().create_timer(0.08).timeout
+
 
 func action(type :int = 1):
 	match type:
@@ -68,9 +81,10 @@ func action(type :int = 1):
 				shoot_angle()
 		2:
 			if aggressive:
-				shoot_angle() 
+				
+				shoot_shotgun()
 			else:
-				shoot_angle()
+				shoot_shotgun()
 
 func _ready() -> void:
 	Global.boss = self
@@ -111,6 +125,8 @@ func jump():
 func play_anims():
 	if sign(velocity.x) != 0:
 		sprite.flip_h = sign(velocity.x) == -1
+	else:
+		sprite.flip_h = (sign(get_player_side()) == 1)
 	if sprite.flip_h:
 		bullet_offset = Vector2(-37, -16)
 		sprite.offset.x = -6
@@ -128,7 +144,7 @@ func apply_status(type):
 	$StatusEffect.start()
 	
 	if type == "ice":
-		$action_Timer.wait_time = 2.0
+		$action_Timer.wait_time *= 2.0
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
 	if type == "lightning":
 		modulate = Color(1.0, 0.933, 0.0, 1.0)
@@ -140,7 +156,7 @@ func _on_status_effect_timeout() -> void:
 	status = ""
 	modulate = Color(1,1,1)
 	$Tick.stop()
-	$action_Timer.wait_time = 1.0
+	$action_Timer.wait_time /= 2.0
 
 func _on_tick_timeout() -> void:
 	get_hit(2)

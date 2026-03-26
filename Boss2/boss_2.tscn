@@ -103,7 +103,7 @@ shape = SubResource("RectangleShape2D_k5ksc")
 debug_color = Color(0.99993175, 0, 0.111951225, 0.41960785)
 
 [node name="action_Timer" type="Timer" parent="." unique_id=1380969313]
-wait_time = 3.0
+wait_time = 1.5
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1986509139]
