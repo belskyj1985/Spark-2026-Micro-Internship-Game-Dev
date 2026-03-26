@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bhvrp37k5sgl6" path="res://boss_gate.tscn" id="16_80cx4"]
 [ext_resource type="PackedScene" uid="uid://bv1sdljys1xc2" path="res://shop/shop_keeper.tscn" id="16_e8heu"]
 [ext_resource type="PackedScene" uid="uid://q1o76prwiqdo" path="res://enemy2/enemy_2.tscn" id="18_rvswv"]
+[ext_resource type="PackedScene" uid="uid://dhskm57bgxtol" path="res://Boss2/boss_2.tscn" id="19_boyg6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnvn8"]
 size = Vector2(160, 7)
@@ -71,7 +72,7 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAYABcAAAABAAcAAAAZABcAAAAAAAgAAAAYABg
 position = Vector2(-441, 86)
 
 [node name="player" parent="." unique_id=663432482 instance=ExtResource("2_e2o6t")]
-position = Vector2(1751, 560.00006)
+position = Vector2(306, 82)
 
 [node name="PhysicsGear" parent="." instance=ExtResource("7_eow3j")]
 position = Vector2(-376, 176)
@@ -277,5 +278,8 @@ boss = NodePath("../frog")
 
 [node name="enemy8" parent="." unique_id=671217661 instance=ExtResource("18_rvswv")]
 position = Vector2(1964, 690)
+
+[node name="boss2" parent="." unique_id=1837719241 instance=ExtResource("19_boyg6")]
+position = Vector2(407, 78)
 
 [editable path="CollapsingPlatform4"]

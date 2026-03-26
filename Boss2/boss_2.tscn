@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://dhskm57bgxtol"]
+
+[ext_resource type="Script" uid="uid://2n75w5ccw6dx" path="res://Boss2/boss2.gd" id="1_k5ksc"]
+[ext_resource type="Texture2D" uid="uid://dhbi4x5lw7tyl" path="res://Boss2/boss2.png" id="2_k5ksc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5ksc"]
+size = Vector2(20, 65)
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2hs0m"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 8]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "stand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.46666667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhhtj"]
+_data = {
+&"RESET": SubResource("Animation_hqtel"),
+&"jump": SubResource("Animation_2hs0m"),
+&"run": SubResource("Animation_onrkg"),
+&"stand": SubResource("Animation_i3pqv"),
+&"walk": SubResource("Animation_sweqy")
+}
+
+[node name="boss2" type="CharacterBody2D" unique_id=1837719241]
+collision_layer = 4
+script = ExtResource("1_k5ksc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=94758945]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_k5ksc")
+debug_color = Color(0.99993175, 0, 0.111951225, 0.41960785)
+
+[node name="action_Timer" type="Timer" parent="." unique_id=1380969313]
+wait_time = 1.5
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1986509139]
+modulate = Color(1, 0, 0, 1)
+offset_left = -62.0
+offset_top = -51.0
+offset_right = 63.0
+offset_bottom = -43.0
+value = 100.0
+show_percentage = false
+
+[node name="Tick" type="Timer" parent="." unique_id=229711484]
+
+[node name="StatusEffect" type="Timer" parent="." unique_id=906886995]
+wait_time = 5.0
+one_shot = true
+
+[node name="HitFlash" type="Timer" parent="." unique_id=492329085]
+wait_time = 0.2
+
+[node name="switch_timer" type="Timer" parent="." unique_id=2092178875]
+wait_time = 8.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=801147889]
+position = Vector2(3, -6)
+texture = ExtResource("2_k5ksc")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=362870118]
+libraries/ = SubResource("AnimationLibrary_hhhtj")
+autoplay = &"stand"
+
+[connection signal="timeout" from="action_Timer" to="." method="_on_action_timer_timeout"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
+[connection signal="timeout" from="StatusEffect" to="." method="_on_status_effect_timeout"]
+[connection signal="timeout" from="HitFlash" to="." method="_on_hit_flash_timeout"]
+[connection signal="timeout" from="switch_timer" to="." method="_on_switch_timer_timeout"]
