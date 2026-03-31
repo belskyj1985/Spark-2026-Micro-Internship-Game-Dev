@@ -17,6 +17,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guc"]
 size = Vector2(52, 52)
 
+[sub_resource type="LabelSettings" id="LabelSettings_qb3fv"]
+font = ExtResource("3_v6c71")
+
 [sub_resource type="LabelSettings" id="LabelSettings_7l2ia"]
 font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
@@ -73,6 +76,17 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="notice" type="Label" parent="UI" unique_id=258961227]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 138.0
+offset_top = -90.0
+offset_right = 318.0
+offset_bottom = -55.0
+text = "Check the 'controls'
+page"
+label_settings = SubResource("LabelSettings_qb3fv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1403011663]
 layout_mode = 0

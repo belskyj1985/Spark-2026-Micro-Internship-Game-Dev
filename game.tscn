@@ -86,7 +86,7 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAYABcAAAABAAcAAAAZABcAAAAAAAgAAAAYABg
 position = Vector2(-441, 86)
 
 [node name="player" parent="." unique_id=663432482 instance=ExtResource("2_e2o6t")]
-position = Vector2(5375.2813, 1376.0569)
+position = Vector2(-4.3641357, 79.63806)
 
 [node name="PhysicsGear" parent="." unique_id=1566769687 instance=ExtResource("7_eow3j")]
 position = Vector2(-376, 176)

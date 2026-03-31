@@ -14,14 +14,17 @@ var detected: bool = false
 var start_x: float
 var direction: int = 1
 var current_speed: float = 0.0
-
+var target_y = -150
 func _physics_process(delta: float) -> void:
+	$UI/notice.modulate.a = lerpf($UI/notice.modulate.a,0.0,0.02)
 	if detected:
-		v_box_container.position.y = lerpf(v_box_container.position.y,-150,.08)
-		stats.position.y = lerpf(stats.position.y,-150,.08)
-		abilities.position.y = lerpf(abilities.position.y,-150,.08)
+		ui.modulate.a = lerpf(ui.modulate.a,1.0,0.18)
+		v_box_container.position.y = lerpf(v_box_container.position.y,target_y,.08)
+		stats.position.y = lerpf(stats.position.y,target_y,.08)
+		abilities.position.y = lerpf(abilities.position.y,target_y,.08)
 	else:
-		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.08)
+		ui.modulate.a = lerpf(ui.modulate.a,0.0,0.18)
+		v_box_container.position.y = lerpf(v_box_container.position.y,-1000,.01)
 		stats.position.y = lerpf(stats.position.y,-1000,.01)
 		abilities.position.y = lerpf(abilities.position.y,-1000,.01)
 	
@@ -89,7 +92,7 @@ func update_buttons() -> void:
 			$UI/VBoxContainer/fire/fire_button/Label.text = "Equip"
 			$UI/VBoxContainer/fire/fire_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 		2:
-			$UI/VBoxContainer/fire/fire_button/Label.text = "Unequip"
+			$UI/VBoxContainer/fire/fire_button/Label.text = "Uneq."
 			$UI/VBoxContainer/fire/fire_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 		
 	match SaveLoad.contents_to_save["ice"]:
@@ -100,7 +103,7 @@ func update_buttons() -> void:
 			$UI/VBoxContainer/ice/ice_button/Label.text = "Equip"
 			$UI/VBoxContainer/ice/ice_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 		2:
-			$UI/VBoxContainer/ice/ice_button/Label.text = "Unequip"
+			$UI/VBoxContainer/ice/ice_button/Label.text = "Uneq."
 			$UI/VBoxContainer/ice/ice_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 	match SaveLoad.contents_to_save["lightning"]:
 		0:
@@ -110,7 +113,7 @@ func update_buttons() -> void:
 			$UI/VBoxContainer/lightning/lightning_button/Label.text = "Equip"
 			$UI/VBoxContainer/lightning/lightning_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 		2:
-			$UI/VBoxContainer/lightning/lightning_button/Label.text = "Unequip"
+			$UI/VBoxContainer/lightning/lightning_button/Label.text = "Uneq."
 			$UI/VBoxContainer/lightning/lightning_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 	
 	if SaveLoad.contents_to_save["hp"] < 5:
@@ -142,7 +145,7 @@ func update_buttons() -> void:
 			$UI/abilities/melee/melee_button/Label.text = "Equip"
 			$UI/abilities/melee/melee_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 		2:
-			$UI/abilities/melee/melee_button/Label.text = "Unequip"
+			$UI/abilities/melee/melee_button/Label.text = "Uneq."
 			$UI/abilities/melee/melee_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 	
 	match SaveLoad.contents_to_save["dj"]:
@@ -153,7 +156,7 @@ func update_buttons() -> void:
 			$UI/abilities/dj/dj_button/Label.text = "Equip"
 			$UI/abilities/dj/dj_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 		2:
-			$UI/abilities/dj/dj_button/Label.text = "Unequip"
+			$UI/abilities/dj/dj_button/Label.text = "Uneq."
 			$UI/abilities/dj/dj_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 	
 	match SaveLoad.contents_to_save["dash"]:
@@ -164,7 +167,7 @@ func update_buttons() -> void:
 			$UI/abilities/dash/dash_button/Label.text = "Equip"
 			$UI/abilities/dash/dash_button/Label.label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 		2:
-			$UI/abilities/dash/dash_button/Label.text = "Unequip"
+			$UI/abilities/dash/dash_button/Label.text = "Uneq."
 			$UI/abilities/dash/dash_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
 
 func _on_fire_button_pressed() -> void:
@@ -261,6 +264,7 @@ func _on_melee_button_pressed() -> void:
 				SaveLoad.get_c1(-400)
 				SaveLoad.contents_to_save["melee"] = 1
 		1:
+			$UI/notice.modulate.a = 1.0
 			SaveLoad.contents_to_save["melee"] = 2
 			Global.player.switch_bullet("melee")
 		2:
@@ -275,6 +279,7 @@ func _on_dj_button_pressed() -> void:
 				SaveLoad.get_c1(-500)
 				SaveLoad.contents_to_save["dj"] = 1
 		1:
+			$UI/notice.modulate.a = 1.0
 			SaveLoad.contents_to_save["dj"] = 2
 			Global.player.switch_bullet("dj")
 		2:
@@ -291,6 +296,7 @@ func _on_dash_button_pressed() -> void:
 		1:
 			SaveLoad.contents_to_save["dash"] = 2
 			Global.player.switch_bullet("dash")
+			$UI/notice.modulate.a = 1.0
 		2:
 			SaveLoad.contents_to_save["dash"] = 1
 	update_buttons()
