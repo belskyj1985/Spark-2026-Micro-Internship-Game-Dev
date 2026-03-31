@@ -32,7 +32,7 @@ func get_hit(dmg):
 	print(dmg)
 	health -= dmg
 	if health <= 0:
-		SaveLoad.get_c1(5)
+		SaveLoad.get_c1(10)
 		Global.enemy_die.play()
 		queue_free()
 	
