@@ -27,6 +27,7 @@ func get_hit(dmg):
 	health -= dmg
 	progress_bar.value = 100 * float(health)/max_health
 	if health <= 0:
+		$"../door".rise()
 		Global.enemy_die.play()
 		queue_free()
 

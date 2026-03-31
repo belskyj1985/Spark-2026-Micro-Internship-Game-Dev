@@ -13,6 +13,8 @@ func rise():
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "position:y",position.y - 96,2.0)
+	await tween.finished
+	shaking = false
 
 func _physics_process(delta: float) -> void:
 	#velocity.y += 200 * delta
