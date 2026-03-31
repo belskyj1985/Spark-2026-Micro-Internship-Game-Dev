@@ -51,6 +51,7 @@ enum state_enum {
 @onready var jumpSound: AudioStreamPlayer = $Jump
 @onready var step: AudioStreamPlayer = $Step
 @onready var player_dmg: AudioStreamPlayer = $PlayerDmg
+@onready var slash: AnimatedSprite2D = $slash
 
 
 func _ready() -> void:
@@ -98,10 +99,13 @@ func do_anims():
 	if sprites.flip_h:
 		bullet_offset = Vector2(-37, -16)
 		sprites.offset.x = -6
+		slash.position.x = -40
 	else:
 		bullet_offset = Vector2(37, -16)
 		sprites.offset.x = 0
+		slash.position.x = 40
 	
+	slash.flip_h = sprites.flip_h
 		
 	if is_on_floor():
 		if velocity.x == 0:
@@ -138,11 +142,14 @@ func move(delta):
 		melee_attack.position.x = 0
 	
 	if SaveLoad.contents_to_save["melee"] == 2 && melee_timer.is_stopped() && Input.is_action_just_pressed("melee"):
+		$slash.show()
+		$slash.play("default")
 		$melee_attack.monitoring = true
 		melee_attack.visible = true
 		await get_tree().create_timer(0.1).timeout
 		$melee_attack.monitoring = false
 		melee_attack.visible = false
+		$slash.hide()
 	
 	if SaveLoad.contents_to_save["dash"] == 2 && dashes > 0 && dash_timer.is_stopped() && Input.is_action_just_pressed("dash"):
 		if sprites.flip_h:

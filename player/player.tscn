@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c0p501r03ndib" path="res://sounds/jump.wav" id="2_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://df3nv124gl4fw" path="res://sounds/enemy_die.ogg" id="2_rgyib"]
 [ext_resource type="AudioStream" uid="uid://cij7stup5wqcp" path="res://sounds/player_shoot.ogg" id="2_yw30f"]
+[ext_resource type="Texture2D" uid="uid://dh3sjxgyag2ma" path="res://player/slash.png" id="9_hg6s5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(20, 65)
@@ -102,6 +103,49 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
 size = Vector2(84, 62)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("9_hg6s5")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("9_hg6s5")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("9_hg6s5")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("9_hg6s5")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("9_hg6s5")
+region = Rect2(256, 0, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wodsf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb6p2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="player" type="CharacterBody2D" unique_id=1814147482]
 collision_layer = 2
 floor_snap_length = 5.0
@@ -166,6 +210,12 @@ shape = SubResource("RectangleShape2D_g1dw6")
 debug_color = Color(0.5263334, 0.42000002, 1, 0.3372549)
 
 [node name="melee" type="Timer" parent="." unique_id=1909499388]
+
+[node name="slash" type="AnimatedSprite2D" parent="." unique_id=1368739230]
+visible = false
+position = Vector2(40, 0)
+sprite_frames = SubResource("SpriteFrames_wodsf")
+frame_progress = 0.55799836
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="stun" to="." method="_on_stun_timeout"]
