@@ -56,4 +56,10 @@ func _load():
 		contents_to_save.dj = save_data.dj
 		contents_to_save.dash = save_data.dash
 		
+		if save_data.fire == 2:
+			Global.player.switch_bullet("fire")
+		elif save_data.ice == 2:
+			Global.player.switch_bullet("ice")
+		elif save_data.lightning == 2:
+			Global.player.switch_bullet("lightning")
 		get_c1(0)

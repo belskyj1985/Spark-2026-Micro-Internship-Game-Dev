@@ -1,16 +1,22 @@
-[gd_scene format=3 uid="uid://edny0xnsfjdt"]
+[gd_scene format=4 uid="uid://edny0xnsfjdt"]
 
 [ext_resource type="Script" uid="uid://yp5xpf6gb0g3" path="res://door.gd" id="1_ba8gm"]
+[ext_resource type="PackedScene" uid="uid://b7d5rn4or5hc7" path="res://tilemap.tscn" id="2_v6xrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6xrn"]
-size = Vector2(20, 124)
+size = Vector2(62, 77)
 
 [node name="door" type="Area2D" unique_id=1307245194]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ba8gm")
 
+[node name="TileMapLayer" parent="." unique_id=797873583 instance=ExtResource("2_v6xrn")]
+position = Vector2(16, -64)
+tile_map_data = PackedByteArray("AAD/////AAA8AAEAAAD//wAAAAA8AAIAAAD//wEAAAA8AAMAAAD//wIAAAA8AAQAAAD//wMAAAA8AAQAAAAAAP//AAA9AAEAAAAAAAAAAAA9AAIAAAAAAAEAAAA9AAMAAAAAAAIAAAA9AAQAAAAAAAMAAAA9AAQAAAABAP//AAA9AAEAAAABAAAAAAA9AAIAAAABAAEAAAA9AAIAAAABAAIAAAA9AAMAAAABAAMAAAA9AAQAAAACAP//AAA+AAEAAAACAAAAAAA+AAIAAAACAAEAAAA+AAIAAAACAAIAAAA+AAMAAAACAAMAAAA+AAQAAAA=")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=699944256]
+position = Vector2(32, -39.5)
 shape = SubResource("RectangleShape2D_v6xrn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

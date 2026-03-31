@@ -34,6 +34,7 @@ func get_hit(dmg):
 	if health <= 0:
 		SaveLoad.get_c1(50)
 		Global.enemy_die.play()
+		$"../door".rise()
 		queue_free()
 
 func get_player_side() -> int: 
@@ -89,7 +90,7 @@ func spawn() -> void:
 			fly_inst.global_position = global_position + offset
 			offset += Vector2(0,-30)
 			fly_inst.animated_sprite_2d.play("idle")
-			await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1).timeout
 	
 	animator.play("crouch")
 	print("timer start")
