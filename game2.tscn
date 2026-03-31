@@ -29,7 +29,7 @@ shader_parameter/shift_amount = 234.0
 shader = ExtResource("3_v0n6i")
 shader_parameter/shift_amount = 228.0
 
-[node name="game2" type="Node2D" unique_id=672007194 groups=["Persist"]]
+[node name="game3" type="Node2D" unique_id=672007194 groups=["Persist"]]
 script = ExtResource("1_nhfqt")
 
 [node name="GameLoop" type="AudioStreamPlayer" parent="." unique_id=765342623]
