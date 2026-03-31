@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhvrp37k5sgl6"]
 
 [ext_resource type="Script" uid="uid://diwnt2s0atjtr" path="res://boss_gate.gd" id="1_dw4by"]
+[ext_resource type="Texture2D" uid="uid://bhik04cdcva1l" path="res://boss_gate.png" id="2_ftht7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw4by"]
 size = Vector2(20, 218)
@@ -25,5 +26,13 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1396108400]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_ftht7")
+
+[node name="BossGate" type="Sprite2D" parent="." unique_id=159177477]
+position = Vector2(2, -177)
+texture = ExtResource("2_ftht7")
+
+[node name="BossGate" type="Sprite2D" parent="BossGate" unique_id=385333993]
+position = Vector2(0, -127)
+texture = ExtResource("2_ftht7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
