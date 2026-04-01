@@ -6,29 +6,29 @@ func _ready() -> void:
 	start.grab_focus()
 
 
-func _on_start_focus_entered() -> void:
-	$main/Start/Label.label_settings.font_color = select_color
-func _on_start_focus_exited() -> void:
-	$main/Start/Label.label_settings.font_color = Color.WHITE
-
-func _on_options_focus_entered() -> void:
-	$main/Options/Label.label_settings.font_color = select_color
-func _on_options_focus_exited() -> void:
-	$main/Options/Label.label_settings.font_color = Color.WHITE
-
-func _on_credits_focus_entered() -> void:
-	$main/Credits/Label.label_settings.font_color = select_color
-func _on_credits_focus_exited() -> void:
-	$main/Credits/Label.label_settings.font_color = Color.WHITE
-
-func _on_quit_focus_entered() -> void:
-	$main/Quit/Label.label_settings.font_color = select_color
-func _on_quit_focus_exited() -> void:
-	$main/Quit/Label.label_settings.font_color = Color.WHITE
+#func _on_start_focus_entered() -> void:
+	#$main/Start/Label.label_settings.font_color = select_color
+#func _on_start_focus_exited() -> void:
+	#$main/Start/Label.label_settings.font_color = Color.WHITE
+#
+#func _on_options_focus_entered() -> void:
+	#$main/Options/Label.label_settings.font_color = select_color
+#func _on_options_focus_exited() -> void:
+	#$main/Options/Label.label_settings.font_color = Color.WHITE
+#
+#func _on_credits_focus_entered() -> void:
+	#$main/Credits/Label.label_settings.font_color = select_color
+#func _on_credits_focus_exited() -> void:
+	#$main/Credits/Label.label_settings.font_color = Color.WHITE
+#
+#func _on_quit_focus_entered() -> void:
+	#$main/Quit/Label.label_settings.font_color = select_color
+#func _on_quit_focus_exited() -> void:
+	#$main/Quit/Label.label_settings.font_color = Color.WHITE
 
 
 func _on_options_pressed() -> void:
-	$options_menu.grab_focus()
+	#$options_menu.grab_focus()
 	var tween = get_tree().create_tween()
 	tween.set_ease(tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)

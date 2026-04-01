@@ -18,7 +18,7 @@ var contents_to_save :Dictionary = {
 
 func get_c1(n):
 	contents_to_save["c1"] += n
-	Global.UI.c1.text = str(contents_to_save["c1"])
+	Global.UI.c1.text = str(contents_to_save["c1"]) + "sc"
 
 func get_c2(n):
 	contents_to_save["c2"] += n

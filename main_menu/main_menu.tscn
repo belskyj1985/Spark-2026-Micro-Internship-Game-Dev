@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b2u0a6wi1ro1w" path="res://main_menu/main.gd" id="1_oa53l"]
 [ext_resource type="FontFile" uid="uid://bs8m4g1llw2jk" path="res://main_menu/SPORTIFITY.otf" id="2_d3a7t"]
 [ext_resource type="FontFile" uid="uid://c2kqkbjoe7o2b" path="res://shop/Perfect DOS VGA 437.ttf" id="3_3shxk"]
+[ext_resource type="Theme" uid="uid://b6j3p7kgq37hf" path="res://theme.tres" id="3_bws42"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3shxk"]
 
@@ -141,22 +142,27 @@ label_settings = SubResource("LabelSettings_6tl50")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1579640058]
 position = Vector2(576, 324)
 
-[node name="options_menu" type="VBoxContainer" parent="." unique_id=1493470133]
+[node name="Node2D" type="Node2D" parent="." unique_id=537714524]
+position = Vector2(-859, -2163)
+scale = Vector2(4, 4)
+
+[node name="options_menu" type="VBoxContainer" parent="Node2D" unique_id=1493470133]
 offset_left = 265.0
 offset_top = 737.0
-offset_right = 411.0
+offset_right = 430.0
 offset_bottom = 838.0
+theme = ExtResource("3_bws42")
 
-[node name="showcursor" type="CheckButton" parent="options_menu" unique_id=165694888]
+[node name="showcursor" type="CheckButton" parent="Node2D/options_menu" unique_id=165694888]
 layout_mode = 2
 button_pressed = true
 text = "Show Cursor"
 
-[node name="hold2fire" type="CheckButton" parent="options_menu" unique_id=1636179490]
+[node name="hold2fire" type="CheckButton" parent="Node2D/options_menu" unique_id=1636179490]
 layout_mode = 2
 text = "Press to Fire"
 
-[node name="back" type="Button" parent="options_menu" unique_id=385815277]
+[node name="back" type="Button" parent="Node2D/options_menu" unique_id=385815277]
 layout_mode = 2
 text = "return ->"
 
@@ -244,7 +250,7 @@ label_settings = SubResource("LabelSettings_6at21")
 [connection signal="focus_exited" from="main/Quit" to="." method="_on_quit_focus_exited"]
 [connection signal="pressed" from="main/Quit" to="." method="_on_quit_pressed"]
 [connection signal="focus_exited" from="main/Quit/Label" to="." method="_on_label_focus_exited"]
-[connection signal="toggled" from="options_menu/showcursor" to="." method="_on_showcursor_toggled"]
-[connection signal="toggled" from="options_menu/hold2fire" to="." method="_on_hold_2_fire_toggled"]
-[connection signal="pressed" from="options_menu/back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="Node2D/options_menu/showcursor" to="." method="_on_showcursor_toggled"]
+[connection signal="toggled" from="Node2D/options_menu/hold2fire" to="." method="_on_hold_2_fire_toggled"]
+[connection signal="pressed" from="Node2D/options_menu/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="credits_menu/return" to="." method="_on_return_pressed"]

@@ -13,7 +13,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_mbxyh")
 
-[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=1153027348]
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=1153027348 groups=["SFX"]]
 stream = ExtResource("2_ovk8a")
 max_polyphony = 10
 

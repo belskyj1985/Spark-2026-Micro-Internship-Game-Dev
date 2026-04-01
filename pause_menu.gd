@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		Global.paused = true
 		Engine.time_scale = 0
 		if Global.player != null:
-			$BoxContainer/Label.text = "Health: {0}/{1} \nDamage: {2} \n ".format([Global.player.health, Global.player.max_health, Global.player.bullet_damage])
+			$BoxContainer/Label.text = "Health: {0}/{1} \nDamage: {2} \n ".format([Global.player.health, Global.player.max_health, int(Global.player.bullet_damage * (1.0 + 0.2 * Global.player.dmg_buff))])
 	else:
 		Global.paused = false
 		Engine.time_scale = 1
@@ -58,3 +58,22 @@ func _on_load_pressed() -> void:
 	SaveLoad._load()
 	Global.player.load_save_data()
 	print(SaveLoad.contents_to_save["hp"])
+
+
+func _on_controls_pressed() -> void:
+	$BoxContainer/keys.visible = !$BoxContainer/keys.visible
+
+
+func _on_music_toggled(toggled_on: bool) -> void:
+	if Global.music != null:
+		Global.music.stream_paused = !Global.music.stream_paused
+
+var sfx = true
+func _on_sfx_toggled(toggled_on: bool) -> void:
+	sfx = !sfx
+	for i in get_tree().get_nodes_in_group("SFX"):
+		print(i.name)
+		if $options_menu/sfx.button_pressed:
+			i.volume_db = -100
+		else:
+			i.volume_db = 0

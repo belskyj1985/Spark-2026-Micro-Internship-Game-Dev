@@ -1,4 +1,5 @@
 extends Node
+var music :AudioStreamPlayer
 var enemy_die :AudioStreamPlayer
 var player : CharacterBody2D
 var camera : Camera2D

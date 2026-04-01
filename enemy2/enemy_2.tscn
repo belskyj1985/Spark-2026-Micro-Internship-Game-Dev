@@ -16,7 +16,7 @@ collision_layer = 4
 floor_max_angle = 0.0
 script = ExtResource("1_b8hkb")
 
-[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=157170170]
+[node name="EnemyDmg" type="AudioStreamPlayer" parent="." unique_id=157170170 groups=["SFX"]]
 stream = ExtResource("2_bad5d")
 max_polyphony = 10
 

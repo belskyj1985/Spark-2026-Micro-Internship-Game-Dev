@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://c201kqm66rjry"]
 
+[ext_resource type="Theme" uid="uid://b6j3p7kgq37hf" path="res://theme.tres" id="1_05uyy"]
 [ext_resource type="Script" uid="uid://cdwyisxkkn5kh" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="FontFile" uid="uid://c2kqkbjoe7o2b" path="res://shop/Perfect DOS VGA 437.ttf" id="3_p81d2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2nc7s"]
+font = ExtResource("3_p81d2")
+font_color = Color(0, 0.95000005, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_05uyy"]
+font = ExtResource("3_p81d2")
 
 [node name="Pause Menu" type="Control" unique_id=1272794215]
 layout_mode = 3
@@ -9,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_05uyy")
 script = ExtResource("1_hdmo1")
 
 [node name="BoxContainer" type="BoxContainer" parent="." unique_id=153339323]
@@ -32,19 +42,33 @@ show_percentage = false
 layout_mode = 2
 text = "Options"
 
-[node name="keybinds" type="Button" parent="BoxContainer" unique_id=2089803832]
+[node name="controls" type="Button" parent="BoxContainer" unique_id=2089803832]
 layout_mode = 2
-text = "Options"
+text = "Controls"
 
-[node name="Label" type="Label" parent="BoxContainer" unique_id=326656552]
+[node name="Label" type="Label" parent="BoxContainer" unique_id=740678112]
 layout_mode = 2
+theme = ExtResource("1_05uyy")
+label_settings = SubResource("LabelSettings_2nc7s")
+
+[node name="keys" type="Label" parent="BoxContainer" unique_id=326656552]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_05uyy")
+text = "Aim/Shoot: Mouse L/R
+Movement: WASD
+Sprint: Shift
+Jump: Space
+Melee: E
+Dash: Q"
+label_settings = SubResource("LabelSettings_05uyy")
 
 [node name="options_menu" type="VBoxContainer" parent="." unique_id=533127358]
 visible = false
 layout_mode = 0
-offset_left = -193.0
-offset_right = -153.0
-offset_bottom = 40.0
+offset_left = -170.0
+offset_right = -5.0
+offset_bottom = 136.0
 
 [node name="showcursor" type="CheckButton" parent="options_menu" unique_id=447992478]
 layout_mode = 2
@@ -55,6 +79,14 @@ text = "Show Cursor"
 layout_mode = 2
 text = "Press to Fire"
 
+[node name="music" type="CheckButton" parent="options_menu" unique_id=529862483]
+layout_mode = 2
+text = "Mute Music"
+
+[node name="sfx" type="CheckButton" parent="options_menu" unique_id=1621264606]
+layout_mode = 2
+text = "Mute SFX"
+
 [node name="back" type="Button" parent="options_menu" unique_id=1998669704]
 layout_mode = 2
 text = "return ->"
@@ -62,7 +94,10 @@ text = "return ->"
 [connection signal="button_down" from="BoxContainer/recall" to="." method="_on_recall_button_down"]
 [connection signal="button_up" from="BoxContainer/recall" to="." method="_on_recall_button_up"]
 [connection signal="pressed" from="BoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="BoxContainer/controls" to="." method="_on_controls_pressed"]
 [connection signal="button_down" from="options_menu/showcursor" to="." method="_on_showcursor_button_down"]
 [connection signal="toggled" from="options_menu/showcursor" to="." method="_on_showcursor_toggled"]
 [connection signal="toggled" from="options_menu/hold2fire" to="." method="_on_hold_2_fire_toggled"]
+[connection signal="toggled" from="options_menu/music" to="." method="_on_music_toggled"]
+[connection signal="toggled" from="options_menu/sfx" to="." method="_on_sfx_toggled"]
 [connection signal="pressed" from="options_menu/back" to="." method="_on_back_pressed"]
