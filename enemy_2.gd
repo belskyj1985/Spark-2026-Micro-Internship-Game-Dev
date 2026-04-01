@@ -44,7 +44,7 @@ func get_hit(dmg):
 func apply_status(type):
 	status = type
 	$StatusEffect.start()
-	$Tick.start()
+	
 	if type == "ice":
 		#$Timer.wait_time = 2.0
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
@@ -53,6 +53,7 @@ func apply_status(type):
 		modulate = Color(1.0, 0.933, 0.0, 1.0)
 	if type == "fire":
 		#$Timer.wait_time = 2.0
+		$Tick.start()
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
 
 func _on_HitFlash_timeout() -> void:

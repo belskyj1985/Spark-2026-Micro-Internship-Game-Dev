@@ -65,7 +65,7 @@ func _on_timer_timeout() -> void:
 func apply_status(type):
 	status = type
 	$StatusEffect.start()
-	$Tick.start()
+	
 	if type == "ice":
 		$Timer.wait_time = 2.0
 		modulate = Color(0.201, 0.584, 0.59, 1.0)
@@ -73,6 +73,7 @@ func apply_status(type):
 		
 		modulate = Color(1.0, 0.933, 0.0, 1.0)
 	if type == "fire":
+		$Tick.start()
 		$Timer.wait_time = 2.0
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
 
