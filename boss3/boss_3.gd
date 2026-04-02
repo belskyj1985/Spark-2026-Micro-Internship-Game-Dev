@@ -75,24 +75,25 @@ func shoot(bullet_offset: Vector2 = Vector2.ZERO):
 
 var actions = 0
 func _on_action_timer_timeout() -> void:
-	actions += 1
-	if actions % 10 == 0:
-		pass
-	
-	if actions % 5 == 0:
-		var instance = enemy.instantiate()
-		get_tree().current_scene.add_child(instance)
-		instance.global_position.x = Global.player.global_position.x
-		var tween = get_tree().create_tween()
-		tween.set_ease(Tween.EASE_OUT)
-		tween.set_trans(Tween.TRANS_CUBIC)
-		tween.tween_property(instance, "position:y",Global.player.global_position.y,2.0)
-		await tween.finished
-	
-	match (actions%3):
-		0:
-			shoot(Vector2(-88,-128))
-		1:
-			shoot(Vector2(-88,0))
-		2:
-			shoot(Vector2(-88, 128))
+	if active:
+		actions += 1
+		if actions % 10 == 0:
+			pass
+		
+		if actions % 5 == 0:
+			var instance = enemy.instantiate()
+			get_tree().current_scene.add_child(instance)
+			instance.global_position.x = Global.player.global_position.x
+			var tween = get_tree().create_tween()
+			tween.set_ease(Tween.EASE_OUT)
+			tween.set_trans(Tween.TRANS_CUBIC)
+			tween.tween_property(instance, "position:y",Global.player.global_position.y,2.0)
+			await tween.finished
+		
+		match (actions%3):
+			0:
+				shoot(Vector2(-88,-128))
+			1:
+				shoot(Vector2(-88,0))
+			2:
+				shoot(Vector2(-88, 128))

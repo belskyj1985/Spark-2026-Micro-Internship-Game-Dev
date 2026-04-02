@@ -22,4 +22,4 @@ func die():
 	tween.tween_property($Panel2, "modulate:a",1.0,1.0)
 	await tween.finished
 	SaveLoad._save()
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://game.tscn")

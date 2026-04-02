@@ -217,6 +217,7 @@ position = Vector2(3680, -1120)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=444972307]
 
 [node name="Pause Menu" parent="CanvasLayer" unique_id=1272794215 instance=ExtResource("15_qwl4e")]
+visible = false
 offset_left = 346.0
 offset_top = 128.0
 offset_right = 346.0
