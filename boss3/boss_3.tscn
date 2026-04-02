@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://152mfastow7b" path="res://boss3/body.png" id="2_vcasu"]
 [ext_resource type="Texture2D" uid="uid://tlw111wo05y3" path="res://boss3/eye.png" id="3_uu7ik"]
 [ext_resource type="AudioStream" uid="uid://cllc1dq0bt0q6" path="res://sounds/enemy_dmg.ogg" id="4_uu7ik"]
+[ext_resource type="Script" uid="uid://snjem6ddot7r" path="res://boss3/eye.gd" id="4_vh6bt"]
+[ext_resource type="Texture2D" uid="uid://dpnddhxafgyrg" path="res://boss3/canon.png" id="4_wmgf5"]
 
 [sub_resource type="Curve2D" id="Curve2D_wmgf5"]
 _data = {
@@ -15,7 +17,7 @@ point_count = 2
 radius = 48.010414
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vh6bt"]
-size = Vector2(192, 400)
+size = Vector2(240, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcasu"]
 
@@ -23,6 +25,18 @@ size = Vector2(192, 400)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_uifba")
+
+[node name="Canon" type="Sprite2D" parent="." unique_id=1454391431]
+position = Vector2(-104, 128)
+texture = ExtResource("4_wmgf5")
+
+[node name="Canon2" type="Sprite2D" parent="." unique_id=902030582]
+position = Vector2(-104, 0)
+texture = ExtResource("4_wmgf5")
+
+[node name="Canon3" type="Sprite2D" parent="." unique_id=210852447]
+position = Vector2(-104, -128)
+texture = ExtResource("4_wmgf5")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1644310844]
 texture = ExtResource("2_vcasu")
@@ -33,12 +47,14 @@ curve = SubResource("Curve2D_wmgf5")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1748570061]
 position = Vector2(-88, 154)
 rotation = -1.5707964
+loop = false
 
 [node name="eye" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=1115969486]
-position = Vector2(308, -24.999985)
+position = Vector2(2, -24.999998)
 rotation = 1.5707964
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("4_vh6bt")
 
 [node name="sprite" type="Sprite2D" parent="Path2D/PathFollow2D/eye" unique_id=1775931458]
 texture = ExtResource("3_uu7ik")
@@ -50,13 +66,14 @@ shape = SubResource("CircleShape2D_vcasu")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=671323127]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1280478848]
+position = Vector2(-24, 0)
 shape = SubResource("RectangleShape2D_vh6bt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12646870]
 shape = SubResource("RectangleShape2D_vcasu")
 
 [node name="action_Timer" type="Timer" parent="." unique_id=1120894588]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=346643443]

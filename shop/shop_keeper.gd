@@ -16,6 +16,7 @@ var direction: int = 1
 var current_speed: float = 0.0
 var target_y = -150
 func _physics_process(delta: float) -> void:
+	$UI/VBoxContainer/notice2.text = "Scrap: " + str(SaveLoad.contents_to_save["c1"])
 	$UI/notice.modulate.a = lerpf($UI/notice.modulate.a,0.0,0.02)
 	if detected:
 		ui.modulate.a = lerpf(ui.modulate.a,1.0,0.18)
@@ -65,11 +66,13 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	v_box_container.visible = true
 	detected = true
+	$"../CanvasLayer".layer = -1
 	update_buttons()
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	#v_box_container.visible = false
+	$"../CanvasLayer".layer = 1
 	detected = false
 	$UI/VBoxContainer/ice/ice_button.release_focus()
 	$UI/VBoxContainer/fire/fire_button.release_focus()

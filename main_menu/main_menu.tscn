@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://peq3dvqkcjum"]
 
 [ext_resource type="Script" uid="uid://b2u0a6wi1ro1w" path="res://main_menu/main.gd" id="1_oa53l"]
+[ext_resource type="Texture2D" uid="uid://ccx3tnu7iovml" path="res://titlePlayer.png" id="2_6tl50"]
 [ext_resource type="FontFile" uid="uid://bs8m4g1llw2jk" path="res://main_menu/SPORTIFITY.otf" id="2_d3a7t"]
 [ext_resource type="FontFile" uid="uid://c2kqkbjoe7o2b" path="res://shop/Perfect DOS VGA 437.ttf" id="3_3shxk"]
 [ext_resource type="Theme" uid="uid://b6j3p7kgq37hf" path="res://theme.tres" id="3_bws42"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_3shxk"]
+[ext_resource type="Texture2D" uid="uid://du25wr3vn8mmp" path="res://title.png" id="6_t6bnd"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_d3a7t"]
 
@@ -37,6 +37,8 @@ shadow_size = 7
 shadow_color = Color(1, 0.00999999, 0.026499748, 1)
 shadow_offset = Vector2(-7, 3)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_3shxk"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_6tl50"]
 font_size = 80
 
@@ -55,12 +57,6 @@ font_size = 49
 [node name="main menu" type="Node2D" unique_id=456848292]
 script = ExtResource("1_oa53l")
 
-[node name="MeshInstance2D2" type="Sprite2D" parent="." unique_id=1052822454]
-modulate = Color(0.55369806, 0.26335868, 0.48364353, 1)
-position = Vector2(576.125, 972)
-scale = Vector2(1151.75, 647.75)
-texture = SubResource("CanvasTexture_3shxk")
-
 [node name="main" type="VBoxContainer" parent="." unique_id=1472162689]
 offset_left = 13.0
 offset_top = 325.0
@@ -68,10 +64,15 @@ offset_right = 393.0
 offset_bottom = 637.0
 
 [node name="MeshInstance2D" type="Sprite2D" parent="main" unique_id=1362329628]
-modulate = Color(0.10393151, 0.1425921, 0.3913169, 1)
+modulate = Color(0, 0, 0, 1)
 position = Vector2(563.00006, -1)
 scale = Vector2(1151.75, 647.75)
 texture = SubResource("CanvasTexture_d3a7t")
+
+[node name="TitlePlayer" type="Sprite2D" parent="main" unique_id=752940239]
+position = Vector2(884, 121)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_6tl50")
 
 [node name="Start" type="TextureButton" parent="main" unique_id=1700661442]
 custom_minimum_size = Vector2(380.59, 75.36)
@@ -121,19 +122,25 @@ offset_bottom = 33.0
 text = "QUIT"
 label_settings = SubResource("LabelSettings_d3a7t")
 
+[node name="MeshInstance2D2" type="Sprite2D" parent="." unique_id=1052822454]
+modulate = Color(0.55369806, 0.26335868, 0.48364353, 1)
+position = Vector2(576.125, 972)
+scale = Vector2(1151.75, 647.75)
+texture = SubResource("CanvasTexture_3shxk")
+
 [node name="Title" type="Label" parent="." unique_id=683353520]
-offset_left = 35.0
-offset_top = 29.0
-offset_right = 586.0
-offset_bottom = 139.0
+offset_left = -4.0
+offset_top = -330.0
+offset_right = 547.0
+offset_bottom = -220.0
 text = "title goes here"
 label_settings = SubResource("LabelSettings_6tl50")
 
 [node name="Title2" type="Label" parent="." unique_id=887846013]
-offset_left = 665.0
-offset_top = 253.0
-offset_right = 1216.0
-offset_bottom = 589.0
+offset_left = 601.0
+offset_top = -565.0
+offset_right = 1152.0
+offset_bottom = -229.0
 text = "image 
 goes 
 here"
@@ -233,6 +240,11 @@ text = "Coding
 Level Design
 Enemy Design"
 label_settings = SubResource("LabelSettings_6at21")
+
+[node name="Title3" type="Sprite2D" parent="." unique_id=772130359]
+position = Vector2(239, 153)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("6_t6bnd")
 
 [connection signal="focus_entered" from="main/Start" to="." method="_on_start_focus_entered"]
 [connection signal="focus_exited" from="main/Start" to="." method="_on_start_focus_exited"]

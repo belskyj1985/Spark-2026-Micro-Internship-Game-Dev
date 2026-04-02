@@ -14,6 +14,7 @@ font = ExtResource("2_m6e0p")
 [node name="UI" type="Control" unique_id=586122242]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_fyqef")
 
 [node name="Panel" type="Panel" parent="." unique_id=1100799765]
@@ -60,6 +61,8 @@ label_settings = SubResource("LabelSettings_27fn8")
 modulate = Color(1, 1, 1, 0)
 z_index = 36
 layout_mode = 0
-offset_right = 1166.0
-offset_bottom = 668.0
+offset_left = -1428.0
+offset_top = -1159.0
+offset_right = 2923.0
+offset_bottom = 1850.0
 color = Color(0, 0, 0, 1)

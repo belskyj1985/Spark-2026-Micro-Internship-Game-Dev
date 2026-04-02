@@ -171,6 +171,7 @@ max_polyphony = 10
 
 [node name="Reticle" type="Sprite2D" parent="." unique_id=871831281]
 modulate = Color(1, 1, 1, 0)
+z_index = 5
 position = Vector2(33, -16)
 texture = ExtResource("2_i3pqv")
 

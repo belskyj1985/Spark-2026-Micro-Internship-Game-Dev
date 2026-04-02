@@ -68,7 +68,6 @@ func load_save_data():
 		Global.player.switch_bullet("ice")
 	
 	max_health = 100 + (SaveLoad.contents_to_save["hp"]) * 20
-	print(100 + (SaveLoad.contents_to_save["hp"]) * 20, " is max?")
 	health = SaveLoad.contents_to_save["cur_hp"]
 	defense = SaveLoad.contents_to_save["def"]
 	dmg_buff = SaveLoad.contents_to_save["dmg"]
@@ -253,6 +252,7 @@ func get_hit(dmg):
 	if vulnerable:
 		player_dmg.play()
 		health = clamp(health - dmg * ( 1.0/((defense+2.0)*0.5) ), 0, max_health)
+		print(dmg," ", dmg * ( 1.0/((defense+2.0)*0.5) ))
 		inv_timer.start()
 		tranq(0.5)
 		velocity.y = -500

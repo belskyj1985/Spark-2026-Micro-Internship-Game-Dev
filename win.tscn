@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b32jt68pjpedn"]
+
+[ext_resource type="Script" uid="uid://c3src5ps87qv2" path="res://win.gd" id="1_hgi8f"]
+[ext_resource type="FontFile" uid="uid://bs8m4g1llw2jk" path="res://main_menu/SPORTIFITY.otf" id="2_tmki8"]
+[ext_resource type="Theme" uid="uid://b6j3p7kgq37hf" path="res://theme.tres" id="3_tmki8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yblwc"]
+font = ExtResource("2_tmki8")
+font_size = 75
+
+[node name="win" type="Node2D" unique_id=12136810]
+script = ExtResource("1_hgi8f")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=33769175]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=144355087]
+offset_left = -592.0
+offset_top = -328.0
+offset_right = 584.0
+offset_bottom = 328.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1127838394]
+offset_left = -424.0
+offset_top = 376.0
+offset_right = 1066.0
+offset_bottom = 514.0
+text = "GAME COMPLETE"
+label_settings = SubResource("LabelSettings_yblwc")
+
+[node name="Label2" type="Button" parent="." unique_id=762037620]
+offset_left = -175.99997
+offset_top = 480.0
+offset_right = -95.99997
+offset_bottom = 504.0
+scale = Vector2(4.45, 4.45)
+theme = ExtResource("3_tmki8")
+text = "Restart?"
+
+[connection signal="pressed" from="Label2" to="." method="_on_label_2_pressed"]

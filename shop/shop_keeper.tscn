@@ -32,6 +32,9 @@ font_color = Color(1, 0.7515, 0.29000002, 1)
 font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_cugxr"]
+font = ExtResource("3_v6c71")
+
 [sub_resource type="LabelSettings" id="LabelSettings_84gdt"]
 font = ExtResource("3_v6c71")
 font_color = Color(1, 0.7515, 0.29000002, 1)
@@ -76,6 +79,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="notice" type="Label" parent="UI" unique_id=258961227]
 modulate = Color(1, 1, 1, 0)
@@ -172,6 +176,11 @@ label_settings = SubResource("LabelSettings_dypvr")
 [node name="icon" type="Sprite2D" parent="UI/VBoxContainer/lightning" unique_id=639509495]
 position = Vector2(45, 14)
 texture = ExtResource("6_18uh6")
+
+[node name="notice2" type="Label" parent="UI/VBoxContainer" unique_id=2033422171]
+layout_mode = 2
+text = "Scrap: "
+label_settings = SubResource("LabelSettings_cugxr")
 
 [node name="stats" type="VBoxContainer" parent="UI" unique_id=1210869089]
 layout_mode = 0

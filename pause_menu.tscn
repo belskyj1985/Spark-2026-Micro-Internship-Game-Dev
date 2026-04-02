@@ -18,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_05uyy")
 script = ExtResource("1_hdmo1")
 
@@ -33,9 +34,9 @@ text = "Recall"
 
 [node name="ProgressBar" type="ProgressBar" parent="BoxContainer/recall" unique_id=976796316]
 layout_mode = 0
-offset_top = 31.0
+offset_top = 20.0
 offset_right = 460.0
-offset_bottom = 35.0
+offset_bottom = 24.0
 show_percentage = false
 
 [node name="options" type="Button" parent="BoxContainer" unique_id=622168258]
