@@ -70,6 +70,10 @@ texture = ExtResource("6_j5wjh")
 [node name="bossGate" parent="." unique_id=120194739 node_paths=PackedStringArray("boss") instance=ExtResource("16_80cx4")]
 position = Vector2(5618, 1379)
 boss = NodePath("../frog")
+zoom = 0.8
+
+[node name="Marker2D" parent="bossGate" index="3" unique_id=1037869257]
+position = Vector2(650, -128)
 
 [node name="door" parent="." unique_id=1581457369 instance=ExtResource("9_vef74")]
 position = Vector2(6784, 1584)
@@ -86,7 +90,7 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAYABcAAAABAAcAAAAZABcAAAAAAAgAAAAYABg
 position = Vector2(-441, 86)
 
 [node name="player" parent="." unique_id=663432482 instance=ExtResource("2_e2o6t")]
-position = Vector2(-4.3641357, 79.63806)
+position = Vector2(-129, -316)
 
 [node name="PhysicsGear" parent="." unique_id=1566769687 instance=ExtResource("7_eow3j")]
 position = Vector2(-376, 176)
@@ -268,21 +272,27 @@ position = Vector2(2770, 768)
 position = Vector2(5809.86, 1176)
 
 [node name="Camera2D" parent="." unique_id=1718674644 instance=ExtResource("3_feb5d")]
-position = Vector2(153, 65)
-
-[node name="Pause Menu" parent="Camera2D" unique_id=1751748637 instance=ExtResource("8_j5wjh")]
-offset_left = -225.0
-offset_top = -136.0
-offset_right = -225.0
-offset_bottom = -136.0
-
-[node name="UI" parent="Camera2D" unique_id=575041993 instance=ExtResource("2_7sc4i")]
-offset_left = -393.0
-offset_top = -222.0
-offset_right = -393.0
-offset_bottom = -222.0
 
 [node name="enemy8" parent="." unique_id=671217661 instance=ExtResource("18_rvswv")]
 position = Vector2(1964, 690)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=284704930]
+
+[node name="Pause Menu" parent="CanvasLayer" unique_id=1751748637 instance=ExtResource("8_j5wjh")]
+offset_left = 346.0
+offset_top = 128.0
+offset_right = 346.0
+offset_bottom = 128.0
+scale = Vector2(1.2, 1.2)
+
+[node name="UI" parent="CanvasLayer" unique_id=575041993 instance=ExtResource("2_7sc4i")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+mouse_filter = 2
+
+[editable path="bossGate"]
 [editable path="CollapsingPlatform4"]

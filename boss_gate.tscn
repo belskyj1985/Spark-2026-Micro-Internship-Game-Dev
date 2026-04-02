@@ -35,4 +35,6 @@ texture = ExtResource("2_ftht7")
 position = Vector2(0, -127)
 texture = ExtResource("2_ftht7")
 
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1037869257]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

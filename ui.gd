@@ -9,6 +9,7 @@ func _ready() -> void:
 	Global.UI = self
 
 func _physics_process(delta: float) -> void:
+	
 	hp_target = float(Global.player.health)/Global.player.max_health * 100
 	if Global.player != null:
 		health_bar.value = lerp(health_bar.value, hp_target, 0.1)
