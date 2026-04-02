@@ -32,7 +32,7 @@ offset_bottom = 93.0
 
 [node name="c1" type="Label" parent="VBoxContainer" unique_id=2002551849]
 layout_mode = 2
-text = "9999sc"
+text = "0sc"
 label_settings = SubResource("LabelSettings_m6e0p")
 
 [node name="c2" type="Label" parent="VBoxContainer" unique_id=94517163]
