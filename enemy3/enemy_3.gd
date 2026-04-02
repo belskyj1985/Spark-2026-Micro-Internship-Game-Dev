@@ -31,8 +31,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	accum += delta
-	global_position.y += sin(accum * 2)
-	print(detected)
+	global_position.y += sin(accum * 200 * delta)
 	detected = false
 	for i in raycasts:
 		if i.is_colliding():
@@ -43,7 +42,6 @@ func _physics_process(delta: float) -> void:
 
 func get_hit(dmg):
 	$EnemyDmg.play()
-	print(dmg)
 	health -= dmg
 	if health <= 0:
 		SaveLoad.get_c1(10)
@@ -58,15 +56,14 @@ func get_hit(dmg):
 func apply_status(type):
 	status = type
 	$StatusEffect.start()
-	$Tick.start()
+	
 	if type == "ice":
-		$Timer.wait_time = 2.0
-		modulate = Color(0.201, 0.584, 0.59, 1.0)
+		pass
 	if type == "lightning":
-		
-		modulate = Color(1.0, 0.933, 0.0, 1.0)
+		pass
 	if type == "fire":
-		$Timer.wait_time = 2.0
+		#$Timer.wait_time = 2.0
+		$Tick.start()
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
 
 func _on_HitFlash_timeout() -> void:
@@ -75,11 +72,10 @@ func _on_HitFlash_timeout() -> void:
 
 
 func _on_status_effect_timeout() -> void:
-	print("modulate done")
 	status = ""
 	modulate = Color(1,1,1)
 	$Tick.stop()
-	$Timer.wait_time = 1.0
+	#$Timer.wait_time = 1.0
 
 
 func _on_tick_timeout() -> void:
@@ -97,7 +93,6 @@ func shoot(vec :Vector2 = Vector2.UP):
 	bullet_instance.rotation = vec.angle() +PI/2
 	bullet_instance.global_position = global_position
 	bullet_instance.speed = 400
-	print(bullet_instance.damage)
 
 func attack():
 	if u.is_colliding():

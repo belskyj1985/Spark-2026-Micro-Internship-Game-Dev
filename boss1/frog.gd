@@ -27,7 +27,6 @@ func get_hit(dmg):
 		modulate = Color(1,.4,.4)
 		$HitFlash.start()
 	
-	print(float(health)/max_health)
 	$EnemyDmg.play()
 	health -= dmg
 	progress_bar.value = 100 * float(health)/max_health
@@ -93,11 +92,9 @@ func spawn() -> void:
 		await get_tree().create_timer(0.1).timeout
 	
 	animator.play("crouch")
-	print("timer start")
 	shaking = true
 	await get_tree().create_timer(0.3).timeout
 	shaking = false
-	print("timer end")
 	animator.play("jump")
 	target_y = 200
 
@@ -109,7 +106,6 @@ func _physics_process(delta: float) -> void:
 	#velocity.y += 200 * delta
 	if shaking:
 		sprite.position.x = randi_range(-8,8)
-		print(sprite.position.x)
 	else:
 		sprite.position.x = 0
 	

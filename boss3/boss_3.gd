@@ -18,7 +18,6 @@ func get_hit(dmg):
 		modulate = Color(1,.4,.4)
 		$HitFlash.start()
 	
-	print(float(health)/max_health)
 	$EnemyDmg.play()
 	health -= dmg
 	progress_bar.value = 100 * float(health)/max_health

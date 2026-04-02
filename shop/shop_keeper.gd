@@ -115,7 +115,7 @@ func update_buttons() -> void:
 		2:
 			$UI/VBoxContainer/lightning/lightning_button/Label.text = "Uneq."
 			$UI/VBoxContainer/lightning/lightning_button/Label.label_settings.font_color = Color(0.0, 1.0, 0.883, 1.0)
-	
+	print(SaveLoad.contents_to_save["hp"])
 	if SaveLoad.contents_to_save["hp"] < 5:
 		$UI/stats/hp/hp_button/Label.text = str(120 + 20 * SaveLoad.contents_to_save["hp"]) + "sc"
 		$UI/stats/hp/hp_button/Label.label_settings.font_color = Color(1.0, 0.753, 0.29, 1.0)
@@ -191,7 +191,6 @@ func _on_fire_button_pressed() -> void:
 
 
 func _on_ice_button_pressed() -> void:
-	print(SaveLoad.contents_to_save["ice"])
 	match SaveLoad.contents_to_save["ice"]:
 		0:
 			if SaveLoad.contents_to_save["c1"] >= 120:

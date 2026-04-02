@@ -57,7 +57,7 @@ enum state_enum {
 func _ready() -> void:
 	Global.player = self
 	Global.enemy_die = $EnemyDie
-	
+	load_save_data()
 
 func load_save_data():
 	if SaveLoad.contents_to_save["fire"] == 2:
@@ -68,8 +68,8 @@ func load_save_data():
 		Global.player.switch_bullet("ice")
 	
 	max_health = 100 + (SaveLoad.contents_to_save["hp"]) * 20
+	print(100 + (SaveLoad.contents_to_save["hp"]) * 20, " is max?")
 	health = SaveLoad.contents_to_save["cur_hp"]
-	
 	defense = SaveLoad.contents_to_save["def"]
 	dmg_buff = SaveLoad.contents_to_save["dmg"]
 func get_input_vector():
@@ -262,6 +262,10 @@ func get_hit(dmg):
 			velocity.x = -300
 		
 		SaveLoad.contents_to_save["cur_hp"] = health
+		if health <= 0:
+			Global.UI.die()
+			tranq(10)
+			self.modulate = Color(0.612, 0.0, 0.017, 1.0)
 
 func tranq(time :float):
 	stunned = true

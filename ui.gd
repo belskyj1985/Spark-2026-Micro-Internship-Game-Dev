@@ -14,3 +14,12 @@ func _physics_process(delta: float) -> void:
 	if Global.player != null:
 		health_bar.value = lerp(health_bar.value, hp_target, 0.1)
 		hp_text.text = str(Global.player.health) + "/" + str(Global.player.max_health)
+
+func die():
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	#tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Panel2, "modulate:a",1.0,1.0)
+	await tween.finished
+	SaveLoad._save()
+	get_tree().reload_current_scene()

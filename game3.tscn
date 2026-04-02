@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://dgf3dn87tgun5"]
+[gd_scene format=4 uid="uid://cenvsabmco816"]
 
-[ext_resource type="Script" path="res://game_3.gd" id="1_hgo6y"]
+[ext_resource type="Script" uid="uid://uytjwvh0j0gq" path="res://game_3.gd" id="1_hgo6y"]
 [ext_resource type="AudioStream" uid="uid://5arrr24kxubq" path="res://sounds/game_loop.ogg" id="2_2vxgh"]
 [ext_resource type="Shader" uid="uid://b6wqr3p73h54b" path="res://hue_shift.gdshader" id="3_hulot"]
 [ext_resource type="Texture2D" uid="uid://6j152cldqi0s" path="res://PixelFantasy_Caves_1.0/background1.png" id="4_hh17d"]

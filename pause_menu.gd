@@ -10,7 +10,6 @@ func _on_recall_button_up() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
-		print("PRESSED IT")
 		visible = !visible
 	if visible:
 		Global.paused = true
@@ -26,6 +25,7 @@ func _process(delta: float) -> void:
 	else:
 		progress_bar.value -= 1
 	if progress_bar.ratio == 1:
+		SaveLoad._save()
 		get_tree().reload_current_scene()
 
 
@@ -37,12 +37,10 @@ func _on_options_pressed() -> void:
 func _on_showcursor_toggled(toggled_on: bool) -> void:
 	
 	Global.Options["showCursor"] = !Global.Options["showCursor"]
-	print(Global.Options["showCursor"])
 
 
 func _on_hold_2_fire_toggled(toggled_on: bool) -> void:
 	Global.Options["hold2fire"] = !Global.Options["hold2fire"]
-	print(Global.Options["hold2fire"])
 
 
 func _on_back_pressed() -> void:
@@ -56,7 +54,6 @@ func _on_save_pressed() -> void:
 func _on_load_pressed() -> void:
 	SaveLoad._load()
 	Global.player.load_save_data()
-	print(SaveLoad.contents_to_save["hp"])
 
 
 func _on_controls_pressed() -> void:
@@ -71,7 +68,6 @@ var sfx = true
 func _on_sfx_toggled(toggled_on: bool) -> void:
 	sfx = !sfx
 	for i in get_tree().get_nodes_in_group("SFX"):
-		print(i.name)
 		if $options_menu/sfx.button_pressed:
 			i.volume_db = -100
 		else:

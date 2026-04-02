@@ -55,3 +55,11 @@ offset_bottom = 23.0
 text = "100/100
 "
 label_settings = SubResource("LabelSettings_27fn8")
+
+[node name="Panel2" type="ColorRect" parent="." unique_id=26799369]
+modulate = Color(1, 1, 1, 0)
+z_index = 36
+layout_mode = 0
+offset_right = 1166.0
+offset_bottom = 668.0
+color = Color(0, 0, 0, 1)

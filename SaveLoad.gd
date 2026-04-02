@@ -63,3 +63,4 @@ func _load():
 		elif save_data.lightning == 2:
 			Global.player.switch_bullet("lightning")
 		get_c1(0)
+		Global.player.load_save_data()
