@@ -32,7 +32,7 @@ size = Vector2(160, 16.75)
 offsets = PackedFloat32Array(0, 0.3618421, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="game2" type="Node2D" unique_id=1118519823 groups=["Persist"]]
+[node name="game3" type="Node2D" unique_id=1118519823 groups=["Persist"]]
 script = ExtResource("1_e36ub")
 
 [node name="GameLoop" type="AudioStreamPlayer" parent="." unique_id=1020525786]
